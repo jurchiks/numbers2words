@@ -6,9 +6,11 @@ The class doesn't have a method for outputting correct currency names, that's in
 
 Usage:
 ```php
+NumberConversion::numberToWords(123, 'ru');
+// output: сто двадцать три
 $amount = 123.45;
 $language = 'en';
 $currency = 'USD';
-NumberConversion::numberToWords($amount, $language, $currency);
+NumberConversion::currencyToWords($amount, $language, $currency);
 // output: one hundred and twenty three dollars and forty five cents
 ```
