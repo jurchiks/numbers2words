@@ -8,9 +8,6 @@ Usage:
 ```php
 NumberConversion::numberToWords(123, 'ru');
 // output: сто двадцать три
-$amount = 123.45;
-$language = 'en';
-$currency = 'USD';
-NumberConversion::currencyToWords($amount, $language, $currency);
+NumberConversion::currencyToWords(123.45, 'en', 'USD');
 // output: one hundred and twenty three dollars and forty five cents
 ```
