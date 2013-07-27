@@ -8,8 +8,7 @@ Usage:
 ```php
 $amount = 123.45;
 $language = 'en';
-$beforeDecimal = 'dollars';
-$afterDecimal = 'cents';
-NumberConversion::numberToWords($amount, $language, $beforeDecimal, $afterDecimal);
+$currency = 'USD';
+NumberConversion::numberToWords($amount, $language, $currency);
 // output: one hundred and twenty three dollars and forty five cents
 ```
