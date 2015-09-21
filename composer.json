@@ -1,0 +1,11 @@
+{
+    "name": "jurchiks/numbers2words",
+    "description": "It spells numbers!",
+    "authors": [
+        {
+            "name": "Jurchiks",
+            "email": "dev@example.org"
+        }
+    ],
+    "require": {}
+}
