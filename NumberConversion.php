@@ -659,6 +659,10 @@ class NumberConversion
 	 */
 	private static function normalizeCentValue($amount)
 	{
+		if (substr($amount, 0, 1) === "0") {
+			$amount = $amount / 10;
+		}
+
 		if ($amount < 10)
 		{
 			$amount *= 10;
