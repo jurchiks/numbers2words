@@ -1,0 +1,16 @@
+{
+    "name": "jurchiks/numbers2words",
+    "description": "It spells numbers!",
+    "keywords": ["numbers"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jurchiks",
+            "email": "dev@example.org"
+        }
+    ],
+    "autoload": {
+        "psr-0": {"NumberConversion": ""}
+    }
+}

@@ -10,7 +10,7 @@ class NumberConversion
 	private static $languages = array(
 		'en', 'lv', 'ru', 'lt', 'es'
 	);
-	
+
 	private static $minus = array(
 		'en' => 'minus',
 		'lv' => 'mīnus',
@@ -18,7 +18,7 @@ class NumberConversion
 		'lt' => 'minus',
 		'es' => 'menos'
 	);
-	
+
 	private static $singleDigits = array(
 		'0' => array(
 			'en' => 'zero',
@@ -91,7 +91,7 @@ class NumberConversion
 			'es' => 'nueve'
 		)
 	);
-	
+
 	private static $singleDigitsFeminine = array(
 		'lv' => array(
 			'1' => 'viena',
@@ -116,7 +116,7 @@ class NumberConversion
 			'9' => 'девять'
 		)
 	);
-	
+
 	private static $teens = array(
 		'11' => array(
 			'en' => 'eleven',
@@ -182,11 +182,11 @@ class NumberConversion
 			'es' => 'diecinueve'
 		)
 	);
-	
+
 	private static $tens = array(
 		'1' => array(
 			'en' => 'ten',
-			'lv' => 'deviņi',
+			'lv' => 'desmit',
 			'ru' => 'десять',
 			'lt' => 'dešimt',
 			'es' => 'diez'
@@ -248,7 +248,7 @@ class NumberConversion
 			'es' => 'noventa'
 		)
 	);
-	
+
 	private static $hundreds = array(
 		'1' => array(
 			'en' => '',
@@ -314,7 +314,7 @@ class NumberConversion
 			'es' => 'novecientos'
 		)
 	);
-	
+
 	private static $thousands = array(
 		'1' => array(
 			'en' => 'thousand',
@@ -331,7 +331,7 @@ class NumberConversion
 			'es' => 'mil'
 		)
 	);
-	
+
 	private static $spacer = array(
 		'en' => ' ',
 		'lv' => ' ',
@@ -339,7 +339,7 @@ class NumberConversion
 		'lt' => ' ',
 		'es' => ' y '
 	);
-	
+
 	private static $decimalReplacement = array(
 		'en' => ' and ',
 		'lv' => ' un ',
@@ -347,7 +347,7 @@ class NumberConversion
 		'lt' => ' ir ',
 		'es' => ' con '
 	);
-	
+
 	private static $currencies = array(
 		'USD' => array( // currency code
 			'lv' => array( // language
@@ -557,17 +557,17 @@ class NumberConversion
 			),
 		)
 	);
-	
+
 	private static $es_twentysomething = 'veinti';
 	// just plain one hundred (100) is written differently in Spanish
 	// than when used in conjunction with other numbers like 101
 	private static $es_hundred = 'cien';
 	private static $es_thousand = 'mil'; // TODO use this
 	private static $en_hundred = ' hundred';
-	
+
 	/**
 	 * Convert a number into its linguistic representation.
-	 * 
+	 *
 	 * @param mixed $number : the number to convert to the specified language
 	 * @param string $language : a two-letter representation of the language to convert the number to
 	 * @param string $beforeDecimal : the text to attach after the whole numbers
@@ -578,31 +578,31 @@ class NumberConversion
 	public static function numberToWords($number, $language, $beforeDecimal = '', $atEnd = '')
 	{
 		$check = self::checkParameters($number, $language);
-		
+
 		if (!$check)
 		{
 			return 'null';
 		}
-		
+
 		$amounts = explode('.', "$number");
 		$text = self::parseInt($amounts[0], $language, 1)
 			. ' '
 			. $beforeDecimal;
-		
+
 		if (count($amounts) > 1)
 		{
 			$text .= self::$decimalReplacement[$language]
-				. self::parseInt($amounts[1], $language, 2)
+				. self::parseInt(self::normalizeCentValue($amounts[1]), $language, 2)
 				. ' '
 				. $atEnd;
 		}
-		
+
 		return $text;
 	}
-	
+
 	/**
 	 * Convert currency from numeric to linguistic representation.
-	 * 
+	 *
 	 * @param mixed $amount : the number to convert to the specified language
 	 * @param string $language : a two-letter representation of the language to convert the number to
 	 * @param string $currency : the three-letter currency code (USD, EUR etc.)
@@ -612,41 +612,65 @@ class NumberConversion
 	public static function currencyToWords($amount, $language, $currency)
 	{
 		$check = self::checkParameters($amount, $language);
-		
+
 		if (!is_string($currency))
 		{
 			error_log('NumberConversion: invalid currency code specified.');
 			$check = false;
 		}
-		
+
 		$currency = strtoupper(trim($currency));
-		
+
 		if (!isset(self::$currencies[$currency]))
 		{
 			error_log('NumberConversion: that currency is not yet implemented.');
 			$check = false;
 		}
-		
+
 		if (!$check)
 		{
 			return 'null';
 		}
-		
+
 		$amounts = explode('.', "$amount");
 		$wholePart = self::parseInt($amounts[0], $language, 1, $currency);
 		$text = $wholePart . self::getCurrencyName($amounts[0], $currency, $language, '1');
-		
+
 		if (count($amounts) > 1)
 		{
-			$decimalPart = self::parseInt($amounts[1], $language, 2, $currency);
+			$cents = self::normalizeCentValue($amounts[1]);
+
+			$decimalPart = self::parseInt($cents, $language, 2, $currency);
 			$text .= self::$decimalReplacement[$language]
 				. trim($decimalPart)
-				. self::getCurrencyName($amounts[1], $currency, $language, '2');
+				. self::getCurrencyName($cents, $currency, $language, '2');
 		}
-		
+
 		return $text;
 	}
-	
+
+	/**
+	 * Normalize the cent value. For example if our input is 1.2
+	 * then the expected output would be "one and TWENTY" instead
+	 * of "one and TWO". This method takes care of this issue.
+	 * @author Matiss Janis Aboltins <matiss@mja.lv>
+	 * @param  integer $amount
+	 * @return integer
+	 */
+	private static function normalizeCentValue($amount)
+	{
+		if (substr($amount, 0, 1) === "0") {
+			$amount = $amount / 10;
+		}
+
+		if ($amount < 10)
+		{
+			$amount *= 10;
+		}
+
+		return $amount;
+	}
+
 	private static function checkParameters(&$number, &$language)
 	{
 		if (!is_numeric($number))
@@ -654,7 +678,7 @@ class NumberConversion
 			error_log('NumberConversion: invalid number specified.');
 			return false;
 		}
-		
+
 		if (ctype_digit("$number"))
 		{
 			$number = intval($number);
@@ -663,48 +687,48 @@ class NumberConversion
 		{
 			$number = floatval($number);
 		}
-		
+
 		$language = strtolower(trim($language));
-		
+
 		if (strlen($language) != 2)
 		{
 			error_log('NumberConversion: invalid language specified.');
 			return false;
 		}
-		
+
 		if (!in_array($language, self::$languages))
 		{
 			error_log('NumberConversion: that language is not yet implemented.');
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	private static function getCurrencyName($amount, $currency, $language, $part)
 	{
 		$lastDigit = (int)substr("$amount", -1);
 		$lastTwoDigits = (int)substr("$amount", -2);
-		
+
 		if ($lastDigit === 0)
 		{
 			// 0, 10, 20, 30...
 			return ' ' . self::$currencies[$currency][$language][$part]['3'];
 		}
-		
+
 		if (($lastTwoDigits > 10)
 			&& ($lastTwoDigits < 20))
 		{
 			// 11-19
 			return ' ' . self::$currencies[$currency][$language][$part]['3'];
 		}
-		
+
 		if ($lastDigit === 1)
 		{
 			// 1, 21, 31, 41...
 			return ' ' . self::$currencies[$currency][$language][$part]['1'];
 		}
-		
+
 		if ($language === 'ru')
 		{
 			if ($lastDigit < 5)
@@ -712,25 +736,25 @@ class NumberConversion
 				// 2, 3, 4, 24, 33... рубля
 				return ' ' . self::$currencies[$currency][$language][$part]['2'];
 			}
-			
+
 			return ' ' . self::$currencies[$currency][$language][$part]['3'];
 		}
-		
+
 		// 2-9, 22-29, 33-39...
 		return ' ' . self::$currencies[$currency][$language][$part]['2'];
 	}
-	
+
 	private static function parseInt($number, $language, $part, $currency = '')
 	{
 		$number = (int)$number;
 		$text = '';
-		
+
 		if ($number < 0)
 		{
 			$text = self::$minus[$language] . ' ';
 			$number = abs($number); // get rid of the minus sign
 		}
-		
+
 		if (($number >= 1000)
 			&& ($number < 1000000)) // 1000-999 999
 		{
@@ -738,33 +762,33 @@ class NumberConversion
 			$text .= self::parseThreeDigitBlock($thousands, $language, $part, $currency);
 			$count = (($thousands === 1) ? '1' : '2');
 			$text .= ' ' . self::$thousands[$count][$language] . ' ';
-			
+
 			$number = (int)substr("$number", -3);
-			
+
 			if ($number === 0)
 			{
 				// exact thousands, no hundreds
 				return $text;
 			}
 		}
-		
+
 		if ($number < 1000)
 		{
 			$text .= self::parseThreeDigitBlock($number, $language, $part, $currency);
 		}
-		
+
 		return $text;
 	}
-	
+
 	private static function parseThreeDigitBlock($number, $language, $part, $currency = '')
 	{
 		$text = '';
-		
+
 		if (($number >= 100)
 			&& ($number < 1000))
 		{
 			$firstDigit = substr("$number", 0, 1);
-			
+
 			if ($language === 'en')
 			{
 				$text .= self::$singleDigits[$firstDigit][$language] . self::$en_hundred;
@@ -778,16 +802,16 @@ class NumberConversion
 			{
 				$text .= self::$hundreds[$firstDigit][$language];
 			}
-			
+
 			$number = (int)substr("$number", 1);
-			
+
 			if ($number === 0)
 			{
 				// exact hundreds
 				return $text;
 			}
 		}
-		
+
 		if ($number < 100)
 		{
 			if ($number < 10) // 0-9
@@ -828,7 +852,7 @@ class NumberConversion
 					$text .= ' '
 						. self::$tens[substr($number, 0, 1)][$language]
 						. self::$spacer[$language];
-					
+
 					if (($part === 2)
 						&& ($currency === 'RUR')
 						&& (($language === 'lv')
@@ -844,7 +868,7 @@ class NumberConversion
 				}
 			}
 		}
-		
+
 		return $text;
 	}
 }
