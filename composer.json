@@ -1,0 +1,22 @@
+{
+  "name": "jurchiks/numbers2words",
+  "description": "It spells numbers!",
+  "keywords": [
+    "numbers",
+    "currency",
+    "spell"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "jurchiks",
+      "email": "jurchiks101@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "NumberConversion": ""
+    }
+  }
+}
