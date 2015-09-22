@@ -577,12 +577,7 @@ class NumberConversion
 	 */
 	public static function numberToWords($number, $language, $beforeDecimal = '', $atEnd = '')
 	{
-		$check = self::checkParameters($number, $language);
-		
-		if (!$check)
-		{
-			return 'null';
-		}
+		self::normalizeParameters($number, $language);
 		
 		$amounts = explode('.', "$number");
 		$text = self::parseInt($amounts[0], $language, 1)
@@ -604,33 +599,19 @@ class NumberConversion
 	 * Convert currency from numeric to linguistic representation.
 	 * 
 	 * @param mixed $amount : the number to convert to the specified language
-	 * @param string $language : a two-letter representation of the language to convert the number to
-	 * @param string $currency : the three-letter currency code (USD, EUR etc.)
+	 * @param string $language : a two-letter, ISO 639-1 code of the language to convert the number to
+	 * @param string $currency : a three-letter, ISO 4217 currency code
 	 * @return string : the currency as written in words in the specified language,
 	 * or "null" if any parameter was invalid
 	 */
 	public static function currencyToWords($amount, $language, $currency)
 	{
-		$check = self::checkParameters($amount, $language);
-		
 		if (!is_string($currency))
 		{
-			error_log('NumberConversion: invalid currency code specified.');
-			$check = false;
+			throw new InvalidArgumentException('Invalid currency code specified.');
 		}
 		
-		$currency = strtoupper(trim($currency));
-		
-		if (!isset(self::$currencies[$currency]))
-		{
-			error_log('NumberConversion: that currency is not yet implemented.');
-			$check = false;
-		}
-		
-		if (!$check)
-		{
-			return 'null';
-		}
+		self::normalizeParameters($amount, $language, $currency);
 		
 		$amounts = explode('.', "$amount");
 		$wholePart = self::parseInt($amounts[0], $language, 1, $currency);
@@ -647,38 +628,43 @@ class NumberConversion
 		return $text;
 	}
 	
-	private static function checkParameters(&$number, &$language)
+	private static function normalizeParameters(&$amount, &$language, &$currency = null)
 	{
-		if (!is_numeric($number))
+		if (!is_numeric($amount))
 		{
-			error_log('NumberConversion: invalid number specified.');
-			return false;
+			throw new InvalidArgumentException('Invalid number specified.');
 		}
 		
-		if (ctype_digit("$number"))
+		if (ctype_digit("$amount"))
 		{
-			$number = intval($number);
+			$amount = intval($amount);
 		}
 		else
 		{
-			$number = floatval($number);
+			$amount = floatval($amount);
 		}
 		
 		$language = strtolower(trim($language));
 		
 		if (strlen($language) != 2)
 		{
-			error_log('NumberConversion: invalid language specified.');
-			return false;
+			throw new InvalidArgumentException('Invalid language code specified, must follow ISO 639-1 format.');
 		}
 		
 		if (!in_array($language, self::$languages))
 		{
-			error_log('NumberConversion: that language is not yet implemented.');
-			return false;
+			throw new InvalidArgumentException('That language is not implemented yet.');
 		}
 		
-		return true;
+		if ($currency !== null)
+		{
+			$currency = strtoupper(trim($currency));
+			
+			if (!isset(self::$currencies[$currency]))
+			{
+				throw new InvalidArgumentException('That currency is not implemented yet.');
+			}
+		}
 	}
 	
 	private static function getCurrencyName($amount, $currency, $language, $part)
