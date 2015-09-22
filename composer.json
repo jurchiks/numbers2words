@@ -1,5 +1,6 @@
 {
   "name": "jurchiks/numbers2words",
+  "version": "1.0.0",
   "description": "It spells numbers!",
   "keywords": [
     "numbers",
