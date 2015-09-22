@@ -186,7 +186,7 @@ class NumberConversion
 	private static $tens = array(
 		'1' => array(
 			'en' => 'ten',
-			'lv' => 'deviņi',
+			'lv' => 'desmit',
 			'ru' => 'десять',
 			'lt' => 'dešimt',
 			'es' => 'diez'
