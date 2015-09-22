@@ -731,6 +731,15 @@ class NumberConversion
 			$number = abs($number); // get rid of the minus sign
 		}
 		
+		if (($number < 10) && ($part === 2) && ($currency !== ''))
+		{
+			// decimal part of currency must be 2 digits
+			// if there is only one digit, that means the currency is missing a digit,
+			// i.e. 121.2 instead of 121.20
+			// multiply by 10 to fix it
+			$number *= 10;
+		}
+		
 		if (($number >= 1000)
 			&& ($number < 1000000)) // 1000-999 999
 		{
