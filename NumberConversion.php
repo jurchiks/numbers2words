@@ -8,7 +8,11 @@
 class NumberConversion
 {
 	private static $languages = array(
-		'en', 'lv', 'ru', 'lt', 'es'
+		'en' => true,
+		'lv' => true,
+		'ru' => true,
+		'lt' => true,
+		'es' => true,
 	);
 	
 	private static $minus = array(
@@ -16,7 +20,7 @@ class NumberConversion
 		'lv' => 'mīnus',
 		'ru' => 'минус',
 		'lt' => 'minus',
-		'es' => 'menos'
+		'es' => 'menos',
 	);
 	
 	private static $singleDigits = array(
@@ -25,71 +29,71 @@ class NumberConversion
 			'lv' => 'nulle',
 			'ru' => 'ноль',
 			'lt' => 'nulis',
-			'es' => 'cero'
+			'es' => 'cero',
 		),
 		'1' => array(
 			'en' => 'one',
 			'lv' => 'viens',
 			'ru' => 'один',
 			'lt' => 'vienas',
-			'es' => 'uno'
+			'es' => 'uno',
 		),
 		'2' => array(
 			'en' => 'two',
 			'lv' => 'divi',
 			'ru' => 'два',
 			'lt' => 'du',
-			'es' => 'dos'
+			'es' => 'dos',
 		),
 		'3' => array(
 			'en' => 'three',
 			'lv' => 'trīs',
 			'ru' => 'три',
 			'lt' => 'trys',
-			'es' => 'tres'
+			'es' => 'tres',
 		),
 		'4' => array(
 			'en' => 'four',
 			'lv' => 'četri',
 			'ru' => 'четыре',
 			'lt' => 'keturi',
-			'es' => 'cuatro'
+			'es' => 'cuatro',
 		),
 		'5' => array(
 			'en' => 'five',
 			'lv' => 'pieci',
 			'ru' => 'пять',
 			'lt' => 'penki',
-			'es' => 'cinco'
+			'es' => 'cinco',
 		),
 		'6' => array(
 			'en' => 'six',
 			'lv' => 'seši',
 			'ru' => 'шесть',
 			'lt' => 'šeši',
-			'es' => 'seis'
+			'es' => 'seis',
 		),
 		'7' => array(
 			'en' => 'seven',
 			'lv' => 'septiņi',
 			'ru' => 'семь',
 			'lt' => 'septyni',
-			'es' => 'siete'
+			'es' => 'siete',
 		),
 		'8' => array(
 			'en' => 'eight',
 			'lv' => 'astoņi',
 			'ru' => 'восемь',
 			'lt' => 'aštuoni',
-			'es' => 'ocho'
+			'es' => 'ocho',
 		),
 		'9' => array(
 			'en' => 'nine',
 			'lv' => 'deviņi',
 			'ru' => 'девять',
 			'lt' => 'devyni',
-			'es' => 'nueve'
-		)
+			'es' => 'nueve',
+		),
 	);
 	
 	private static $singleDigitsFeminine = array(
@@ -102,7 +106,7 @@ class NumberConversion
 			'6' => 'sešas',
 			'7' => 'septiņas',
 			'8' => 'astoņas',
-			'9' => 'deviņas'
+			'9' => 'deviņas',
 		),
 		'ru' => array(
 			'1' => 'одна',
@@ -113,8 +117,8 @@ class NumberConversion
 			'6' => 'шесть',
 			'7' => 'семь',
 			'8' => 'восемь',
-			'9' => 'девять'
-		)
+			'9' => 'девять',
+		),
 	);
 	
 	private static $teens = array(
@@ -123,64 +127,64 @@ class NumberConversion
 			'lv' => 'vienpadsmit',
 			'ru' => 'одиннадцать',
 			'lt' => 'vienuolika',
-			'es' => 'once'
+			'es' => 'once',
 		),
 		'12' => array(
 			'en' => 'twelve',
 			'lv' => 'divpadsmit',
 			'ru' => 'двенадцать',
 			'lt' => 'dvylika',
-			'es' => 'doce'
+			'es' => 'doce',
 		),
 		'13' => array(
 			'en' => 'thirteen',
 			'lv' => 'trīspadsmit',
 			'ru' => 'тринадцать',
 			'lt' => 'trylika',
-			'es' => 'trece'
+			'es' => 'trece',
 		),
 		'14' => array(
 			'en' => 'fourteen',
 			'lv' => 'četrpadsmit',
 			'ru' => 'четырнадцать',
 			'lt' => 'keturiolika',
-			'es' => 'catorce'
+			'es' => 'catorce',
 		),
 		'15' => array(
 			'en' => 'fifteen',
 			'lv' => 'piecpadsmit',
 			'ru' => 'пятнадцать',
 			'lt' => 'penkiolika',
-			'es' => 'quince'
+			'es' => 'quince',
 		),
 		'16' => array(
 			'en' => 'sixteen',
 			'lv' => 'sešpadsmit',
 			'ru' => 'шестнадцать',
 			'lt' => 'šešiolika',
-			'es' => 'dieciséis'
+			'es' => 'dieciséis',
 		),
 		'17' => array(
 			'en' => 'seventeen',
 			'lv' => 'septiņpadsmit',
 			'ru' => 'семнадцать',
 			'lt' => 'septyniolika',
-			'es' => 'diecisiete'
+			'es' => 'diecisiete',
 		),
 		'18' => array(
 			'en' => 'eighteen',
 			'lv' => 'astoņpadsmit',
 			'ru' => 'восемнадцать',
 			'lt' => 'aštuoniolika',
-			'es' => 'dieciocho'
+			'es' => 'dieciocho',
 		),
 		'19' => array(
 			'en' => 'nineteen',
 			'lv' => 'deviņpadsmit',
 			'ru' => 'девятнадцать',
 			'lt' => 'devyniolika',
-			'es' => 'diecinueve'
-		)
+			'es' => 'diecinueve',
+		),
 	);
 	
 	private static $tens = array(
@@ -189,64 +193,64 @@ class NumberConversion
 			'lv' => 'desmit',
 			'ru' => 'десять',
 			'lt' => 'dešimt',
-			'es' => 'diez'
+			'es' => 'diez',
 		),
 		'2' => array(
 			'en' => 'twenty',
 			'lv' => 'divdesmit',
 			'ru' => 'двадцать',
 			'lt' => 'dvidešimt',
-			'es' => 'veinte'
+			'es' => 'veinte',
 		),
 		'3' => array(
 			'en' => 'thirty',
 			'lv' => 'trīsdesmit',
 			'ru' => 'тридцать',
 			'lt' => 'trisdešimt',
-			'es' => 'treinta'
+			'es' => 'treinta',
 		),
 		'4' => array(
 			'en' => 'fourty',
 			'lv' => 'četrdesmit',
 			'ru' => 'сорок',
 			'lt' => 'keturiasdešimt',
-			'es' => 'cuarenta'
+			'es' => 'cuarenta',
 		),
 		'5' => array(
 			'en' => 'fifty',
 			'lv' => 'piecdesmit',
 			'ru' => 'пятьдесят',
 			'lt' => 'penkiasdešimt',
-			'es' => 'cincuenta'
+			'es' => 'cincuenta',
 		),
 		'6' => array(
 			'en' => 'sixty',
 			'lv' => 'sešdesmit',
 			'ru' => 'шестьдесят',
 			'lt' => 'šešiasdešimt',
-			'es' => 'sesenta'
+			'es' => 'sesenta',
 		),
 		'7' => array(
 			'en' => 'seventy',
 			'lv' => 'septiņdesmit',
 			'ru' => 'семьдесят',
 			'lt' => 'septyniasdešimt',
-			'es' => 'setenta'
+			'es' => 'setenta',
 		),
 		'8' => array(
 			'en' => 'eighty',
 			'lv' => 'astoņdesmit',
 			'ru' => 'восемьдесят',
 			'lt' => 'aštuoniasdešimt',
-			'es' => 'ochenta'
+			'es' => 'ochenta',
 		),
 		'9' => array(
 			'en' => 'ninety',
 			'lv' => 'deviņdesmit',
 			'ru' => 'девятьдесят',
 			'lt' => 'devyniasdešimt',
-			'es' => 'noventa'
-		)
+			'es' => 'noventa',
+		),
 	);
 	
 	private static $hundreds = array(
@@ -255,64 +259,64 @@ class NumberConversion
 			'lv' => 'simts',
 			'ru' => 'сто',
 			'lt' => 'šimtas',
-			'es' => 'ciento'
+			'es' => 'ciento',
 		),
 		'2' => array(
 			'en' => '',
 			'lv' => 'divsimt',
 			'ru' => 'двести',
 			'lt' => 'du šimtai',
-			'es' => 'doscientos'
+			'es' => 'doscientos',
 		),
 		'3' => array(
 			'en' => '',
 			'lv' => 'trīssimt',
 			'ru' => 'триста',
 			'lt' => 'trys šimtai',
-			'es' => 'trescientos'
+			'es' => 'trescientos',
 		),
 		'4' => array(
 			'en' => '',
 			'lv' => 'četrsimt',
 			'ru' => 'четыреста',
 			'lt' => 'keturi šimtai',
-			'es' => 'cuatrocientos'
+			'es' => 'cuatrocientos',
 		),
 		'5' => array(
 			'en' => '',
 			'lv' => 'piecsimt',
 			'ru' => 'пятсот',
 			'lt' => 'penki šimtai',
-			'es' => 'quinientos'
+			'es' => 'quinientos',
 		),
 		'6' => array(
 			'en' => '',
 			'lv' => 'sešsimt',
 			'ru' => 'шестьсот',
 			'lt' => 'šeši šimtai',
-			'es' => 'seiscientos'
+			'es' => 'seiscientos',
 		),
 		'7' => array(
 			'en' => '',
 			'lv' => 'septiņsimt',
 			'ru' => 'семьсот',
 			'lt' => 'septyni šimtai',
-			'es' => 'setecientos'
+			'es' => 'setecientos',
 		),
 		'8' => array(
 			'en' => '',
 			'lv' => 'astoņsimt',
 			'ru' => 'восемьсот',
 			'lt' => 'aštuoni šimtai',
-			'es' => 'ochocientos'
+			'es' => 'ochocientos',
 		),
 		'9' => array(
 			'en' => '',
 			'lv' => 'deviņsimt',
 			'ru' => 'девятьсот',
 			'lt' => 'devyni šimtai',
-			'es' => 'novecientos'
-		)
+			'es' => 'novecientos',
+		),
 	);
 	
 	private static $thousands = array(
@@ -321,15 +325,15 @@ class NumberConversion
 			'lv' => 'tūkstotis',
 			'ru' => 'тысяча',
 			'lt' => 'tūkstantis',
-			'es' => 'mil'
+			'es' => 'mil',
 		),
 		'2' => array(
 			'en' => 'thousand',
 			'lv' => 'tūkstoši',
 			'ru' => 'тысячи',
 			'lt' => 'tūkstančiai',
-			'es' => 'mil'
-		)
+			'es' => 'mil',
+		),
 	);
 	
 	private static $spacer = array(
@@ -337,7 +341,7 @@ class NumberConversion
 		'lv' => ' ',
 		'ru' => ' ',
 		'lt' => ' ',
-		'es' => ' y '
+		'es' => ' y ',
 	);
 	
 	private static $decimalReplacement = array(
@@ -345,7 +349,7 @@ class NumberConversion
 		'lv' => ' un ',
 		'ru' => ' и ',
 		'lt' => ' ir ',
-		'es' => ' con '
+		'es' => ' con ',
 	);
 	
 	private static $currencies = array(
@@ -359,32 +363,32 @@ class NumberConversion
 				'2' => array( // after decimal
 					'1' => 'cents',
 					'2' => 'centi',
-					'3' => 'centu'
-				)
+					'3' => 'centu',
+				),
 			),
 			'ru' => array(
 				'1' => array(
 					'1' => 'доллар', // 1
 					'2' => 'доллара', // 2-4
-					'3' => 'долларов' // 0, 5-20, 30, 40...
+					'3' => 'долларов', // 0, 5-20, 30, 40...
 				),
 				'2' => array(
 					'1' => 'цент',
 					'2' => 'цента',
-					'3' => 'центов'
-				)
+					'3' => 'центов',
+				),
 			),
 			'en' => array(
 				'1' => array(
 					'1' => 'dollar',
 					'2' => 'dollars',
-					'3' => 'dollars'
+					'3' => 'dollars',
 				),
 				'2' => array(
 					'1' => 'cent',
 					'2' => 'cents',
-					'3' => 'cents'
-				)
+					'3' => 'cents',
+				),
 			),
 			// TODO lt/es
 		),
@@ -393,37 +397,37 @@ class NumberConversion
 				'1' => array(
 					'1' => 'eiro',
 					'2' => 'eiro',
-					'3' => 'eiro'
+					'3' => 'eiro',
 				),
 				'2' => array(
 					'1' => 'cents',
 					'2' => 'centi',
-					'3' => 'centu'
-				)
+					'3' => 'centu',
+				),
 			),
 			'ru' => array(
 				'1' => array(
 					'1' => 'евро',
 					'2' => 'евро',
-					'3' => 'евро'
+					'3' => 'евро',
 				),
 				'2' => array(
 					'1' => 'цент',
 					'2' => 'цента',
-					'3' => 'центов'
-				)
+					'3' => 'центов',
+				),
 			),
 			'en' => array(
 				'1' => array(
 					'1' => 'euro',
 					'2' => 'euro',
-					'3' => 'euro'
+					'3' => 'euro',
 				),
 				'2' => array(
 					'1' => 'cent',
 					'2' => 'cents',
-					'3' => 'cents'
-				)
+					'3' => 'cents',
+				),
 			),
 			// TODO lt/es
 		),
@@ -432,37 +436,37 @@ class NumberConversion
 				'1' => array(
 					'1' => 'lats',
 					'2' => 'lati',
-					'3' => 'latu'
+					'3' => 'latu',
 				),
 				'2' => array(
 					'1' => 'santīms',
 					'2' => 'santīmi',
-					'3' => 'santīmu'
-				)
+					'3' => 'santīmu',
+				),
 			),
 			'ru' => array(
 				'1' => array(
 					'1' => 'лат',
 					'2' => 'лата',
-					'3' => 'лат'
+					'3' => 'лат',
 				),
 				'2' => array(
 					'1' => 'сантим',
 					'2' => 'сантима',
-					'3' => 'сантимов'
-				)
+					'3' => 'сантимов',
+				),
 			),
 			'en' => array(
 				'1' => array(
 					'1' => 'lat',
 					'2' => 'lats',
-					'3' => 'lats'
+					'3' => 'lats',
 				),
 				'2' => array(
 					'1' => 'santim',
 					'2' => 'santims',
-					'3' => 'santims'
-				)
+					'3' => 'santims',
+				),
 			),
 			// TODO lt/es
 		),
@@ -471,38 +475,38 @@ class NumberConversion
 				'1' => array(
 					'1' => 'lits',
 					'2' => 'liti',
-					'3' => 'litu'
+					'3' => 'litu',
 				),
 				'2' => array(
 					'1' => 'cents',
 					'2' => 'centi',
-					'3' => 'centu'
-				)
+					'3' => 'centu',
+				),
 			),
 			'ru' => array(
 				'1' => array(
 					'1' => 'лит',
 					'2' => 'лита',
-					'3' => 'литов'
+					'3' => 'литов',
 				),
 				'2' => array(
 					'1' => 'цент',
 					'2' => 'цента',
-					'3' => 'центов'
-				)
+					'3' => 'центов',
+				),
 			),
 			'en' => array(
 				'1' => array(
 					'1' => 'litas',
 					'2' => 'litai',
-					'3' => 'litai'
+					'3' => 'litai',
 				),
 				'2' => array(
 					'1' => 'centas',
 					'2' => 'centai',
-					'3' => 'centai'
-				)
-			)
+					'3' => 'centai',
+				),
+			),
 			// TODO lt/es
 		),
 		'RUR' => array(
@@ -510,52 +514,52 @@ class NumberConversion
 				'1' => array(
 					'1' => 'rublis',
 					'2' => 'rubļi',
-					'3' => 'rubļu'
+					'3' => 'rubļu',
 				),
 				'2' => array(
 					'1' => 'kapeika',
 					'2' => 'kapeikas',
-					'3' => 'kapeiku'
-				)
+					'3' => 'kapeiku',
+				),
 			),
 			'ru' => array(
 				'1' => array(
 					'1' => 'рубль',
 					'2' => 'рубля',
-					'3' => 'рублей'
+					'3' => 'рублей',
 				),
 				'2' => array(
 					'1' => 'копейка',
 					'2' => 'копейки',
-					'3' => 'копеек'
-				)
+					'3' => 'копеек',
+				),
 			),
 			'en' => array(
 				'1' => array(
 					'1' => 'ruble',
 					'2' => 'rubles',
-					'3' => 'rubles'
+					'3' => 'rubles',
 				),
 				'2' => array(
 					'1' => 'kopek',
 					'2' => 'kopek',
-					'3' => 'kopek'
-				)
+					'3' => 'kopek',
+				),
 			),
 			// TODO lt
 			'es' => array(
 				'1' => array(
 					'1' => 'rublo',
 					'2' => 'rublos',
-					'3' => 'rublos'
+					'3' => 'rublos',
 				),
 				'2' => array(
 					'1' => 'kopek',
 					'2' => 'kopeks',
-					'3' => 'kopeks'
-				)
+					'3' => 'kopeks',
+				),
 			),
-		)
+		),
 	);
 	
 	private static $es_twentysomething = 'veinti';
@@ -651,7 +655,7 @@ class NumberConversion
 			throw new InvalidArgumentException('Invalid language code specified, must follow ISO 639-1 format.');
 		}
 		
-		if (!in_array($language, self::$languages))
+		if (!isset(self::$languages[$language]))
 		{
 			throw new InvalidArgumentException('That language is not implemented yet.');
 		}
