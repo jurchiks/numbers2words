@@ -1,7 +1,8 @@
 numbers2words
 =============
 This class is meant for general-purpose number to word conversion for use in, e.g. legal documents, bills.
-Currently the supported languages include Latvian ('lv'), Russian ('ru'), English ('en'), Lithuanian ('lt') and Spanish ('es').
+Currently the supported languages are Latvian ('lv'), Russian ('ru'), English ('en'), Lithuanian ('lt') and Spanish ('es'),
+and supported currencies are EUR, LTL, LVL, RUR, USD.
 
 Usage:
 ```php
