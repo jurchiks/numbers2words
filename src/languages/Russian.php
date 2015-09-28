@@ -1,7 +1,9 @@
 <?php
-namespace languages;
+namespace js\tools\numbers2words\languages;
 
-final class Russian extends \NumberConversion
+use js\tools\numbers2words\Speller;
+
+final class Russian extends Speller
 {
 	protected $minus = 'минус';
 	protected $decimalSeparator = ' и ';

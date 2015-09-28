@@ -1,7 +1,9 @@
 <?php
-namespace languages;
+namespace js\tools\numbers2words\languages;
 
-final class Lithuanian extends \NumberConversion
+use js\tools\numbers2words\Speller;
+
+final class Lithuanian extends Speller
 {
 	protected $minus = 'minus';
 	protected $decimalSeparator = ' ir ';

@@ -1,7 +1,9 @@
 <?php
-namespace languages;
+namespace js\tools\numbers2words\languages;
 
-final class Latvian extends \NumberConversion
+use js\tools\numbers2words\Speller;
+
+final class Latvian extends Speller
 {
 	protected $minus = 'mīnus';
 	protected $decimalSeparator = ' un ';

@@ -1,7 +1,9 @@
 <?php
-namespace languages;
+namespace js\tools\numbers2words\languages;
 
-final class English extends \NumberConversion
+use js\tools\numbers2words\Speller;
+
+final class English extends Speller
 {
 	protected $minus = 'minus';
 	protected $decimalSeparator = ' and ';

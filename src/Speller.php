@@ -1,18 +1,20 @@
 <?php
+namespace js\tools\numbers2words;
+
 /**
- * This class offers a number-to-word conversion to various languages.
+ * This class offers a number spelling in various languages.
  * It is a work-in-progress and more languages are to be added in future.
- * The main and only public method to call a conversion is NumberConversion::numberToWords().
+ * The main and only two public methods are spellNumber() and spellCurrency().
  * @author Juris Sudmalis
  */
-abstract class NumberConversion
+abstract class Speller
 {
 	private static $languages = array(
-		'en' => \languages\English::class,
-		'es' => \languages\Spanish::class,
-		'lt' => \languages\Lithuanian::class,
-		'lv' => \languages\Latvian::class,
-		'ru' => \languages\Russian::class,
+		'en' => languages\English::class,
+		'es' => languages\Spanish::class,
+		'lt' => languages\Lithuanian::class,
+		'lv' => languages\Latvian::class,
+		'ru' => languages\Russian::class,
 	);
 	
 	private static $currencies = array(
@@ -28,7 +30,7 @@ abstract class NumberConversion
 	
 	/**
 	 * @param string $language : a two-letter, ISO 639-1 code of the language
-	 * @return NumberConversion
+	 * @return Speller
 	 */
 	private static function get($language)
 	{
@@ -38,12 +40,12 @@ abstract class NumberConversion
 		
 		if (strlen($language) != 2)
 		{
-			throw new InvalidArgumentException('Invalid language code specified, must follow ISO 639-1 format.');
+			throw new \InvalidArgumentException('Invalid language code specified, must follow ISO 639-1 format.');
 		}
 		
 		if (!isset(self::$languages[$language]))
 		{
-			throw new InvalidArgumentException('That language is not implemented yet.');
+			throw new \InvalidArgumentException('That language is not implemented yet.');
 		}
 		
 		if (!isset($spellers[$language]))
@@ -60,13 +62,13 @@ abstract class NumberConversion
 	 * @param int $number : the number to spell in the specified language
 	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the number in
 	 * @return string : the number as written in words in the specified language
-	 * @throws InvalidArgumentException if any parameter is invalid
+	 * @throws \InvalidArgumentException if any parameter is invalid
 	 */
 	public static function spellNumber($number, $language)
 	{
 		if (!is_numeric($number))
 		{
-			throw new InvalidArgumentException('Invalid number specified.');
+			throw new \InvalidArgumentException('Invalid number specified.');
 		}
 		
 		return self::get($language)
@@ -83,25 +85,25 @@ abstract class NumberConversion
 	 * @param bool $spellDecimal : if true, spell decimals out same as whole numbers;
 	 * otherwise, output decimals as numbers
 	 * @return string : the currency as written in words in the specified language
-	 * @throws InvalidArgumentException if any parameter is invalid
+	 * @throws \InvalidArgumentException if any parameter is invalid
 	 */
 	public static function spellCurrency($amount, $language, $currency, $requireDecimal = true, $spellDecimal = false)
 	{
 		if (!is_numeric($amount))
 		{
-			throw new InvalidArgumentException('Invalid number specified.');
+			throw new \InvalidArgumentException('Invalid number specified.');
 		}
 		
 		if (!is_string($currency))
 		{
-			throw new InvalidArgumentException('Invalid currency code specified.');
+			throw new \InvalidArgumentException('Invalid currency code specified.');
 		}
 		
 		$currency = strtoupper(trim($currency));
 		
 		if (!in_array($currency, self::$currencies))
 		{
-			throw new InvalidArgumentException('That currency is not implemented yet.');
+			throw new \InvalidArgumentException('That currency is not implemented yet.');
 		}
 		
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits

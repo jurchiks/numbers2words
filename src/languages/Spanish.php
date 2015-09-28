@@ -1,7 +1,9 @@
 <?php
-namespace languages;
+namespace js\tools\numbers2words\languages;
 
-final class Spanish extends \NumberConversion
+use js\tools\numbers2words\Speller;
+
+final class Spanish extends Speller
 {
 	protected $minus = 'menos';
 	protected $decimalSeparator = ' con ';
