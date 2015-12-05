@@ -81,7 +81,7 @@ final class English extends Speller
 		return $text;
 	}
 	
-	protected function getName($type, $number, $currency)
+	protected function spellExponent($type, $number, $currency)
 	{
 		if ($type === 'million')
 		{
@@ -93,6 +93,11 @@ final class English extends Speller
 			return 'thousand';
 		}
 		
+		return '';
+	}
+	
+	protected function getCurrencyName($type, $number, $currency)
+	{
 		static $names = array(
 			'EUR' => array(
 				'whole'   => array('euro', 'euro'),

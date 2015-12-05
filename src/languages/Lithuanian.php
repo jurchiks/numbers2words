@@ -93,7 +93,7 @@ final class Lithuanian extends Speller
 		return $text;
 	}
 	
-	protected function getName($type, $number, $currency)
+	protected function spellExponent($type, $number, $currency)
 	{
 		$tens = $number % 100;
 		$singles = $number % 10;
@@ -118,6 +118,11 @@ final class Lithuanian extends Speller
 			return 'tūkstančiai';
 		}
 		
+		return '';
+	}
+	
+	protected function getCurrencyName($type, $number, $currency)
+	{
 		static $names = array(
 			'EUR' => array(
 				'whole'   => array('euras', 'eurai', 'eurų'),
@@ -149,6 +154,9 @@ final class Lithuanian extends Speller
 		{
 			throw new \InvalidArgumentException('Unsupported currency');
 		}
+		
+		$tens = $number % 100;
+		$singles = $number % 10;
 		
 		if (($singles === 1) && ($tens !== 11)) // 1, 21, 31, ... 91
 		{

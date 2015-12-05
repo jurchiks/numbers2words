@@ -115,7 +115,7 @@ final class Russian extends Speller
 		return $singlesMasculine[intval($digit)];
 	}
 	
-	protected function getName($type, $number, $currency)
+	protected function spellExponent($type, $number, $currency)
 	{
 		$tens = $number % 100;
 		$singles = $number % 10;
@@ -133,7 +133,7 @@ final class Russian extends Speller
 				return 'миллиона';
 			}
 			
-			return 'миллионы';
+			return 'миллионов';
 		}
 		
 		if ($type === 'thousand')
@@ -152,6 +152,11 @@ final class Russian extends Speller
 			return 'тысяч';
 		}
 		
+		return '';
+	}
+	
+	protected function getCurrencyName($type, $number, $currency)
+	{
 		static $names = array(
 			'EUR' => array(
 				'whole'   => array('евро', 'евро', 'евро'),
@@ -183,6 +188,9 @@ final class Russian extends Speller
 		{
 			throw new \InvalidArgumentException('Unsupported currency');
 		}
+		
+		$tens = $number % 100;
+		$singles = $number % 10;
 		
 		if (($singles === 1) && ($tens !== 11)) // 1, 21, ... 91
 		{

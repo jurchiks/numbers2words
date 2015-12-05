@@ -107,7 +107,7 @@ final class Spanish extends Speller
 		return $text;
 	}
 	
-	protected function getName($type, $number, $currency)
+	protected function spellExponent($type, $number, $currency)
 	{
 		if ($type === 'million')
 		{
@@ -124,6 +124,11 @@ final class Spanish extends Speller
 			return 'mil';
 		}
 		
+		return '';
+	}
+	
+	protected function getCurrencyName($type, $number, $currency)
+	{
 		// TODO some of these spellings are extremely hard to find and are probably incorrect
 		static $names = array(
 			'EUR' => array(

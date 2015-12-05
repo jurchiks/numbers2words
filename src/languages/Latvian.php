@@ -115,7 +115,7 @@ final class Latvian extends Speller
 		return $singlesMasculine[intval($digit)];
 	}
 	
-	protected function getName($type, $number, $currency)
+	protected function spellExponent($type, $number, $currency)
 	{
 		$tens = $number % 100;
 		$singles = $number % 10;
@@ -140,6 +140,11 @@ final class Latvian extends Speller
 			return 'tūkstoši';
 		}
 		
+		return '';
+	}
+	
+	protected function getCurrencyName($type, $number, $currency)
+	{
 		static $names = array(
 			'EUR' => array(
 				'whole'   => array('eiro', 'eiro', 'eiro'),
@@ -171,6 +176,9 @@ final class Latvian extends Speller
 		{
 			throw new \InvalidArgumentException('Unsupported currency');
 		}
+		
+		$tens = $number % 100;
+		$singles = $number % 10;
 		
 		if (($singles === 1) && ($tens !== 11)) // 1, 21, 31, ... 91
 		{

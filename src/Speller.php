@@ -124,7 +124,7 @@ abstract class Speller
 		
 		$text = trim($speller->parseInt($wholeAmount, false, $currency))
 			. ' '
-			. $speller->getName('whole', $wholeAmount, $currency);
+			. $speller->getCurrencyName('whole', $wholeAmount, $currency);
 		
 		if ($requireDecimal || ($decimalAmount > 0))
 		{
@@ -133,7 +133,7 @@ abstract class Speller
 					? trim($speller->parseInt($decimalAmount, true, $currency))
 					: $decimalAmount)
 				. ' '
-				. $speller->getName('decimal', $decimalAmount, $currency);
+				. $speller->getCurrencyName('decimal', $decimalAmount, $currency);
 		}
 		
 		return $text;
@@ -154,7 +154,7 @@ abstract class Speller
 		{
 			$millions = intval(substr("$number", 0, -6));
 			$text .= $this->spellHundred($millions, 3, $isDecimalPart, $currency)
-				. ' ' . $this->getName('million', $millions, $currency);
+				. ' ' . $this->spellExponent('million', $millions, $currency);
 			
 			$number = intval(substr("$number", -6));
 			
@@ -174,7 +174,7 @@ abstract class Speller
 		{
 			$thousands = intval(substr("$number", 0, -3));
 			$text .= $this->spellHundred($thousands, 2, $isDecimalPart, $currency)
-				. ' ' . $this->getName('thousand', $thousands, $currency);
+				. ' ' . $this->spellExponent('thousand', $thousands, $currency);
 			
 			$number = intval(substr("$number", -3));
 			
@@ -198,5 +198,6 @@ abstract class Speller
 	}
 	
 	protected abstract function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency);
-	protected abstract function getName($type, $number, $currency);
+	protected abstract function spellExponent($type, $number, $currency);
+	protected abstract function getCurrencyName($type, $number, $currency);
 }
