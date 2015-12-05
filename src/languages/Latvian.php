@@ -106,7 +106,7 @@ final class Latvian extends Speller
 			9 => 'deviņas',
 		);
 		
-		if ($isDecimalPart && ($currency === 'RUR'))
+		if ($isDecimalPart && ($currency === self::CURRENCY_RUSSIAN_ROUBLE))
 		{
 			// russian kopek nouns are feminine gender in Latvian
 			return $singlesFeminine[intval($digit)];
@@ -146,29 +146,29 @@ final class Latvian extends Speller
 	protected function getCurrencyName($type, $number, $currency)
 	{
 		static $names = array(
-			'EUR' => array(
+			self::CURRENCY_EURO => array(
 				'whole'   => array('eiro', 'eiro', 'eiro'),
 				'decimal' => array('cents', 'centi', 'centu'),
 			),
-			'LTL' => array(
-				'whole'   => array('lits', 'liti', 'litu'),
-				'decimal' => array('cents', 'centi', 'centu'),
+			self::CURRENCY_BRITISH_POUND => array(
+				'whole'   => array('mārciņa', 'mārciņas', 'mārciņu'),
+				'decimal' => array('penijs', 'peniji', 'peniju'),
 			),
-			'LVL' => array(
+			self::CURRENCY_LATVIAN_LAT => array(
 				'whole'   => array('lats', 'lati', 'latu'),
 				'decimal' => array('santīms', 'santīmi', 'santīmu'),
 			),
-			'RUR' => array(
+			self::CURRENCY_LITHUANIAN_LIT => array(
+				'whole'   => array('lits', 'liti', 'litu'),
+				'decimal' => array('cents', 'centi', 'centu'),
+			),
+			self::CURRENCY_RUSSIAN_ROUBLE => array(
 				'whole'   => array('rublis', 'rubļi', 'rubļu'),
 				'decimal' => array('kapeika', 'kapeikas', 'kapeiku'),
 			),
-			'USD' => array(
+			self::CURRENCY_US_DOLLAR => array(
 				'whole'   => array('dolārs', 'dolāri', 'dolāru'),
 				'decimal' => array('cents', 'centi', 'centu'),
-			),
-			'GBP' => array(
-				'whole'   => array('mārciņa', 'mārciņas', 'mārciņu'),
-				'decimal' => array('penijs', 'peniji', 'peniju'),
 			),
 		);
 		

@@ -99,29 +99,29 @@ final class English extends Speller
 	protected function getCurrencyName($type, $number, $currency)
 	{
 		static $names = array(
-			'EUR' => array(
+			self::CURRENCY_EURO => array(
 				'whole'   => array('euro', 'euro'),
 				'decimal' => array('cent', 'cents'),
 			),
-			'LTL' => array(
-				'whole'   => array('litas', 'litai'),
-				'decimal' => array('centas', 'centai'),
+			self::CURRENCY_BRITISH_POUND => array(
+				'whole'   => array('pound', 'pounds'),
+				'decimal' => array('penny', 'pennies'),
 			),
-			'LVL' => array(
+			self::CURRENCY_LATVIAN_LAT => array(
 				'whole'   => array('lat', 'lats'),
 				'decimal' => array('santim', 'santims'),
 			),
-			'RUR' => array(
+			self::CURRENCY_LITHUANIAN_LIT => array(
+				'whole'   => array('litas', 'litai'),
+				'decimal' => array('centas', 'centai'),
+			),
+			self::CURRENCY_RUSSIAN_ROUBLE => array(
 				'whole'   => array('ruble', 'rubles'),
 				'decimal' => array('kopek', 'kopeks'),
 			),
-			'USD' => array(
+			self::CURRENCY_US_DOLLAR => array(
 				'whole'   => array('dollar', 'dollars'),
 				'decimal' => array('cent', 'cents'),
-			),
-			'GBP' => array(
-				'whole'   => array('pound', 'pounds'),
-				'decimal' => array('penny', 'pennies'),
 			),
 		);
 		

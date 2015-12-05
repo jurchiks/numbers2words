@@ -131,29 +131,29 @@ final class Spanish extends Speller
 	{
 		// TODO some of these spellings are extremely hard to find and are probably incorrect
 		static $names = array(
-			'EUR' => array(
+			self::CURRENCY_EURO => array(
 				'whole'   => array('euro', 'euros'),
 				'decimal' => array('centime', 'centimes'),
 			),
-			'LTL' => array(
-				'whole'   => array('litas', 'litas'),
-				'decimal' => array('cent', 'cents'),
+			self::CURRENCY_BRITISH_POUND => array(
+				'whole'   => array('libra esterlina', 'libras esterlinas'),
+				'decimal' => array('penique', 'peniques'),
 			),
-			'LVL' => array(
+			self::CURRENCY_LATVIAN_LAT => array(
 				'whole'   => array('lat', 'lats'),
 				'decimal' => array('sentim', 'sentims'),
 			),
-			'RUR' => array(
+			self::CURRENCY_LITHUANIAN_LIT => array(
+				'whole'   => array('litas', 'litas'),
+				'decimal' => array('cent', 'cents'),
+			),
+			self::CURRENCY_RUSSIAN_ROUBLE => array(
 				'whole'   => array('rublo ruso', 'rublos rusos'),
 				'decimal' => array('kopek', 'kopeks'),
 			),
-			'USD' => array(
+			self::CURRENCY_US_DOLLAR => array(
 				'whole'   => array('dólar estadounidense', 'dólares estadounidenses'),
 				'decimal' => array('centavo', 'centavos'),
-			),
-			'GBP' => array(
-				'whole'   => array('libra esterlina', 'libras esterlinas'),
-				'decimal' => array('penique', 'peniques'),
 			),
 		);
 		

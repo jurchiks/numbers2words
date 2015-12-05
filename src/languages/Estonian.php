@@ -116,29 +116,29 @@ class Estonian extends Speller
 	protected function getCurrencyName($type, $number, $currency)
 	{
 		static $names = array(
-			'EUR' => array(
+			self::CURRENCY_EURO => array(
 				'whole'   => array('euro', 'eurot'),
 				'decimal' => array('sent', 'senti'),
 			),
-			'LTL' => array(
-				'whole'   => array('litt', 'litti'),
-				'decimal' => array('sent', 'senti'),
+			self::CURRENCY_BRITISH_POUND => array(
+				'whole'   => array('nael', 'naela'),
+				'decimal' => array('penn', 'penni'),
 			),
-			'LVL' => array(
+			self::CURRENCY_LATVIAN_LAT => array(
 				'whole'   => array('latt', 'latti'),
 				'decimal' => array('santiim', 'santiimi'),
 			),
-			'RUR' => array(
+			self::CURRENCY_LITHUANIAN_LIT => array(
+				'whole'   => array('litt', 'litti'),
+				'decimal' => array('sent', 'senti'),
+			),
+			self::CURRENCY_RUSSIAN_ROUBLE => array(
 				'whole'   => array('rubla', 'rubla'),
 				'decimal' => array('kopikas', 'kopikat'),
 			),
-			'USD' => array(
+			self::CURRENCY_US_DOLLAR => array(
 				'whole'   => array('dollar', 'dollarit'),
 				'decimal' => array('sent', 'senti'),
-			),
-			'GBP' => array(
-				'whole'   => array('nael', 'naela'),
-				'decimal' => array('penn', 'penni'),
 			),
 		);
 		

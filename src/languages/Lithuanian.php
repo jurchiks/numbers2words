@@ -124,29 +124,29 @@ final class Lithuanian extends Speller
 	protected function getCurrencyName($type, $number, $currency)
 	{
 		static $names = array(
-			'EUR' => array(
+			self::CURRENCY_EURO => array(
 				'whole'   => array('euras', 'eurai', 'eurų'),
 				'decimal' => array('centas', 'centai', 'centų'),
 			),
-			'LTL' => array(
-				'whole'   => array('litas', 'litai', 'litų'),
-				'decimal' => array('centas', 'centai', 'centų'),
+			self::CURRENCY_BRITISH_POUND => array(
+				'whole'   => array('svaras', 'svarai', 'svarų'),
+				'decimal' => array('pensas', 'pensai', 'pensų'),
 			),
-			'LVL' => array(
+			self::CURRENCY_LATVIAN_LAT => array(
 				'whole'   => array('latas', 'latai', 'latų'),
 				'decimal' => array('santimas', 'santimai', 'santimų'),
 			),
-			'RUR' => array(
+			self::CURRENCY_LITHUANIAN_LIT => array(
+				'whole'   => array('litas', 'litai', 'litų'),
+				'decimal' => array('centas', 'centai', 'centų'),
+			),
+			self::CURRENCY_RUSSIAN_ROUBLE => array(
 				'whole'   => array('rublis', 'rubliai', 'rublių'),
 				'decimal' => array('kapeika', 'kapeikos', 'kapeikų'),
 			),
-			'USD' => array(
+			self::CURRENCY_US_DOLLAR => array(
 				'whole'   => array('dolaras', 'dolarai', 'dolarų'),
 				'decimal' => array('centas', 'centai', 'centų'),
-			),
-			'GBP' => array(
-				'whole'   => array('svaras', 'svarai', 'svarų'),
-				'decimal' => array('pensas', 'pensai', 'pensų'),
 			),
 		);
 		

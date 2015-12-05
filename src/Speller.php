@@ -24,16 +24,21 @@ abstract class Speller
 	const CURRENCY_US_DOLLAR = 'USD';
 	
 	private static $languages = array(
-		'en' => languages\English::class,
-		'es' => languages\Spanish::class,
-		'et' => languages\Estonian::class,
-		'lt' => languages\Lithuanian::class,
-		'lv' => languages\Latvian::class,
-		'ru' => languages\Russian::class,
+		self::LANGUAGE_ENGLISH    => languages\English::class,
+		self::LANGUAGE_ESTONIAN   => languages\Estonian::class,
+		self::LANGUAGE_LATVIAN    => languages\Latvian::class,
+		self::LANGUAGE_LITHUANIAN => languages\Lithuanian::class,
+		self::LANGUAGE_RUSSIAN    => languages\Russian::class,
+		self::LANGUAGE_SPANISH    => languages\Spanish::class,
 	);
 	
 	private static $currencies = array(
-		'EUR', 'LTL', 'LVL', 'RUR', 'USD', 'GBP',
+		self::CURRENCY_EURO,
+		self::CURRENCY_BRITISH_POUND,
+		self::CURRENCY_LATVIAN_LAT,
+		self::CURRENCY_LITHUANIAN_LIT,
+		self::CURRENCY_RUSSIAN_ROUBLE,
+		self::CURRENCY_US_DOLLAR,
 	);
 	
 	protected $minus;

@@ -107,7 +107,7 @@ final class Russian extends Speller
 		);
 		
 		if (($groupOfThrees === 2) // thousands
-			|| ($isDecimalPart && ($currency === 'RUR'))) // russian kopeks
+			|| ($isDecimalPart && ($currency === self::CURRENCY_RUSSIAN_ROUBLE))) // russian kopeks
 		{
 			return $singlesFeminine[intval($digit)];
 		}
@@ -158,29 +158,29 @@ final class Russian extends Speller
 	protected function getCurrencyName($type, $number, $currency)
 	{
 		static $names = array(
-			'EUR' => array(
+			self::CURRENCY_EURO => array(
 				'whole'   => array('евро', 'евро', 'евро'),
 				'decimal' => array('цент', 'цента', 'центов'),
 			),
-			'LTL' => array(
-				'whole'   => array('лит', 'лита', 'литов'),
-				'decimal' => array('цент', 'цента', 'центов'),
+			self::CURRENCY_BRITISH_POUND => array(
+				'whole'   => array('фунт', 'фунта', 'фунтов'),
+				'decimal' => array('пенни', 'пенса', 'пенсов'),
 			),
-			'LVL' => array(
+			self::CURRENCY_LATVIAN_LAT => array(
 				'whole'   => array('лат', 'лата', 'латов'),
 				'decimal' => array('сантим', 'сантима', 'сантимов'),
 			),
-			'RUR' => array(
+			self::CURRENCY_LITHUANIAN_LIT => array(
+				'whole'   => array('лит', 'лита', 'литов'),
+				'decimal' => array('цент', 'цента', 'центов'),
+			),
+			self::CURRENCY_RUSSIAN_ROUBLE => array(
 				'whole'   => array('рубль', 'рубля', 'рублей'),
 				'decimal' => array('копейка', 'копейки', 'копеек'),
 			),
-			'USD' => array(
+			self::CURRENCY_US_DOLLAR => array(
 				'whole'   => array('доллар', 'доллара', 'долларов'),
 				'decimal' => array('цент', 'цента', 'центов'),
-			),
-			'GBP' => array(
-				'whole'   => array('фунт', 'фунта', 'фунтов'),
-				'decimal' => array('пенни', 'пенса', 'пенсов'),
 			),
 		);
 		
