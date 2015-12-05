@@ -12,7 +12,6 @@ spl_autoload_register(
 		$className = trim($className, $ds);
 		
 		$path = __DIR__ . $ds . 'src' . $ds . $className . '.php';
-		var_dump($path);
 		
 		if (!is_readable($path))
 		{
@@ -69,4 +68,5 @@ try
 catch (\InvalidArgumentException $iae)
 {
 	echo $iae->getMessage();
+	die(1);
 }
