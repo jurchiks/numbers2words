@@ -29,41 +29,23 @@ use \js\tools\numbers2words\Speller;
 
 try
 {
-	echo Speller::spellNumber(123.45, 'en'), "\n";
-	echo Speller::spellNumber(234.56, 'es'), "\n";
-	echo Speller::spellNumber(345.67, 'lt'), "\n";
-	echo Speller::spellNumber(456.78, 'lv'), "\n";
-	echo Speller::spellNumber(567.89, 'ru'), "\n";
-	
-	echo Speller::spellCurrency(123.45, 'en', 'EUR'), "\n";
-	echo Speller::spellCurrency(234.56, 'en', 'LTL'), "\n";
-	echo Speller::spellCurrency(345.67, 'en', 'LVL'), "\n";
-	echo Speller::spellCurrency(456.78, 'en', 'RUR'), "\n";
-	echo Speller::spellCurrency(567.89, 'en', 'USD'), "\n";
-	
-	echo Speller::spellCurrency(123.45, 'es', 'EUR'), "\n";
-	echo Speller::spellCurrency(234.56, 'es', 'LTL'), "\n";
-	echo Speller::spellCurrency(345.67, 'es', 'LVL'), "\n";
-	echo Speller::spellCurrency(456.78, 'es', 'RUR'), "\n";
-	echo Speller::spellCurrency(567.89, 'es', 'USD'), "\n";
-	
-	echo Speller::spellCurrency(123.45, 'lv', 'EUR'), "\n";
-	echo Speller::spellCurrency(234.56, 'lv', 'LTL'), "\n";
-	echo Speller::spellCurrency(345.67, 'lv', 'LVL'), "\n";
-	echo Speller::spellCurrency(456.78, 'lv', 'RUR'), "\n";
-	echo Speller::spellCurrency(567.89, 'lv', 'USD'), "\n";
-	
-	echo Speller::spellCurrency(123.45, 'lt', 'EUR'), "\n";
-	echo Speller::spellCurrency(234.56, 'lt', 'LTL'), "\n";
-	echo Speller::spellCurrency(345.67, 'lt', 'LVL'), "\n";
-	echo Speller::spellCurrency(456.78, 'lt', 'RUR'), "\n";
-	echo Speller::spellCurrency(567.89, 'lt', 'USD'), "\n";
-	
-	echo Speller::spellCurrency(123.45, 'ru', 'EUR'), "\n";
-	echo Speller::spellCurrency(234.56, 'ru', 'LTL'), "\n";
-	echo Speller::spellCurrency(345.67, 'ru', 'LVL'), "\n";
-	echo Speller::spellCurrency(456.78, 'ru', 'RUR'), "\n";
-	echo Speller::spellCurrency(567.89, 'ru', 'USD'), "\n";
+	foreach (Speller::getAcceptedLanguages() as $language)
+	{
+		for ($i = 10000; $i <= 1000000000; $i *= 10)
+		{
+			$number = (rand($i / 10, $i) / 100);
+			echo 'Number = ', $number, "\n";
+			
+			foreach (Speller::getAcceptedCurrencies() as $currency)
+			{
+				echo $language, ' => ', $currency, ' = ', Speller::spellCurrency($number, $language, $currency), "\n";
+			}
+			
+			echo "\n";
+		}
+		
+		echo "\n";
+	}
 }
 catch (\InvalidArgumentException $iae)
 {

@@ -56,6 +56,16 @@ abstract class Speller
 		return $spellers[$language];
 	}
 	
+	public static function getAcceptedLanguages()
+	{
+		return array_keys(self::$languages);
+	}
+	
+	public static function getAcceptedCurrencies()
+	{
+		return self::$currencies;
+	}
+	
 	/**
 	 * Convert a number into its linguistic representation.
 	 * 
