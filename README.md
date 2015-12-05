@@ -4,7 +4,7 @@ This library is meant for general-purpose number spelling for use in, e.g. legal
 
 Supported languages (ISO 639-1 language codes):
 * English ('en')
-* Estonian ('ee')
+* Estonian ('et')
 * Latvian ('lv')
 * Lithuanian ('lt')
 * Russian ('ru')
