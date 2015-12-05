@@ -9,6 +9,20 @@ namespace js\tools\numbers2words;
  */
 abstract class Speller
 {
+	const LANGUAGE_ENGLISH = 'en';
+	const LANGUAGE_SPANISH = 'es';
+	const LANGUAGE_ESTONIAN = 'et';
+	const LANGUAGE_LITHUANIAN = 'lt';
+	const LANGUAGE_LATVIAN = 'lv';
+	const LANGUAGE_RUSSIAN = 'ru';
+	
+	const CURRENCY_EURO = 'EUR';
+	const CURRENCY_LITHUANIAN_LIT = 'LTL';
+	const CURRENCY_LATVIAN_LAT = 'LVL';
+	const CURRENCY_RUSSIAN_ROUBLE = 'RUR';
+	const CURRENCY_US_DOLLAR = 'USD';
+	const CURRENCY_BRITISH_POUND = 'GBP';
+	
 	private static $languages = array(
 		'en' => languages\English::class,
 		'es' => languages\Spanish::class,

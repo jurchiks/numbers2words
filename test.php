@@ -29,6 +29,8 @@ use \js\tools\numbers2words\Speller;
 
 try
 {
+	echo Speller::spellCurrency(123.45, Speller::LANGUAGE_ENGLISH, Speller::CURRENCY_EURO), "\n\n";
+	
 	foreach (Speller::getAcceptedLanguages() as $language)
 	{
 		for ($i = 10000; $i <= 1000000000; $i *= 10)
