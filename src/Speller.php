@@ -12,6 +12,7 @@ abstract class Speller
 	private static $languages = array(
 		'en' => languages\English::class,
 		'es' => languages\Spanish::class,
+		'et' => languages\Estonian::class,
 		'lt' => languages\Lithuanian::class,
 		'lv' => languages\Latvian::class,
 		'ru' => languages\Russian::class,

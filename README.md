@@ -2,8 +2,21 @@ numbers2words
 =============
 This library is meant for general-purpose number spelling for use in, e.g. legal documents and bills.
 
-Currently the supported languages are Latvian ('lv'), Russian ('ru'), English ('en'), Lithuanian ('lt') and Spanish ('es'),
-and supported currencies are EUR, LTL, LVL, RUR, USD.
+Supported languages (ISO 639-1 language codes):
+* English ('en')
+* Estonian ('ee')
+* Latvian ('lv')
+* Lithuanian ('lt')
+* Russian ('ru')
+* Spanish ('es')
+
+Supported currencies (ISO 4217 currency codes):
+* British Pounds ('GBP')
+* Euro ('EUR')
+* Latvian Lats ('LVL')
+* Lithuanian Lits ('LTL')
+* Russian Roubles ('RUR')
+* U.S. Dollars ('USD')
 
 Report issues if you find any!
 
