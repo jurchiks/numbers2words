@@ -5,8 +5,8 @@ use js\tools\numbers2words\Speller;
 
 final class English extends Speller
 {
-	protected static $minus = 'minus';
-	protected static $decimalSeparator = ' and ';
+	protected $minus = 'minus';
+	protected $decimalSeparator = ' and ';
 	
 	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
 	{

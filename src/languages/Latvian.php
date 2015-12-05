@@ -5,8 +5,8 @@ use js\tools\numbers2words\Speller;
 
 final class Latvian extends Speller
 {
-	protected static $minus = 'mīnus';
-	protected static $decimalSeparator = ' un ';
+	protected $minus = 'mīnus';
+	protected $decimalSeparator = ' un ';
 	
 	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
 	{

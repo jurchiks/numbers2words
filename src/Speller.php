@@ -36,8 +36,8 @@ abstract class Speller
 		'EUR', 'LTL', 'LVL', 'RUR', 'USD', 'GBP',
 	);
 	
-	protected static $minus;
-	protected static $decimalSeparator;
+	protected $minus;
+	protected $decimalSeparator;
 	
 	private final function __construct()
 	{
@@ -143,7 +143,7 @@ abstract class Speller
 		
 		if ($requireDecimal || ($decimalAmount > 0))
 		{
-			$text .= static::$decimalSeparator
+			$text .= $speller->decimalSeparator
 				. ($spellDecimal
 					? trim($speller->parseInt($decimalAmount, true, $currency))
 					: $decimalAmount)
@@ -160,7 +160,7 @@ abstract class Speller
 		
 		if ($number < 0)
 		{
-			$text = static::$minus . ' ';
+			$text = $this->minus . ' ';
 			$number = abs($number);
 		}
 		

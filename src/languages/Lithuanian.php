@@ -5,8 +5,8 @@ use js\tools\numbers2words\Speller;
 
 final class Lithuanian extends Speller
 {
-	protected static $minus = 'minus';
-	protected static $decimalSeparator = ' ir ';
+	protected $minus = 'minus';
+	protected $decimalSeparator = ' ir ';
 	
 	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
 	{

@@ -5,8 +5,8 @@ use js\tools\numbers2words\Speller;
 
 class Estonian extends Speller
 {
-	protected static $minus = 'miinus';
-	protected static $decimalSeparator = ' ja ';
+	protected $minus = 'miinus';
+	protected $decimalSeparator = ' ja ';
 	
 	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
 	{
