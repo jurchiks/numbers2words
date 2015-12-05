@@ -24,8 +24,8 @@ Usage:
 ```php
 use js\tools\numbers2words\Speller;
 
-Speller::spellNumber(123, 'ru');
+Speller::spellNumber(123, Speller::LANGUAGE_RU);
 // output: сто двадцать три
-Speller::spellCurrency(123.45, 'en', 'USD', true, true);
-// output: one hundred and twenty three dollars and forty five cents
+Speller::spellCurrency(123.45, Speller::LANGUAGE_ENGLISH, Speller::CURRENCY_EURO, true, true);
+// output: one hundred and twenty three euro and forty five cents
 ```
