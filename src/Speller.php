@@ -18,7 +18,7 @@ abstract class Speller
 	);
 	
 	private static $currencies = array(
-		'EUR', 'LTL', 'LVL', 'RUR', 'USD',
+		'EUR', 'LTL', 'LVL', 'RUR', 'USD', 'GBP',
 	);
 	
 	protected $minus;

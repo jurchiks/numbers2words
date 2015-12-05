@@ -139,6 +139,10 @@ final class Lithuanian extends Speller
 				'whole'   => array('dolaras', 'dolarai', 'dolarų'),
 				'decimal' => array('centas', 'centai', 'centų'),
 			),
+			'GBP' => array(
+				'whole'   => array('svaras', 'svarai', 'svarų'),
+				'decimal' => array('pensas', 'pensai', 'pensų'),
+			),
 		);
 		
 		if (!isset($names[$currency]))

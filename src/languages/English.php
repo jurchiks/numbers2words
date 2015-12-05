@@ -111,8 +111,12 @@ final class English extends Speller
 				'decimal' => array('kopek', 'kopeks'),
 			),
 			'USD' => array(
-				'whole'   => array('dollar', 'dollars'), // twenty one dollars
+				'whole'   => array('dollar', 'dollars'),
 				'decimal' => array('cent', 'cents'),
+			),
+			'GBP' => array(
+				'whole'   => array('pound', 'pounds'),
+				'decimal' => array('penny', 'pennies'),
 			),
 		);
 		

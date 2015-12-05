@@ -173,6 +173,10 @@ final class Russian extends Speller
 				'whole'   => array('доллар', 'доллара', 'долларов'),
 				'decimal' => array('цент', 'цента', 'центов'),
 			),
+			'GBP' => array(
+				'whole'   => array('фунт', 'фунта', 'фунтов'),
+				'decimal' => array('пенни', 'пенса', 'пенсов'),
+			),
 		);
 		
 		if (!isset($names[$currency]))
@@ -189,7 +193,7 @@ final class Russian extends Speller
 		{
 			$index = 1;
 		}
-		else // 0, 5, 6, 7, 8, 9
+		else // 0, 5, 6, 7, 8, 9, 11-19, 10, 20, 30...90
 		{
 			$index = 2;
 		}

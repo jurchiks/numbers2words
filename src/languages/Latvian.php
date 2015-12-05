@@ -161,6 +161,10 @@ final class Latvian extends Speller
 				'whole'   => array('dolārs', 'dolāri', 'dolāru'),
 				'decimal' => array('cents', 'centi', 'centu'),
 			),
+			'GBP' => array(
+				'whole'   => array('mārciņa', 'mārciņas', 'mārciņu'),
+				'decimal' => array('penijs', 'peniji', 'peniju'),
+			),
 		);
 		
 		if (!isset($names[$currency]))

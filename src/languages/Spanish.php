@@ -143,8 +143,12 @@ final class Spanish extends Speller
 				'decimal' => array('kopek', 'kopeks'),
 			),
 			'USD' => array(
-				'whole'   => array('dollar', 'dollars'),
-				'decimal' => array('cent', 'cents'),
+				'whole'   => array('dólar estadounidense', 'dólares estadounidenses'),
+				'decimal' => array('centavo', 'centavos'),
+			),
+			'GBP' => array(
+				'whole'   => array('libra esterlina', 'libras esterlinas'),
+				'decimal' => array('penique', 'peniques'),
 			),
 		);
 		
