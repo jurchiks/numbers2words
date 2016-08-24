@@ -1,6 +1,8 @@
 <?php
 namespace js\tools\numbers2words;
 
+use js\tools\numbers2words\exceptions\InvalidArgumentException;
+
 /**
  * This class offers a number spelling in various languages.
  * It is a work-in-progress and more languages are to be added in future.
@@ -60,12 +62,12 @@ abstract class Speller
 		
 		if (strlen($language) != 2)
 		{
-			throw new \InvalidArgumentException('Invalid language code specified, must follow ISO 639-1 format.');
+			throw new InvalidArgumentException('Invalid language code specified, must follow ISO 639-1 format.');
 		}
 		
 		if (!isset(self::$languages[$language]))
 		{
-			throw new \InvalidArgumentException('That language is not implemented yet.');
+			throw new InvalidArgumentException('That language is not implemented yet.');
 		}
 		
 		if (!isset($spellers[$language]))
@@ -92,13 +94,13 @@ abstract class Speller
 	 * @param int $number : the number to spell in the specified language
 	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the number in
 	 * @return string : the number as written in words in the specified language
-	 * @throws \InvalidArgumentException if any parameter is invalid
+	 * @throws InvalidArgumentException if any parameter is invalid
 	 */
 	public static function spellNumber($number, $language)
 	{
 		if (!is_numeric($number))
 		{
-			throw new \InvalidArgumentException('Invalid number specified.');
+			throw new InvalidArgumentException('Invalid number specified.');
 		}
 		
 		return self::get($language)
@@ -115,25 +117,25 @@ abstract class Speller
 	 * @param bool $spellDecimal : if true, spell decimals out same as whole numbers;
 	 * otherwise, output decimals as numbers
 	 * @return string : the currency as written in words in the specified language
-	 * @throws \InvalidArgumentException if any parameter is invalid
+	 * @throws InvalidArgumentException if any parameter is invalid
 	 */
 	public static function spellCurrency($amount, $language, $currency, $requireDecimal = true, $spellDecimal = false)
 	{
 		if (!is_numeric($amount))
 		{
-			throw new \InvalidArgumentException('Invalid number specified.');
+			throw new InvalidArgumentException('Invalid number specified.');
 		}
 		
 		if (!is_string($currency))
 		{
-			throw new \InvalidArgumentException('Invalid currency code specified.');
+			throw new InvalidArgumentException('Invalid currency code specified.');
 		}
 		
 		$currency = strtoupper(trim($currency));
 		
 		if (!in_array($currency, self::$currencies))
 		{
-			throw new \InvalidArgumentException('That currency is not implemented yet.');
+			throw new InvalidArgumentException('That currency is not implemented yet.');
 		}
 		
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits

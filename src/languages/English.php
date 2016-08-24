@@ -1,6 +1,7 @@
 <?php
 namespace js\tools\numbers2words\languages;
 
+use js\tools\numbers2words\exceptions\InvalidArgumentException;
 use js\tools\numbers2words\Speller;
 
 final class English extends Speller
@@ -127,7 +128,7 @@ final class English extends Speller
 		
 		if (!isset($names[$currency]))
 		{
-			throw new \InvalidArgumentException('Unsupported currency');
+			throw new InvalidArgumentException('Unsupported currency');
 		}
 		
 		$index = (($number === 1) ? 0 : 1);

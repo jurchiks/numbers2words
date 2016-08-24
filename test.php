@@ -26,6 +26,7 @@ spl_autoload_register(
 
 // common code:
 use \js\tools\numbers2words\Speller;
+use \js\tools\numbers2words\exceptions\InvalidArgumentException;
 
 try
 {
@@ -49,7 +50,7 @@ try
 		echo "\n";
 	}
 }
-catch (\InvalidArgumentException $iae)
+catch (InvalidArgumentException $iae)
 {
 	echo $iae->getMessage();
 	die(1);
