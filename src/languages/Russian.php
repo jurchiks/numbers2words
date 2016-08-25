@@ -96,6 +96,7 @@ final class Russian extends Speller
 			9 => 'девять',
 		);
 		static $singlesFeminine = array(
+			0 => 'ноль',
 			1 => 'одна',
 			2 => 'две',
 			3 => 'три',

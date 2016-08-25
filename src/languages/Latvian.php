@@ -96,6 +96,7 @@ final class Latvian extends Speller
 			9 => 'deviņi',
 		);
 		static $singlesFeminine = array(
+			0 => 'nulle',
 			1 => 'viena',
 			2 => 'divas',
 			3 => 'trīs',
