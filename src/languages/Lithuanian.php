@@ -146,7 +146,7 @@ final class Lithuanian extends Speller
 				'decimal' => array('kapeika', 'kapeikos', 'kapeikų'),
 			),
 			self::CURRENCY_US_DOLLAR => array(
-				'whole'   => array('dolaras', 'dolarai', 'dolarų'),
+				'whole'   => array('doleris', 'doleriai', 'dolerių'),
 				'decimal' => array('centas', 'centai', 'centų'),
 			),
 		);
