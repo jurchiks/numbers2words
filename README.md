@@ -2,6 +2,9 @@ numbers2words
 =============
 This library is meant for general-purpose number spelling for use in, e.g. legal documents and bills.
 
+[![License](https://poser.pugx.org/jurchiks/numbers2words/license)](https://packagist.org/packages/jurchiks/numbers2words)
+[![Downloads](https://poser.pugx.org/jurchiks/numbers2words/downloads)](https://packagist.org/packages/jurchiks/numbers2words)
+
 Supported languages (ISO 639-1 language codes):
 * English ('en')
 * Estonian ('et')
@@ -19,6 +22,11 @@ Supported currencies (ISO 4217 currency codes):
 * U.S. Dollars ('USD')
 
 Report issues if you find any!
+
+Installation:
+```
+composer require jurchiks/numbers2words
+```
 
 Usage:
 ```php
