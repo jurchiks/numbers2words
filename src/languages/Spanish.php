@@ -156,6 +156,10 @@ final class Spanish extends Speller
 				'whole'   => array('dólar estadounidense', 'dólares estadounidenses'),
 				'decimal' => array('centavo', 'centavos'),
 			),
+			self::CURRENCY_PL_ZLOTY => array(
+				'whole'   => array('zloty', 'zlotys'),
+				'decimal' => array('centavo', 'centavos'),
+			),			
 		);
 		
 		if (!isset($names[$currency]))
