@@ -17,6 +17,7 @@ abstract class Speller
 	const LANGUAGE_LITHUANIAN = 'lt';
 	const LANGUAGE_RUSSIAN = 'ru';
 	const LANGUAGE_SPANISH = 'es';
+	const LANGUAGE_POLISH = 'pl';
 	
 	const CURRENCY_EURO = 'EUR';
 	const CURRENCY_BRITISH_POUND = 'GBP';
@@ -24,6 +25,7 @@ abstract class Speller
 	const CURRENCY_LITHUANIAN_LIT = 'LTL';
 	const CURRENCY_RUSSIAN_ROUBLE = 'RUR';
 	const CURRENCY_US_DOLLAR = 'USD';
+	const CURRENCY_PL_ZLOTY = 'PLN';
 	
 	private static $languages = array(
 		self::LANGUAGE_ENGLISH    => languages\English::class,
@@ -32,6 +34,7 @@ abstract class Speller
 		self::LANGUAGE_LITHUANIAN => languages\Lithuanian::class,
 		self::LANGUAGE_RUSSIAN    => languages\Russian::class,
 		self::LANGUAGE_SPANISH    => languages\Spanish::class,
+		self::LANGUAGE_POLISH    => languages\Polish::class,
 	);
 	
 	private static $currencies = array(
@@ -41,6 +44,7 @@ abstract class Speller
 		self::CURRENCY_LITHUANIAN_LIT,
 		self::CURRENCY_RUSSIAN_ROUBLE,
 		self::CURRENCY_US_DOLLAR,
+		self::CURRENCY_PL_ZLOTY,
 	);
 	
 	protected $minus;
