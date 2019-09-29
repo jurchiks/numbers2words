@@ -112,7 +112,7 @@ final class English extends Speller
 			),
 			self::CURRENCY_LITHUANIAN_LIT => array(
 				'whole'   => array('lit', 'lity', 'litów'),
-				'decimal' => array('cent', 'centy, 'centów'),
+				'decimal' => array('cent', 'centy', 'centów'),
 			),
 			self::CURRENCY_RUSSIAN_ROUBLE => array(
 				'whole'   => array('rubel', 'ruble', 'rubli'),
@@ -120,7 +120,7 @@ final class English extends Speller
 			),
 			self::CURRENCY_US_DOLLAR => array(
 				'whole'   => array('dolar', 'dolary', 'dolarów'),
-				'decimal' => array('cent', 'centy, 'centów'),
+				'decimal' => array('cent', 'centy', 'centów'),
 			),
 			self::CURRENCY_PL_ZLOTY => array(
 				'whole'   => array('złoty', 'złote', 'złotych'),
