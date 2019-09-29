@@ -29,6 +29,13 @@ Installation:
 ```
 composer require jurchiks/numbers2words
 ```
+To enable Twig filter in Symfony 4 add in config/services.yaml:
+```
+    twig.spell:
+        class: js\tools\numbers2words\Twig\Spell
+        tags:
+            - { name: twig.extension }
+```
 
 Usage:
 ```php
