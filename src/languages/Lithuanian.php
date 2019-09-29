@@ -149,6 +149,10 @@ final class Lithuanian extends Speller
 				'whole'   => array('doleris', 'doleriai', 'dolerių'),
 				'decimal' => array('centas', 'centai', 'centų'),
 			),
+			self::CURRENCY_PL_ZLOTY => array(
+				'whole'   => array('zloty', 'zlote', 'zlotych'),
+				'decimal' => array('grosz', 'grosze', 'groszy'),
+			),			
 		);
 		
 		if (!isset($names[$currency]))
