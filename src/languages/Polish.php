@@ -2,7 +2,7 @@
 namespace js\tools\numbers2words\languages;
 use js\tools\numbers2words\exceptions\InvalidArgumentException;
 use js\tools\numbers2words\Speller;
-final class English extends Speller
+final class Polish extends Speller
 {
 	protected $minus = 'minus';
 	protected $decimalSeparator = ' i ';
