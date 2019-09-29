@@ -12,6 +12,7 @@ Supported languages (ISO 639-1 language codes):
 * Lithuanian ('lt')
 * Russian ('ru')
 * Spanish ('es')
+* Polish ('pl')
 
 Supported currencies (ISO 4217 currency codes):
 * British Pounds ('GBP')
@@ -20,6 +21,7 @@ Supported currencies (ISO 4217 currency codes):
 * Lithuanian Lits ('LTL')
 * Russian Roubles ('RUR')
 * U.S. Dollars ('USD')
+* PLN Zloty ('PLN')
 
 Report issues if you find any!
 
