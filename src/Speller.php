@@ -156,7 +156,7 @@ abstract class Speller
 		
 		if ($requireDecimal || ($decimalAmount > 0))
 		{
-			$text .= . ($currencyAsCode 
+			$text .= ($currencyAsCode 
 				? ' ' . $decimalAmount . '/100'
 				: $speller->decimalSeparator
 					. ($spellDecimal
