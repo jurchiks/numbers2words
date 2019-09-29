@@ -125,8 +125,8 @@ final class English extends Speller
 				'decimal' => array('cent', 'cents'),
 			),
 			self::CURRENCY_PL_ZLOTY => array(
-				'whole'   => array('zloty', 'zlote', 'zlotych'),
-				'decimal' => array('grosz', 'grosze', 'groszy'),
+				'whole'   => array('zloty', 'zlote'),
+				'decimal' => array('grosz', 'grosze'),
 			),
 		);
 		
