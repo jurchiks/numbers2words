@@ -4,6 +4,7 @@ namespace js\tools\numbers2words\Twig;
 
 use Twig\TwigFilter;
 use js\tools\numbers2words\Speller;
+use Twig\Extension\AbstractExtension;
 
 class Spell extends \Twig\Extension\AbstractExtension
 {
