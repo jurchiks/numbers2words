@@ -120,7 +120,7 @@ abstract class Speller
 	 * @return string : the currency as written in words in the specified language with ISO 4217 currency code
 	 * @throws InvalidArgumentException if any parameter is invalid
 	 */
-	public static function spellShort($amount, $language, $currency)
+	public static function spellCurrencyShort($amount, $language, $currency)
 	{
 		$amount = is_numeric($amount) ? $amount : 0;
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
