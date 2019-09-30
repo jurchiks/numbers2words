@@ -173,8 +173,8 @@ final class Latvian extends Speller
 				'decimal' => array('cents', 'centi', 'centu'),
 			),
 			self::CURRENCY_PL_ZLOTY => array(
-				'whole'   => array('zloty', 'zlote', 'zlotych'),
-				'decimal' => array('grosz', 'grosze', 'groszy'),
+				'whole'   => array('zlots', 'zloti', 'zlotu'),
+				'decimal' => array('grosis', 'groši', 'grošu'),
 			),
 		);
 		
