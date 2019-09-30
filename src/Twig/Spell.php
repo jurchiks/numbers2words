@@ -11,12 +11,12 @@ class Spell extends \Twig\Extension\AbstractExtension
     public function getFilters()
     {
         return [
-            new TwigFilter('spell', [$this, 'spellCurrency']),
+            new TwigFilter('spellShort', [$this, 'spellCurrencyAsCode']),
         ];
     }
 
-    public function spellCurrency($amount, $language, $currency, $requireDecimal = true, $spellDecimal = false, $currencyAsCode = false)
+    public function spellCurrencyAsCode($amount, $language, $currency)
     {
-        return Speller::spellCurrency($amount, $language, $currency, $requireDecimal, $spellDecimal, $currencyAsCode);
+        return Speller::spellCurrencyAsCode($amount, $language, $currency);
     }
 }
