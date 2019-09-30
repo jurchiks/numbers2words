@@ -16,6 +16,6 @@ class Spell extends \Twig\Extension\AbstractExtension
 
     public function spellShort($amount, $language, $currency)
     {
-        return Speller::spellCurrencyAsCode($amount, $language, $currency);
+        return Speller::spellShort($amount, $language, $currency);
     }
 }
