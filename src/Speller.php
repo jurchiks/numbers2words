@@ -117,13 +117,41 @@ abstract class Speller
 	 * @param int|float $amount : the amount to spell in the specified language
 	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the amount in
 	 * @param string $currency : a three-letter, ISO 4217 currency code
+	 * @return string : the currency as written in words in the specified language
+	 * @throws InvalidArgumentException if any parameter is invalid
+	 */
+	public static function spellCurrencyAsCode($amount, $language, $currency)
+	{
+		$amount = is_numeric($amount) ? $amount : 0;
+		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
+		$currency = strtoupper(trim($currency));
+		$parts = explode('.', $amount);
+		$speller = self::get($language);
+		
+		$text = trim($speller->parseInt($wholeAmount, false, $currency))
+			. ' '
+			. $currency 
+			. ' '
+			. $decimalAmount 
+			. '/100';
+		}
+		
+		return $text;
+	}
+	
+	/**
+	 * Convert currency to its linguistic representation.
+	 *
+	 * @param int|float $amount : the amount to spell in the specified language
+	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the amount in
+	 * @param string $currency : a three-letter, ISO 4217 currency code
 	 * @param bool $requireDecimal : if true, output decimals even if the value is 0
 	 * @param bool $spellDecimal : if true, spell decimals out same as whole numbers;
 	 * otherwise, output decimals as numbers
 	 * @return string : the currency as written in words in the specified language
 	 * @throws InvalidArgumentException if any parameter is invalid
 	 */
-	public static function spellCurrency($amount, $language, $currency, $requireDecimal = true, $spellDecimal = false, $currencyAsCode = false)
+	public static function spellCurrency($amount, $language, $currency, $requireDecimal = true, $spellDecimal = false)
 	{
 		if (!is_numeric($amount))
 		{
