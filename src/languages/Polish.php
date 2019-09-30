@@ -164,12 +164,22 @@ final class Polish extends Speller
 			),      
 		);
 		
-		if (!isset($names[$currency]))
-		{
-			throw new InvalidArgumentException('Unsupported currency');
-		}
+		$tens = $number % 100;
+		$singles = $number % 10;
 		
-		$index = (($number === 1) ? 0 : 1);
+		if (($singles === 1) && ($tens !== 11)) // 1, 21, ... 91
+		{
+			$index = 0;
+		}
+		else if ((($singles > 1) && ($singles < 5)) // 2-4, 22-24, ... 92-94
+			&& (($tens - $singles) !== 10))
+		{
+			$index = 1;
+		}
+		else // 0, 5, 6, 7, 8, 9, 11-19, 10, 20, 30...90
+		{
+			$index = 2;
+		}
 		
 		return $names[$currency][$type][$index];
 	}
