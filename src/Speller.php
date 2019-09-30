@@ -122,13 +122,28 @@ abstract class Speller
 	 */
 	public static function spellCurrencyShort($amount, $language, $currency)
 	{
-		$amount = is_numeric($amount) ? $amount : 0;
-		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
+		if (!is_numeric($amount))
+		{
+			throw new InvalidArgumentException('Invalid number specified.');
+		}
+		
+		if (!is_string($currency))
+		{
+			throw new InvalidArgumentException('Invalid currency code specified.');
+		}
+		
 		$currency = strtoupper(trim($currency));
+		
+		if (!in_array($currency, self::$currencies))
+		{
+			throw new InvalidArgumentException('That currency is not implemented yet.');
+		}
+		
+		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
 		$parts = explode('.', $amount);
+		$speller = self::get($language);
 		$wholeAmount = intval($parts[0]);
 		$decimalAmount = intval($parts[1]);
-		$speller = self::get($language);
 		
 		return trim($speller->parseInt($wholeAmount, false, $currency))
 			. ' '
