@@ -112,12 +112,12 @@ abstract class Speller
 	}
 	
 	/**
-	 * Convert currency to its linguistic representation.
+	 * Convert currency to its linguistic short representation.
 	 *
 	 * @param int|float $amount : the amount to spell in the specified language
 	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the amount in
 	 * @param string $currency : a three-letter, ISO 4217 currency code
-	 * @return string : the currency as written in words in the specified language
+	 * @return string : the currency as written in words in the specified language with ISO 4217 currency code
 	 * @throws InvalidArgumentException if any parameter is invalid
 	 */
 	public static function spellShort($amount, $language, $currency)
@@ -128,15 +128,12 @@ abstract class Speller
 		$parts = explode('.', $amount);
 		$speller = self::get($language);
 		
-		$text = trim($speller->parseInt($wholeAmount, false, $currency))
+		return = trim($speller->parseInt($wholeAmount, false, $currency))
 			. ' '
 			. $currency 
 			. ' '
 			. $decimalAmount 
 			. '/100';
-		}
-		
-		return $text;
 	}
 	
 	/**
