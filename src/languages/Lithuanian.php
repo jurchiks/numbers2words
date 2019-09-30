@@ -150,8 +150,8 @@ final class Lithuanian extends Speller
 				'decimal' => array('centas', 'centai', 'centų'),
 			),
 			self::CURRENCY_PL_ZLOTY => array(
-				'whole'   => array('zloty', 'zlote', 'zlotych'),
-				'decimal' => array('grosz', 'grosze', 'groszy'),
+				'whole'   => array('zlotas', 'zlotai', 'zlotų'),
+				'decimal' => array('grašis', 'grašiai', 'grašių'),
 			),			
 		);
 		
