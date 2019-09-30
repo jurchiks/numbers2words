@@ -128,7 +128,7 @@ abstract class Speller
 		$parts = explode('.', $amount);
 		$speller = self::get($language);
 		
-		return = trim($speller->parseInt($wholeAmount, false, $currency))
+		return trim($speller->parseInt($wholeAmount, false, $currency))
 			. ' '
 			. $currency 
 			. ' '
