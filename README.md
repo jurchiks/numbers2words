@@ -45,8 +45,11 @@ Speller::spellNumber(123, Speller::LANGUAGE_RU);
 // output: сто двадцать три
 Speller::spellCurrency(123.45, Speller::LANGUAGE_ENGLISH, Speller::CURRENCY_EURO, true, true);
 // output: one hundred and twenty three euro and forty five cents
+Speller::spellShort(123.45, Speller::LANGUAGE_ENGLISH, Speller::CURRENCY_EURO);
+// output: one hundred and twenty three EUR 45/100
 ```
 In Twig:
 ```
-{{ 1234.56 | spell('pl','PLN',true,true,true) }}
+{{ 123.45 | spellShort('en','EUR') }}
+// output: one hundred and twenty three EUR 45/100
 ```
