@@ -120,7 +120,7 @@ abstract class Speller
 	 * @return string : the currency as written in words in the specified language
 	 * @throws InvalidArgumentException if any parameter is invalid
 	 */
-	public static function spellCurrencyAsCode($amount, $language, $currency)
+	public static function spellShort($amount, $language, $currency)
 	{
 		$amount = is_numeric($amount) ? $amount : 0;
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
@@ -178,19 +178,16 @@ abstract class Speller
 		
 		$text = trim($speller->parseInt($wholeAmount, false, $currency))
 			. ' '
-			. ($currencyAsCode 
-				? $currency 
-				: $speller->getCurrencyName('whole', $wholeAmount, $currency));
+			. $speller->getCurrencyName('whole', $wholeAmount, $currency);
 		
 		if ($requireDecimal || ($decimalAmount > 0))
 		{
-			$text .= ($currencyAsCode 
-				? ' ' . $decimalAmount . '/100'
-				: $speller->decimalSeparator
-					. ($spellDecimal
-						? trim($speller->parseInt($decimalAmount, true, $currency))
-						: $decimalAmount)
-					. ' ' . $speller->getCurrencyName('decimal', $decimalAmount, $currency));
+			$text .= $speller->decimalSeparator
+				. ($spellDecimal
+					? trim($speller->parseInt($decimalAmount, true, $currency))
+					: $decimalAmount)
+				. ' '
+				. $speller->getCurrencyName('decimal', $decimalAmount, $currency);
 		}
 		
 		return $text;
