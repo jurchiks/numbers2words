@@ -93,11 +93,11 @@ abstract class Speller
 	}
 	
 	/**
-	 * Convert a number into its linguistic representation.
+	 * Convert a number into {whole part spelled} CODE {decimal part}/100 format.
 	 * 
 	 * @param int $number : the number to spell in the specified language
 	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the number in
-	 * @return string : the number as written in words in the specified language
+	 * @return string : the whole part as written in words in the specified language plus ISO 639-1 code and decimal part in ##/100 format
 	 * @throws InvalidArgumentException if any parameter is invalid
 	 */
 	public static function spellNumber($number, $language)
