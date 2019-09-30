@@ -126,6 +126,8 @@ abstract class Speller
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
 		$currency = strtoupper(trim($currency));
 		$parts = explode('.', $amount);
+		$wholeAmount = intval($parts[0]);
+		$decimalAmount = intval($parts[1]);
 		$speller = self::get($language);
 		
 		return trim($speller->parseInt($wholeAmount, false, $currency))
