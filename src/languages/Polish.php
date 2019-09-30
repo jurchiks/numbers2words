@@ -1,7 +1,9 @@
 <?php
 namespace js\tools\numbers2words\languages;
+
 use js\tools\numbers2words\exceptions\InvalidArgumentException;
 use js\tools\numbers2words\Speller;
+
 final class Polish extends Speller
 {
 	protected $minus = 'minus';
@@ -9,17 +11,17 @@ final class Polish extends Speller
 	
 	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
 	{
-        static $hundreds = array(
-            1 => 'sto',
-            2 => 'dwieście',
-            3 => 'trzysta',
-            4 => 'czterysta',
-            5 => 'pięćset',
-            6 => 'sześćset',
-            7 => 'siedemset',
-            8 => 'osiemset',
-            9 => 'dziewięćset',
-        );	    
+		static $hundreds = array(
+		    1 => 'sto',
+		    2 => 'dwieście',
+		    3 => 'trzysta',
+		    4 => 'czterysta',
+		    5 => 'pięćset',
+		    6 => 'sześćset',
+		    7 => 'siedemset',
+		    8 => 'osiemset',
+		    9 => 'dziewięćset',
+		);	    
 		static $tens = array(
 			1 => 'dziesięć',
 			2 => 'dwadzieścia',
@@ -55,82 +57,82 @@ final class Polish extends Speller
 			9 => 'dziewięć',
 		);
 
-        $text = '';
+		$text = '';
 
-        if ($number >= 100)
-        {
-            $text .= $hundreds[intval(substr("$number", 0, 1))];
-            $number = $number % 100;
+		if ($number >= 100)
+		{
+		    $text .= $hundreds[intval(substr("$number", 0, 1))];
+		    $number = $number % 100;
 
-            if ($number === 0) // exact hundreds
-            {
-                return $text;
-            }
+		    if ($number === 0) // exact hundreds
+		    {
+			return $text;
+		    }
 
-            $text .= ' ';
-        }
+		    $text .= ' ';
+		}
 
-        if ($number < 10)
-        {
-            $text .= $singles[intval($number)];
-        }
-        else if (($number > 10) && ($number < 20))
-        {
-            $text .= $teens[$number];
-        }
-        else
-        {
-            $text .= $tens[intval(substr($number, 0, 1))];
+		if ($number < 10)
+		{
+		    $text .= $singles[intval($number)];
+		}
+		else if (($number > 10) && ($number < 20))
+		{
+		    $text .= $teens[$number];
+		}
+		else
+		{
+		    $text .= $tens[intval(substr($number, 0, 1))];
 
-            if ($number % 10 > 0)
-            {
-                $text .= ' ' . $singles[$number % 10];
-            }
-        }
+		    if ($number % 10 > 0)
+		    {
+			$text .= ' ' . $singles[$number % 10];
+		    }
+		}
 
-        return $text;
+		return $text;
 	}
 
-    protected function spellExponent($type, $number, $currency)
-    {
-        $tens = $number % 100;
-        $singles = $number % 10;
+	protected function spellExponent($type, $number, $currency)
+	{
+		$tens = $number % 100;
+		$singles = $number % 10;
 
-        if ($type === 'million')
-        {
-            if (($singles === 1) && ($tens !== 11)) // 1, 21, ... 91
-            {
-                return 'milion';
-            }
+		if ($type === 'million')
+		{
+			if (($singles === 1) && ($tens !== 11)) // 1, 21, ... 91
+			{
+				return 'milion';
+			}
 
-            if ((($singles > 1) && ($singles < 5)) // 2-4, 22-24 ... 92-94
-                && (($tens - $singles) !== 10))
-            {
-                return 'miliony';
-            }
+			if ((($singles > 1) && ($singles < 5)) // 2-4, 22-24 ... 92-94
+				&& (($tens - $singles) !== 10))
+			{
+				return 'miliony';
+			}
 
-            return 'milionów';
-        }
+			return 'milionów';
+		}
 
-        if ($type === 'thousand')
-        {
-            if (($singles === 1) && ($tens !== 11)) // 1, 21, ... 91
-            {
-                return 'tysiąc';
-            }
+		if ($type === 'thousand')
+		{
+			if (($singles === 1) && ($tens !== 11)) // 1, 21, ... 91
+			{
+				return 'tysiąc';
+			}
 
-            if ((($singles > 1) && ($singles < 5)) // 2-4, 22-24 ... 92-94
-                && (($tens - $singles) !== 10))
-            {
-                return 'tysiące';
-            }
+			if ((($singles > 1) && ($singles < 5)) // 2-4, 22-24 ... 92-94
+				&& (($tens - $singles) !== 10))
+		    	{
+				return 'tysiące';
+		    	}
 
-            return 'tysięcy';
-        }
+		    return 'tysięcy';
+		}
 
-        return '';
-    }
-	
+		return '';
+	}
+
 	protected function getCurrencyName($type, $number, $currency)
 	{
 		static $names = array(
