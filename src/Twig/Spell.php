@@ -2,7 +2,6 @@
 
 namespace js\tools\numbers2words\Twig;
 
-use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use js\tools\numbers2words\Speller;
 
