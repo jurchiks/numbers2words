@@ -6,7 +6,7 @@ use Twig\TwigFilter;
 use js\tools\numbers2words\Speller;
 use Twig\Extension\AbstractExtension;
 
-class Spell extends \Twig\Extension\AbstractExtension
+class Spell extends AbstractExtension
 {
     public function getFilters()
     {
