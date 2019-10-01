@@ -137,7 +137,7 @@ final class Polish extends Speller
 	{
 		static $names = array(
 			self::CURRENCY_EURO => array(
-				'whole'   => array('euro', 'euro'),
+				'whole'   => array('euro', 'euro', 'euro'),
 				'decimal' => array('cent', 'centy', 'centów'),
 			),
 			self::CURRENCY_BRITISH_POUND => array(
