@@ -93,7 +93,7 @@ abstract class Speller
 	}
 	
 	/**
-	 * Convert a number into {whole part spelled} CODE {decimal part}/100 format.
+	 * Convert a number into its linguistic representation.
 	 * 
 	 * @param int $number : the number to spell in the specified language
 	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the number in
@@ -102,17 +102,15 @@ abstract class Speller
 	 */
 	public static function spellNumber($number, $language)
 	{
-		if (!is_numeric($number))
-		{
-			throw new InvalidArgumentException('Invalid number specified.');
-		}
+		self::assertNumber($number);
 		
 		return self::get($language)
 			->parseInt(intval($number), false);
 	}
 	
 	/**
-	 * Convert currency to its linguistic short representation.
+	 * Convert currency to its linguistic representation.
+	 * The format is {whole part spelled} CODE {decimal part}/100.
 	 *
 	 * @param int|float $amount : the amount to spell in the specified language
 	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the amount in
@@ -122,22 +120,8 @@ abstract class Speller
 	 */
 	public static function spellCurrencyShort($amount, $language, $currency)
 	{
-		if (!is_numeric($amount))
-		{
-			throw new InvalidArgumentException('Invalid number specified.');
-		}
-		
-		if (!is_string($currency))
-		{
-			throw new InvalidArgumentException('Invalid currency code specified.');
-		}
-		
-		$currency = strtoupper(trim($currency));
-		
-		if (!in_array($currency, self::$currencies))
-		{
-			throw new InvalidArgumentException('That currency is not implemented yet.');
-		}
+		self::assertNumber($amount);
+		self::validateCurrency($currency);
 		
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
 		$parts = explode('.', $amount);
@@ -167,22 +151,8 @@ abstract class Speller
 	 */
 	public static function spellCurrency($amount, $language, $currency, $requireDecimal = true, $spellDecimal = false)
 	{
-		if (!is_numeric($amount))
-		{
-			throw new InvalidArgumentException('Invalid number specified.');
-		}
-		
-		if (!is_string($currency))
-		{
-			throw new InvalidArgumentException('Invalid currency code specified.');
-		}
-		
-		$currency = strtoupper(trim($currency));
-		
-		if (!in_array($currency, self::$currencies))
-		{
-			throw new InvalidArgumentException('That currency is not implemented yet.');
-		}
+		self::assertNumber($amount);
+		self::validateCurrency($currency);
 		
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
 		$parts = explode('.', $amount);
@@ -268,4 +238,27 @@ abstract class Speller
 	protected abstract function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency);
 	protected abstract function spellExponent($type, $number, $currency);
 	protected abstract function getCurrencyName($type, $number, $currency);
+	
+	private static function assertNumber($number)
+	{
+		if (!is_numeric($amount))
+		{
+			throw new InvalidArgumentException('Invalid number specified.');
+		}
+	}
+	
+	private static function validateCurrency(&$currency)
+	{
+		if (!is_string($currency))
+		{
+			throw new InvalidArgumentException('Invalid currency code specified.');
+		}
+		
+		$currency = strtoupper(trim($currency));
+		
+		if (!in_array($currency, self::$currencies))
+		{
+			throw new InvalidArgumentException('That currency is not implemented yet.');
+		}
+	}
 }
