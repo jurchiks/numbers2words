@@ -124,6 +124,10 @@ final class English extends Speller
 				'whole'   => array('dollar', 'dollars'),
 				'decimal' => array('cent', 'cents'),
 			),
+			self::CURRENCY_PL_ZLOTY => array(
+				'whole'   => array('zloty', 'zlote'),
+				'decimal' => array('grosz', 'grosze'),
+			),
 		);
 		
 		if (!isset($names[$currency]))

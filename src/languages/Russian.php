@@ -184,6 +184,10 @@ final class Russian extends Speller
 				'whole'   => array('доллар', 'доллара', 'долларов'),
 				'decimal' => array('цент', 'цента', 'центов'),
 			),
+			self::CURRENCY_PL_ZLOTY => array(
+				'whole'   => array('зло́тый', 'злота', 'злотых'),
+				'decimal' => array('грош', 'гроша', 'грошей'),
+			),			
 		);
 		
 		if (!isset($names[$currency]))

@@ -17,6 +17,7 @@ abstract class Speller
 	const LANGUAGE_LITHUANIAN = 'lt';
 	const LANGUAGE_RUSSIAN = 'ru';
 	const LANGUAGE_SPANISH = 'es';
+	const LANGUAGE_POLISH = 'pl';
 	
 	const CURRENCY_EURO = 'EUR';
 	const CURRENCY_BRITISH_POUND = 'GBP';
@@ -24,6 +25,7 @@ abstract class Speller
 	const CURRENCY_LITHUANIAN_LIT = 'LTL';
 	const CURRENCY_RUSSIAN_ROUBLE = 'RUR';
 	const CURRENCY_US_DOLLAR = 'USD';
+	const CURRENCY_PL_ZLOTY = 'PLN';
 	
 	private static $languages = array(
 		self::LANGUAGE_ENGLISH    => languages\English::class,
@@ -32,6 +34,7 @@ abstract class Speller
 		self::LANGUAGE_LITHUANIAN => languages\Lithuanian::class,
 		self::LANGUAGE_RUSSIAN    => languages\Russian::class,
 		self::LANGUAGE_SPANISH    => languages\Spanish::class,
+		self::LANGUAGE_POLISH    => languages\Polish::class,
 	);
 	
 	private static $currencies = array(
@@ -41,6 +44,7 @@ abstract class Speller
 		self::CURRENCY_LITHUANIAN_LIT,
 		self::CURRENCY_RUSSIAN_ROUBLE,
 		self::CURRENCY_US_DOLLAR,
+		self::CURRENCY_PL_ZLOTY,
 	);
 	
 	protected $minus;
@@ -89,11 +93,11 @@ abstract class Speller
 	}
 	
 	/**
-	 * Convert a number into its linguistic representation.
+	 * Convert a number into {whole part spelled} CODE {decimal part}/100 format.
 	 * 
 	 * @param int $number : the number to spell in the specified language
 	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the number in
-	 * @return string : the number as written in words in the specified language
+	 * @return string : the whole part as written in words in the specified language plus ISO 639-1 code and decimal part in ##/100 format
 	 * @throws InvalidArgumentException if any parameter is invalid
 	 */
 	public static function spellNumber($number, $language)
@@ -105,6 +109,48 @@ abstract class Speller
 		
 		return self::get($language)
 			->parseInt(intval($number), false);
+	}
+	
+	/**
+	 * Convert currency to its linguistic short representation.
+	 *
+	 * @param int|float $amount : the amount to spell in the specified language
+	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the amount in
+	 * @param string $currency : a three-letter, ISO 4217 currency code
+	 * @return string : the currency as written in words in the specified language with ISO 4217 currency code
+	 * @throws InvalidArgumentException if any parameter is invalid
+	 */
+	public static function spellCurrencyShort($amount, $language, $currency)
+	{
+		if (!is_numeric($amount))
+		{
+			throw new InvalidArgumentException('Invalid number specified.');
+		}
+		
+		if (!is_string($currency))
+		{
+			throw new InvalidArgumentException('Invalid currency code specified.');
+		}
+		
+		$currency = strtoupper(trim($currency));
+		
+		if (!in_array($currency, self::$currencies))
+		{
+			throw new InvalidArgumentException('That currency is not implemented yet.');
+		}
+		
+		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
+		$parts = explode('.', $amount);
+		$speller = self::get($language);
+		$wholeAmount = intval($parts[0]);
+		$decimalAmount = intval($parts[1]);
+		
+		return trim($speller->parseInt($wholeAmount, false, $currency))
+			. ' '
+			. $currency 
+			. ' '
+			. $decimalAmount 
+			. '/100';
 	}
 	
 	/**

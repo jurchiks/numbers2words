@@ -12,6 +12,7 @@ Supported languages (ISO 639-1 language codes):
 * Lithuanian ('lt')
 * Russian ('ru')
 * Spanish ('es')
+* Polish ('pl')
 
 Supported currencies (ISO 4217 currency codes):
 * British Pounds ('GBP')
@@ -20,12 +21,20 @@ Supported currencies (ISO 4217 currency codes):
 * Lithuanian Lits ('LTL')
 * Russian Roubles ('RUR')
 * U.S. Dollars ('USD')
+* PLN Zloty ('PLN')
 
 Report issues if you find any!
 
 Installation:
 ```
 composer require jurchiks/numbers2words
+```
+To enable Twig filter in Symfony 4 add in config/services.yaml:
+```
+    twig.spellCurrencyShort:
+        class: js\tools\numbers2words\Twig\Spell
+        tags:
+            - { name: twig.extension }
 ```
 
 Usage:
@@ -36,4 +45,11 @@ Speller::spellNumber(123, Speller::LANGUAGE_RU);
 // output: сто двадцать три
 Speller::spellCurrency(123.45, Speller::LANGUAGE_ENGLISH, Speller::CURRENCY_EURO, true, true);
 // output: one hundred and twenty three euro and forty five cents
+Speller::spellCurrencyShort(123.45, Speller::LANGUAGE_ENGLISH, Speller::CURRENCY_EURO);
+// output: one hundred and twenty three EUR 45/100
+```
+In Twig:
+```
+{{ 123.45 | spellCurrencyShort('en','EUR') }}
+// output: one hundred and twenty three EUR 45/100
 ```

@@ -141,6 +141,10 @@ class Estonian extends Speller
 				'whole'   => array('dollar', 'dollarit'),
 				'decimal' => array('sent', 'senti'),
 			),
+			self::CURRENCY_PL_ZLOTY => array(
+				'whole'   => array('zloty', 'zlote'),
+				'decimal' => array('grosz', 'grosze'),
+			),			
 		);
 		
 		if (!isset($names[$currency]))
