@@ -29,12 +29,11 @@ Installation:
 ```
 composer require jurchiks/numbers2words
 ```
-To enable Twig filter in Symfony 4 add in config/services.yaml:
+To enable the Twig filter in Symfony 4, add it in `config/services.yaml` (or its equivalent):
 ```
-    twig.spellCurrencyShort:
-        class: js\tools\numbers2words\Twig\Spell
-        tags:
-            - { name: twig.extension }
+services:
+    js\tools\numbers2words\Twig\Spell:
+        tags: [twig.extension]
 ```
 
 Usage:
@@ -50,6 +49,6 @@ Speller::spellCurrencyShort(123.45, Speller::LANGUAGE_ENGLISH, Speller::CURRENCY
 ```
 In Twig:
 ```
-{{ 123.45 | spellCurrencyShort('en','EUR') }}
+{{ 123.45 | spellCurrencyShort('en', 'EUR') }}
 // output: one hundred and twenty three EUR 45/100
 ```
