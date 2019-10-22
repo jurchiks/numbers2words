@@ -241,7 +241,7 @@ abstract class Speller
 	
 	private static function assertNumber($number)
 	{
-		if (!is_numeric($amount))
+		if (!is_numeric($number))
 		{
 			throw new InvalidArgumentException('Invalid number specified.');
 		}
