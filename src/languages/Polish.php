@@ -166,6 +166,11 @@ final class Polish extends Speller
 			),
 		);
 		
+		if (!isset($names[$currency]))
+		{
+			throw new InvalidArgumentException('Unsupported currency');
+		}
+		
 		$tens = $number % 100;
 		$singles = $number % 10;
 		
