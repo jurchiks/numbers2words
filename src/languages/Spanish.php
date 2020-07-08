@@ -132,15 +132,15 @@ final class Spanish extends Speller
 	{
 		// TODO some of these spellings are extremely hard to find and are probably incorrect
 		static $names = array(
-			self::CURRENCY_EURO => array(
+			self::CURRENCY_EURO           => array(
 				'whole'   => array('euro', 'euros'),
 				'decimal' => array('centime', 'centimes'),
 			),
-			self::CURRENCY_BRITISH_POUND => array(
+			self::CURRENCY_BRITISH_POUND  => array(
 				'whole'   => array('libra esterlina', 'libras esterlinas'),
 				'decimal' => array('penique', 'peniques'),
 			),
-			self::CURRENCY_LATVIAN_LAT => array(
+			self::CURRENCY_LATVIAN_LAT    => array(
 				'whole'   => array('lat', 'lats'),
 				'decimal' => array('sentim', 'sentims'),
 			),
@@ -152,14 +152,14 @@ final class Spanish extends Speller
 				'whole'   => array('rublo ruso', 'rublos rusos'),
 				'decimal' => array('kopek', 'kopeks'),
 			),
-			self::CURRENCY_US_DOLLAR => array(
+			self::CURRENCY_US_DOLLAR      => array(
 				'whole'   => array('dólar estadounidense', 'dólares estadounidenses'),
 				'decimal' => array('centavo', 'centavos'),
 			),
-			self::CURRENCY_PL_ZLOTY => array(
+			self::CURRENCY_PL_ZLOTY       => array(
 				'whole'   => array('zloty', 'zlotys'),
 				'decimal' => array('centavo', 'centavos'),
-			),			
+			),
 		);
 		
 		if (!isset($names[$currency]))

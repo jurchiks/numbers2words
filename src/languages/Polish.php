@@ -21,7 +21,7 @@ final class Polish extends Speller
 			7 => 'siedemset',
 			8 => 'osiemset',
 			9 => 'dziewięćset',
-		);	    
+		);
 		static $tens = array(
 			1 => 'dziesięć',
 			2 => 'dwadzieścia',
@@ -56,22 +56,22 @@ final class Polish extends Speller
 			8 => 'osiem',
 			9 => 'dziewięć',
 		);
-
+		
 		$text = '';
-
+		
 		if ($number >= 100)
 		{
 			$text .= $hundreds[intval(substr("$number", 0, 1))];
 			$number = $number % 100;
-
+			
 			if ($number === 0) // exact hundreds
 			{
 				return $text;
 			}
-
+			
 			$text .= ' ';
 		}
-
+		
 		if ($number < 10)
 		{
 			$text .= $singles[intval($number)];
@@ -83,68 +83,68 @@ final class Polish extends Speller
 		else
 		{
 			$text .= $tens[intval(substr($number, 0, 1))];
-
+			
 			if ($number % 10 > 0)
 			{
 				$text .= ' ' . $singles[$number % 10];
 			}
 		}
-
+		
 		return $text;
 	}
-
+	
 	protected function spellExponent($type, $number, $currency)
 	{
 		$tens = $number % 100;
 		$singles = $number % 10;
-
+		
 		if ($type === 'million')
 		{
 			if (($singles === 1) && ($tens !== 11)) // 1, 21, ... 91
 			{
 				return 'milion';
 			}
-
+			
 			if ((($singles > 1) && ($singles < 5)) // 2-4, 22-24 ... 92-94
 				&& (($tens - $singles) !== 10))
 			{
 				return 'miliony';
 			}
-
+			
 			return 'milionów';
 		}
-
+		
 		if ($type === 'thousand')
 		{
 			if (($singles === 1) && ($tens !== 11)) // 1, 21, ... 91
 			{
 				return 'tysiąc';
 			}
-
+			
 			if ((($singles > 1) && ($singles < 5)) // 2-4, 22-24 ... 92-94
 				&& (($tens - $singles) !== 10))
-		    	{
+			{
 				return 'tysiące';
-		    	}
-
-		    return 'tysięcy';
+			}
+			
+			return 'tysięcy';
 		}
-
+		
 		return '';
 	}
-
+	
 	protected function getCurrencyName($type, $number, $currency)
 	{
 		static $names = array(
-			self::CURRENCY_EURO => array(
+			self::CURRENCY_EURO           => array(
 				'whole'   => array('euro', 'euro', 'euro'),
 				'decimal' => array('cent', 'centy', 'centów'),
 			),
-			self::CURRENCY_BRITISH_POUND => array(
+			self::CURRENCY_BRITISH_POUND  => array(
 				'whole'   => array('funt', 'funty', 'funtów'),
 				'decimal' => array('pen', 'peny', 'penów'),
 			),
-			self::CURRENCY_LATVIAN_LAT => array(
+			self::CURRENCY_LATVIAN_LAT    => array(
 				'whole'   => array('łat', 'łaty', 'łatów'),
 				'decimal' => array('santim', 'santimy', 'satimów'),
 			),
@@ -156,14 +156,14 @@ final class Polish extends Speller
 				'whole'   => array('rubel', 'ruble', 'rubli'),
 				'decimal' => array('kopiejka', 'kopiejki', 'kopiejek'),
 			),
-			self::CURRENCY_US_DOLLAR => array(
+			self::CURRENCY_US_DOLLAR      => array(
 				'whole'   => array('dolar', 'dolary', 'dolarów'),
 				'decimal' => array('cent', 'centy', 'centów'),
 			),
-			self::CURRENCY_PL_ZLOTY => array(
+			self::CURRENCY_PL_ZLOTY       => array(
 				'whole'   => array('złoty', 'złote', 'złotych'),
 				'decimal' => array('grosz', 'grosze', 'groszy'),
-			),      
+			),
 		);
 		
 		$tens = $number % 100;

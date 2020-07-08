@@ -100,15 +100,15 @@ final class English extends Speller
 	protected function getCurrencyName($type, $number, $currency)
 	{
 		static $names = array(
-			self::CURRENCY_EURO => array(
+			self::CURRENCY_EURO           => array(
 				'whole'   => array('euro', 'euro'),
 				'decimal' => array('cent', 'cents'),
 			),
-			self::CURRENCY_BRITISH_POUND => array(
+			self::CURRENCY_BRITISH_POUND  => array(
 				'whole'   => array('pound', 'pounds'),
 				'decimal' => array('penny', 'pennies'),
 			),
-			self::CURRENCY_LATVIAN_LAT => array(
+			self::CURRENCY_LATVIAN_LAT    => array(
 				'whole'   => array('lat', 'lats'),
 				'decimal' => array('santim', 'santims'),
 			),
@@ -120,11 +120,11 @@ final class English extends Speller
 				'whole'   => array('ruble', 'rubles'),
 				'decimal' => array('kopek', 'kopeks'),
 			),
-			self::CURRENCY_US_DOLLAR => array(
+			self::CURRENCY_US_DOLLAR      => array(
 				'whole'   => array('dollar', 'dollars'),
 				'decimal' => array('cent', 'cents'),
 			),
-			self::CURRENCY_PL_ZLOTY => array(
+			self::CURRENCY_PL_ZLOTY       => array(
 				'whole'   => array('zloty', 'zlote'),
 				'decimal' => array('grosz', 'grosze'),
 			),

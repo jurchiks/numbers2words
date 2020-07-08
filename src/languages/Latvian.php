@@ -148,15 +148,15 @@ final class Latvian extends Speller
 	protected function getCurrencyName($type, $number, $currency)
 	{
 		static $names = array(
-			self::CURRENCY_EURO => array(
+			self::CURRENCY_EURO           => array(
 				'whole'   => array('eiro', 'eiro', 'eiro'),
 				'decimal' => array('cents', 'centi', 'centu'),
 			),
-			self::CURRENCY_BRITISH_POUND => array(
+			self::CURRENCY_BRITISH_POUND  => array(
 				'whole'   => array('mārciņa', 'mārciņas', 'mārciņu'),
 				'decimal' => array('penijs', 'peniji', 'peniju'),
 			),
-			self::CURRENCY_LATVIAN_LAT => array(
+			self::CURRENCY_LATVIAN_LAT    => array(
 				'whole'   => array('lats', 'lati', 'latu'),
 				'decimal' => array('santīms', 'santīmi', 'santīmu'),
 			),
@@ -168,11 +168,11 @@ final class Latvian extends Speller
 				'whole'   => array('rublis', 'rubļi', 'rubļu'),
 				'decimal' => array('kapeika', 'kapeikas', 'kapeiku'),
 			),
-			self::CURRENCY_US_DOLLAR => array(
+			self::CURRENCY_US_DOLLAR      => array(
 				'whole'   => array('dolārs', 'dolāri', 'dolāru'),
 				'decimal' => array('cents', 'centi', 'centu'),
 			),
-			self::CURRENCY_PL_ZLOTY => array(
+			self::CURRENCY_PL_ZLOTY       => array(
 				'whole'   => array('zlots', 'zloti', 'zlotu'),
 				'decimal' => array('grosis', 'groši', 'grošu'),
 			),

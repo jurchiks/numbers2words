@@ -34,7 +34,7 @@ abstract class Speller
 		self::LANGUAGE_LITHUANIAN => languages\Lithuanian::class,
 		self::LANGUAGE_RUSSIAN    => languages\Russian::class,
 		self::LANGUAGE_SPANISH    => languages\Spanish::class,
-		self::LANGUAGE_POLISH    => languages\Polish::class,
+		self::LANGUAGE_POLISH     => languages\Polish::class,
 	);
 	
 	private static $currencies = array(
@@ -94,7 +94,7 @@ abstract class Speller
 	
 	/**
 	 * Convert a number into its linguistic representation.
-	 * 
+	 *
 	 * @param int $number : the number to spell in the specified language
 	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the number in
 	 * @return string : the whole part as written in words in the specified language plus ISO 639-1 code and decimal part in ##/100 format
@@ -131,9 +131,9 @@ abstract class Speller
 		
 		return trim($speller->parseInt($wholeAmount, false, $currency))
 			. ' '
-			. $currency 
+			. $currency
 			. ' '
-			. $decimalAmount 
+			. $decimalAmount
 			. '/100';
 	}
 	
@@ -236,7 +236,9 @@ abstract class Speller
 	}
 	
 	protected abstract function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency);
+	
 	protected abstract function spellExponent($type, $number, $currency);
+	
 	protected abstract function getCurrencyName($type, $number, $currency);
 	
 	private static function assertNumber($number)

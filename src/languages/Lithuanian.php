@@ -125,15 +125,15 @@ final class Lithuanian extends Speller
 	protected function getCurrencyName($type, $number, $currency)
 	{
 		static $names = array(
-			self::CURRENCY_EURO => array(
+			self::CURRENCY_EURO           => array(
 				'whole'   => array('euras', 'eurai', 'eurų'),
 				'decimal' => array('centas', 'centai', 'centų'),
 			),
-			self::CURRENCY_BRITISH_POUND => array(
+			self::CURRENCY_BRITISH_POUND  => array(
 				'whole'   => array('svaras', 'svarai', 'svarų'),
 				'decimal' => array('pensas', 'pensai', 'pensų'),
 			),
-			self::CURRENCY_LATVIAN_LAT => array(
+			self::CURRENCY_LATVIAN_LAT    => array(
 				'whole'   => array('latas', 'latai', 'latų'),
 				'decimal' => array('santimas', 'santimai', 'santimų'),
 			),
@@ -145,14 +145,14 @@ final class Lithuanian extends Speller
 				'whole'   => array('rublis', 'rubliai', 'rublių'),
 				'decimal' => array('kapeika', 'kapeikos', 'kapeikų'),
 			),
-			self::CURRENCY_US_DOLLAR => array(
+			self::CURRENCY_US_DOLLAR      => array(
 				'whole'   => array('doleris', 'doleriai', 'dolerių'),
 				'decimal' => array('centas', 'centai', 'centų'),
 			),
-			self::CURRENCY_PL_ZLOTY => array(
+			self::CURRENCY_PL_ZLOTY       => array(
 				'whole'   => array('zlotas', 'zlotai', 'zlotų'),
 				'decimal' => array('grašis', 'grašiai', 'grašių'),
-			),			
+			),
 		);
 		
 		if (!isset($names[$currency]))
