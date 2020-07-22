@@ -1,6 +1,6 @@
 numbers2words
 =============
-This library is meant for general-purpose number spelling for use in, e.g. legal documents and bills.
+This is a general-purpose library meant for number spelling for use in, e.g. legal documents and bills.
 
 [![License](https://poser.pugx.org/jurchiks/numbers2words/license)](https://packagist.org/packages/jurchiks/numbers2words)
 [![Downloads](https://poser.pugx.org/jurchiks/numbers2words/downloads)](https://packagist.org/packages/jurchiks/numbers2words)
@@ -36,13 +36,13 @@ use js\tools\numbers2words\Speller;
 Speller::spellNumber(123, Speller::LANGUAGE_RUSSIAN);
 // output: сто двадцать три
 Speller::spellCurrency(123, Speller::LANGUAGE_ENGLISH, Speller::CURRENCY_EURO, false);
-// output: one hundred and twenty three euro
+// output: one hundred twenty three euro
 Speller::spellCurrency(123, Speller::LANGUAGE_ENGLISH, Speller::CURRENCY_EURO);
-// output: one hundred and twenty three euro and 0 cents
+// output: one hundred twenty three euro and 0 cents
 Speller::spellCurrency(123.45, Speller::LANGUAGE_ENGLISH, Speller::CURRENCY_EURO, true, true);
-// output: one hundred and twenty three euro and forty five cents
+// output: one hundred twenty three euro and forty five cents
 Speller::spellCurrencyShort(123.45, Speller::LANGUAGE_ENGLISH, Speller::CURRENCY_EURO);
-// output: one hundred and twenty three EUR 45/100
+// output: one hundred twenty three EUR 45/100
 ```
 
 #### Twig:
