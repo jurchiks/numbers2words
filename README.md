@@ -45,18 +45,5 @@ Speller::spellCurrencyShort(123.45, Speller::LANGUAGE_ENGLISH, Speller::CURRENCY
 // output: one hundred and twenty three EUR 45/100
 ```
 
-##### Twig:
-
-There is also a Twig extension available, which implements filters with names identical to the aforementioned methods:
-```
-{{ 123 | spellNumber('ru') }}
-{{ 123.45 | spellCurrency('en', 'EUR') }}
-{{ 123.45 | spellCurrencyShort('en', 'EUR') }}
-```
-
-To enable the Twig extension in Symfony, add it in `config/services.yaml` (or its equivalent):
-```
-services:
-    js\tools\numbers2words\Twig\Spell:
-        tags: [twig.extension]
-```
+#### Twig:
+There is a Twig extension available for this library: [jurchiks/numbers2words_twig](https://github.com/jurchiks/numbers2words_twig)
