@@ -4,9 +4,7 @@ namespace js\tools\numbers2words;
 use js\tools\numbers2words\exceptions\InvalidArgumentException;
 
 /**
- * This class offers a number spelling in various languages.
- * It is a work-in-progress and more languages are to be added in future.
- * The main and only two public methods are spellNumber() and spellCurrency().
+ * This class offers number spelling in various languages.
  *
  * @author Juris Sudmalis
  */
@@ -56,7 +54,7 @@ abstract class Speller
 	}
 	
 	/**
-	 * @param string $language : a two-letter, ISO 639-1 code of the language
+	 * @param string $language A two-letter, ISO 639-1 code of the language.
 	 * @return Speller
 	 */
 	private static function get($language)
@@ -96,11 +94,10 @@ abstract class Speller
 	/**
 	 * Convert a number into its linguistic representation.
 	 *
-	 * @param int $number : the number to spell in the specified language
-	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the number in
-	 * @return string : the whole part as written in words in the specified language plus ISO 639-1 code
-	 * and decimal part in ##/100 format
-	 * @throws InvalidArgumentException if any parameter is invalid
+	 * @param int $number The number to spell in the specified language.
+	 * @param string $language A two-letter, ISO 639-1 code of the language to spell the number in.
+	 * @return string The number as written in words in the specified language.
+	 * @throws InvalidArgumentException If any parameter is invalid.
 	 */
 	public static function spellNumber($number, $language)
 	{
@@ -114,11 +111,11 @@ abstract class Speller
 	 * Convert currency to its linguistic representation.
 	 * The format is {whole part spelled} CODE {decimal part}/100.
 	 *
-	 * @param int|float $amount : the amount to spell in the specified language
-	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the amount in
-	 * @param string $currency : a three-letter, ISO 4217 currency code
-	 * @return string : the currency as written in words in the specified language with ISO 4217 currency code
-	 * @throws InvalidArgumentException if any parameter is invalid
+	 * @param int|float $amount The amount to spell in the specified language.
+	 * @param string $language A two-letter, ISO 639-1 code of the language to spell the amount in.
+	 * @param string $currency A three-letter, ISO 4217 currency code.
+	 * @return string The currency as written in words in the specified language.
+	 * @throws InvalidArgumentException If any parameter is invalid.
 	 */
 	public static function spellCurrencyShort($amount, $language, $currency)
 	{
@@ -142,14 +139,14 @@ abstract class Speller
 	/**
 	 * Convert currency to its linguistic representation.
 	 *
-	 * @param int|float $amount : the amount to spell in the specified language
-	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the amount in
-	 * @param string $currency : a three-letter, ISO 4217 currency code
-	 * @param bool $requireDecimal : if true, output decimals even if the value is 0
-	 * @param bool $spellDecimal : if true, spell decimals out same as whole numbers;
-	 * otherwise, output decimals as numbers
-	 * @return string : the currency as written in words in the specified language
-	 * @throws InvalidArgumentException if any parameter is invalid
+	 * @param int|float $amount The amount to spell in the specified language.
+	 * @param string $language A two-letter, ISO 639-1 code of the language to spell the amount in.
+	 * @param string $currency A three-letter, ISO 4217 currency code.
+	 * @param bool $requireDecimal If true, output decimals even if the value is 0.
+	 * @param bool $spellDecimal If true, spell decimals out same as whole numbers;
+	 * otherwise, output decimals as numbers.
+	 * @return string The currency as written in words in the specified language.
+	 * @throws InvalidArgumentException If any parameter is invalid.
 	 */
 	public static function spellCurrency($amount, $language, $currency, $requireDecimal = true, $spellDecimal = false)
 	{
