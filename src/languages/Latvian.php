@@ -11,7 +11,7 @@ final class Latvian extends Speller
 	
 	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
 	{
-		static $hundreds = array(
+		static $hundreds = [
 			1 => 'viens simts',
 			2 => 'divi simti',
 			3 => 'trīs simti',
@@ -21,8 +21,8 @@ final class Latvian extends Speller
 			7 => 'septiņi simti',
 			8 => 'astoņi simti',
 			9 => 'deviņi simti',
-		);
-		static $teens = array(
+		];
+		static $teens = [
 			11 => 'vienpadsmit',
 			12 => 'divpadsmit',
 			13 => 'trīspadsmit',
@@ -32,8 +32,8 @@ final class Latvian extends Speller
 			17 => 'septiņpadsmit',
 			18 => 'astoņpadsmit',
 			19 => 'deviņpadsmit',
-		);
-		static $tens = array(
+		];
+		static $tens = [
 			1 => 'desmit',
 			2 => 'divdesmit',
 			3 => 'trīsdesmit',
@@ -43,7 +43,7 @@ final class Latvian extends Speller
 			7 => 'septiņdesmit',
 			8 => 'astoņdesmit',
 			9 => 'deviņdesmit',
-		);
+		];
 		
 		$text = '';
 		
@@ -83,7 +83,7 @@ final class Latvian extends Speller
 	
 	private function spellSingle($digit, $isDecimalPart, $currency)
 	{
-		static $singlesMasculine = array(
+		static $singlesMasculine = [
 			0 => 'nulle',
 			1 => 'viens',
 			2 => 'divi',
@@ -94,8 +94,8 @@ final class Latvian extends Speller
 			7 => 'septiņi',
 			8 => 'astoņi',
 			9 => 'deviņi',
-		);
-		static $singlesFeminine = array(
+		];
+		static $singlesFeminine = [
 			0 => 'nulle',
 			1 => 'viena',
 			2 => 'divas',
@@ -106,7 +106,7 @@ final class Latvian extends Speller
 			7 => 'septiņas',
 			8 => 'astoņas',
 			9 => 'deviņas',
-		);
+		];
 		
 		if ($isDecimalPart && ($currency === self::CURRENCY_RUSSIAN_ROUBLE))
 		{
@@ -147,36 +147,36 @@ final class Latvian extends Speller
 	
 	protected function getCurrencyName($type, $number, $currency)
 	{
-		static $names = array(
-			self::CURRENCY_EURO           => array(
-				'whole'   => array('eiro', 'eiro', 'eiro'),
-				'decimal' => array('cents', 'centi', 'centu'),
-			),
-			self::CURRENCY_BRITISH_POUND  => array(
-				'whole'   => array('mārciņa', 'mārciņas', 'mārciņu'),
-				'decimal' => array('penijs', 'peniji', 'peniju'),
-			),
-			self::CURRENCY_LATVIAN_LAT    => array(
-				'whole'   => array('lats', 'lati', 'latu'),
-				'decimal' => array('santīms', 'santīmi', 'santīmu'),
-			),
-			self::CURRENCY_LITHUANIAN_LIT => array(
-				'whole'   => array('lits', 'liti', 'litu'),
-				'decimal' => array('cents', 'centi', 'centu'),
-			),
-			self::CURRENCY_RUSSIAN_ROUBLE => array(
-				'whole'   => array('rublis', 'rubļi', 'rubļu'),
-				'decimal' => array('kapeika', 'kapeikas', 'kapeiku'),
-			),
-			self::CURRENCY_US_DOLLAR      => array(
-				'whole'   => array('dolārs', 'dolāri', 'dolāru'),
-				'decimal' => array('cents', 'centi', 'centu'),
-			),
-			self::CURRENCY_PL_ZLOTY       => array(
-				'whole'   => array('zlots', 'zloti', 'zlotu'),
-				'decimal' => array('grosis', 'groši', 'grošu'),
-			),
-		);
+		static $names = [
+			self::CURRENCY_EURO           => [
+				'whole'   => ['eiro', 'eiro', 'eiro'],
+				'decimal' => ['cents', 'centi', 'centu'],
+			],
+			self::CURRENCY_BRITISH_POUND  => [
+				'whole'   => ['mārciņa', 'mārciņas', 'mārciņu'],
+				'decimal' => ['penijs', 'peniji', 'peniju'],
+			],
+			self::CURRENCY_LATVIAN_LAT    => [
+				'whole'   => ['lats', 'lati', 'latu'],
+				'decimal' => ['santīms', 'santīmi', 'santīmu'],
+			],
+			self::CURRENCY_LITHUANIAN_LIT => [
+				'whole'   => ['lits', 'liti', 'litu'],
+				'decimal' => ['cents', 'centi', 'centu'],
+			],
+			self::CURRENCY_RUSSIAN_ROUBLE => [
+				'whole'   => ['rublis', 'rubļi', 'rubļu'],
+				'decimal' => ['kapeika', 'kapeikas', 'kapeiku'],
+			],
+			self::CURRENCY_US_DOLLAR      => [
+				'whole'   => ['dolārs', 'dolāri', 'dolāru'],
+				'decimal' => ['cents', 'centi', 'centu'],
+			],
+			self::CURRENCY_PL_ZLOTY       => [
+				'whole'   => ['zlots', 'zloti', 'zlotu'],
+				'decimal' => ['grosis', 'groši', 'grošu'],
+			],
+		];
 		
 		if (!isset($names[$currency]))
 		{

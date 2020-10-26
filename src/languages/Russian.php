@@ -11,7 +11,7 @@ final class Russian extends Speller
 	
 	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
 	{
-		static $hundreds = array(
+		static $hundreds = [
 			1 => 'сто',
 			2 => 'двести',
 			3 => 'триста',
@@ -21,8 +21,8 @@ final class Russian extends Speller
 			7 => 'семьсот',
 			8 => 'восемьсот',
 			9 => 'девятьсот',
-		);
-		static $tens = array(
+		];
+		static $tens = [
 			1 => 'десять',
 			2 => 'двадцать',
 			3 => 'тридцать',
@@ -32,8 +32,8 @@ final class Russian extends Speller
 			7 => 'семьдесят',
 			8 => 'восемьдесят',
 			9 => 'девяносто',
-		);
-		static $teens = array(
+		];
+		static $teens = [
 			11 => 'одиннадцать',
 			12 => 'двенадцать',
 			13 => 'тринадцать',
@@ -43,7 +43,7 @@ final class Russian extends Speller
 			17 => 'семнадцать',
 			18 => 'восемнадцать',
 			19 => 'девятнадцать',
-		);
+		];
 		
 		$text = '';
 		
@@ -83,7 +83,7 @@ final class Russian extends Speller
 	
 	private function spellSingle($digit, $groupOfThrees, $isDecimalPart, $currency)
 	{
-		static $singlesMasculine = array(
+		static $singlesMasculine = [
 			0 => 'ноль',
 			1 => 'один',
 			2 => 'два',
@@ -94,8 +94,8 @@ final class Russian extends Speller
 			7 => 'семь',
 			8 => 'восемь',
 			9 => 'девять',
-		);
-		static $singlesFeminine = array(
+		];
+		static $singlesFeminine = [
 			0 => 'ноль',
 			1 => 'одна',
 			2 => 'две',
@@ -106,7 +106,7 @@ final class Russian extends Speller
 			7 => 'семь',
 			8 => 'восемь',
 			9 => 'девять',
-		);
+		];
 		
 		if (($groupOfThrees === 2) // thousands
 			|| ($isDecimalPart && ($currency === self::CURRENCY_RUSSIAN_ROUBLE))) // russian kopeks
@@ -159,36 +159,36 @@ final class Russian extends Speller
 	
 	protected function getCurrencyName($type, $number, $currency)
 	{
-		static $names = array(
-			self::CURRENCY_EURO           => array(
-				'whole'   => array('евро', 'евро', 'евро'),
-				'decimal' => array('цент', 'цента', 'центов'),
-			),
-			self::CURRENCY_BRITISH_POUND  => array(
-				'whole'   => array('фунт', 'фунта', 'фунтов'),
-				'decimal' => array('пенни', 'пенса', 'пенсов'),
-			),
-			self::CURRENCY_LATVIAN_LAT    => array(
-				'whole'   => array('лат', 'лата', 'латов'),
-				'decimal' => array('сантим', 'сантима', 'сантимов'),
-			),
-			self::CURRENCY_LITHUANIAN_LIT => array(
-				'whole'   => array('лит', 'лита', 'литов'),
-				'decimal' => array('цент', 'цента', 'центов'),
-			),
-			self::CURRENCY_RUSSIAN_ROUBLE => array(
-				'whole'   => array('рубль', 'рубля', 'рублей'),
-				'decimal' => array('копейка', 'копейки', 'копеек'),
-			),
-			self::CURRENCY_US_DOLLAR      => array(
-				'whole'   => array('доллар', 'доллара', 'долларов'),
-				'decimal' => array('цент', 'цента', 'центов'),
-			),
-			self::CURRENCY_PL_ZLOTY       => array(
-				'whole'   => array('зло́тый', 'злота', 'злотых'),
-				'decimal' => array('грош', 'гроша', 'грошей'),
-			),
-		);
+		static $names = [
+			self::CURRENCY_EURO           => [
+				'whole'   => ['евро', 'евро', 'евро'],
+				'decimal' => ['цент', 'цента', 'центов'],
+			],
+			self::CURRENCY_BRITISH_POUND  => [
+				'whole'   => ['фунт', 'фунта', 'фунтов'],
+				'decimal' => ['пенни', 'пенса', 'пенсов'],
+			],
+			self::CURRENCY_LATVIAN_LAT    => [
+				'whole'   => ['лат', 'лата', 'латов'],
+				'decimal' => ['сантим', 'сантима', 'сантимов'],
+			],
+			self::CURRENCY_LITHUANIAN_LIT => [
+				'whole'   => ['лит', 'лита', 'литов'],
+				'decimal' => ['цент', 'цента', 'центов'],
+			],
+			self::CURRENCY_RUSSIAN_ROUBLE => [
+				'whole'   => ['рубль', 'рубля', 'рублей'],
+				'decimal' => ['копейка', 'копейки', 'копеек'],
+			],
+			self::CURRENCY_US_DOLLAR      => [
+				'whole'   => ['доллар', 'доллара', 'долларов'],
+				'decimal' => ['цент', 'цента', 'центов'],
+			],
+			self::CURRENCY_PL_ZLOTY       => [
+				'whole'   => ['зло́тый', 'злота', 'злотых'],
+				'decimal' => ['грош', 'гроша', 'грошей'],
+			],
+		];
 		
 		if (!isset($names[$currency]))
 		{

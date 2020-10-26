@@ -11,7 +11,7 @@ final class English extends Speller
 	
 	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
 	{
-		static $tens = array(
+		static $tens = [
 			1 => 'ten',
 			2 => 'twenty',
 			3 => 'thirty',
@@ -21,8 +21,8 @@ final class English extends Speller
 			7 => 'seventy',
 			8 => 'eighty',
 			9 => 'ninety',
-		);
-		static $teens = array(
+		];
+		static $teens = [
 			11 => 'eleven',
 			12 => 'twelve',
 			13 => 'thirteen',
@@ -32,8 +32,8 @@ final class English extends Speller
 			17 => 'seventeen',
 			18 => 'eighteen',
 			19 => 'nineteen',
-		);
-		static $singles = array(
+		];
+		static $singles = [
 			0 => 'zero',
 			1 => 'one',
 			2 => 'two',
@@ -44,7 +44,7 @@ final class English extends Speller
 			7 => 'seven',
 			8 => 'eight',
 			9 => 'nine',
-		);
+		];
 		
 		$text = '';
 		
@@ -99,36 +99,36 @@ final class English extends Speller
 	
 	protected function getCurrencyName($type, $number, $currency)
 	{
-		static $names = array(
-			self::CURRENCY_EURO           => array(
-				'whole'   => array('euro', 'euro'),
-				'decimal' => array('cent', 'cents'),
-			),
-			self::CURRENCY_BRITISH_POUND  => array(
-				'whole'   => array('pound', 'pounds'),
-				'decimal' => array('penny', 'pennies'),
-			),
-			self::CURRENCY_LATVIAN_LAT    => array(
-				'whole'   => array('lat', 'lats'),
-				'decimal' => array('santim', 'santims'),
-			),
-			self::CURRENCY_LITHUANIAN_LIT => array(
-				'whole'   => array('litas', 'litai'),
-				'decimal' => array('centas', 'centai'),
-			),
-			self::CURRENCY_RUSSIAN_ROUBLE => array(
-				'whole'   => array('ruble', 'rubles'),
-				'decimal' => array('kopek', 'kopeks'),
-			),
-			self::CURRENCY_US_DOLLAR      => array(
-				'whole'   => array('dollar', 'dollars'),
-				'decimal' => array('cent', 'cents'),
-			),
-			self::CURRENCY_PL_ZLOTY       => array(
-				'whole'   => array('zloty', 'zlote'),
-				'decimal' => array('grosz', 'grosze'),
-			),
-		);
+		static $names = [
+			self::CURRENCY_EURO           => [
+				'whole'   => ['euro', 'euro'],
+				'decimal' => ['cent', 'cents'],
+			],
+			self::CURRENCY_BRITISH_POUND  => [
+				'whole'   => ['pound', 'pounds'],
+				'decimal' => ['penny', 'pennies'],
+			],
+			self::CURRENCY_LATVIAN_LAT    => [
+				'whole'   => ['lat', 'lats'],
+				'decimal' => ['santim', 'santims'],
+			],
+			self::CURRENCY_LITHUANIAN_LIT => [
+				'whole'   => ['litas', 'litai'],
+				'decimal' => ['centas', 'centai'],
+			],
+			self::CURRENCY_RUSSIAN_ROUBLE => [
+				'whole'   => ['ruble', 'rubles'],
+				'decimal' => ['kopek', 'kopeks'],
+			],
+			self::CURRENCY_US_DOLLAR      => [
+				'whole'   => ['dollar', 'dollars'],
+				'decimal' => ['cent', 'cents'],
+			],
+			self::CURRENCY_PL_ZLOTY       => [
+				'whole'   => ['zloty', 'zlote'],
+				'decimal' => ['grosz', 'grosze'],
+			],
+		];
 		
 		if (!isset($names[$currency]))
 		{

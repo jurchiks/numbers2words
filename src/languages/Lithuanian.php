@@ -11,7 +11,7 @@ final class Lithuanian extends Speller
 	
 	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
 	{
-		static $hundreds = array(
+		static $hundreds = [
 			1 => 'vienas šimtas',
 			2 => 'du šimtai',
 			3 => 'trys šimtai',
@@ -21,8 +21,8 @@ final class Lithuanian extends Speller
 			7 => 'septyni šimtai',
 			8 => 'aštuoni šimtai',
 			9 => 'devyni šimtai',
-		);
-		static $tens = array(
+		];
+		static $tens = [
 			1 => 'dešimt',
 			2 => 'dvidešimt',
 			3 => 'trisdešimt',
@@ -32,8 +32,8 @@ final class Lithuanian extends Speller
 			7 => 'septyniasdešimt',
 			8 => 'aštuoniasdešimt',
 			9 => 'devyniasdešimt',
-		);
-		static $teens = array(
+		];
+		static $teens = [
 			11 => 'vienuolika',
 			12 => 'dvylika',
 			13 => 'trylika',
@@ -43,8 +43,8 @@ final class Lithuanian extends Speller
 			17 => 'septyniolika',
 			18 => 'aštuoniolika',
 			19 => 'devyniolika',
-		);
-		static $singles = array(
+		];
+		static $singles = [
 			0 => 'nulis',
 			1 => 'vienas',
 			2 => 'du',
@@ -55,7 +55,7 @@ final class Lithuanian extends Speller
 			7 => 'septyni',
 			8 => 'aštuoni',
 			9 => 'devyni',
-		);
+		];
 		
 		$text = '';
 		
@@ -124,36 +124,36 @@ final class Lithuanian extends Speller
 	
 	protected function getCurrencyName($type, $number, $currency)
 	{
-		static $names = array(
-			self::CURRENCY_EURO           => array(
-				'whole'   => array('euras', 'eurai', 'eurų'),
-				'decimal' => array('centas', 'centai', 'centų'),
-			),
-			self::CURRENCY_BRITISH_POUND  => array(
-				'whole'   => array('svaras', 'svarai', 'svarų'),
-				'decimal' => array('pensas', 'pensai', 'pensų'),
-			),
-			self::CURRENCY_LATVIAN_LAT    => array(
-				'whole'   => array('latas', 'latai', 'latų'),
-				'decimal' => array('santimas', 'santimai', 'santimų'),
-			),
-			self::CURRENCY_LITHUANIAN_LIT => array(
-				'whole'   => array('litas', 'litai', 'litų'),
-				'decimal' => array('centas', 'centai', 'centų'),
-			),
-			self::CURRENCY_RUSSIAN_ROUBLE => array(
-				'whole'   => array('rublis', 'rubliai', 'rublių'),
-				'decimal' => array('kapeika', 'kapeikos', 'kapeikų'),
-			),
-			self::CURRENCY_US_DOLLAR      => array(
-				'whole'   => array('doleris', 'doleriai', 'dolerių'),
-				'decimal' => array('centas', 'centai', 'centų'),
-			),
-			self::CURRENCY_PL_ZLOTY       => array(
-				'whole'   => array('zlotas', 'zlotai', 'zlotų'),
-				'decimal' => array('grašis', 'grašiai', 'grašių'),
-			),
-		);
+		static $names = [
+			self::CURRENCY_EURO           => [
+				'whole'   => ['euras', 'eurai', 'eurų'],
+				'decimal' => ['centas', 'centai', 'centų'],
+			],
+			self::CURRENCY_BRITISH_POUND  => [
+				'whole'   => ['svaras', 'svarai', 'svarų'],
+				'decimal' => ['pensas', 'pensai', 'pensų'],
+			],
+			self::CURRENCY_LATVIAN_LAT    => [
+				'whole'   => ['latas', 'latai', 'latų'],
+				'decimal' => ['santimas', 'santimai', 'santimų'],
+			],
+			self::CURRENCY_LITHUANIAN_LIT => [
+				'whole'   => ['litas', 'litai', 'litų'],
+				'decimal' => ['centas', 'centai', 'centų'],
+			],
+			self::CURRENCY_RUSSIAN_ROUBLE => [
+				'whole'   => ['rublis', 'rubliai', 'rublių'],
+				'decimal' => ['kapeika', 'kapeikos', 'kapeikų'],
+			],
+			self::CURRENCY_US_DOLLAR      => [
+				'whole'   => ['doleris', 'doleriai', 'dolerių'],
+				'decimal' => ['centas', 'centai', 'centų'],
+			],
+			self::CURRENCY_PL_ZLOTY       => [
+				'whole'   => ['zlotas', 'zlotai', 'zlotų'],
+				'decimal' => ['grašis', 'grašiai', 'grašių'],
+			],
+		];
 		
 		if (!isset($names[$currency]))
 		{

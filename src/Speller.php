@@ -7,6 +7,7 @@ use js\tools\numbers2words\exceptions\InvalidArgumentException;
  * This class offers a number spelling in various languages.
  * It is a work-in-progress and more languages are to be added in future.
  * The main and only two public methods are spellNumber() and spellCurrency().
+ *
  * @author Juris Sudmalis
  */
 abstract class Speller
@@ -27,7 +28,7 @@ abstract class Speller
 	const CURRENCY_US_DOLLAR = 'USD';
 	const CURRENCY_PL_ZLOTY = 'PLN';
 	
-	private static $languages = array(
+	private static $languages = [
 		self::LANGUAGE_ENGLISH    => languages\English::class,
 		self::LANGUAGE_ESTONIAN   => languages\Estonian::class,
 		self::LANGUAGE_LATVIAN    => languages\Latvian::class,
@@ -35,9 +36,9 @@ abstract class Speller
 		self::LANGUAGE_RUSSIAN    => languages\Russian::class,
 		self::LANGUAGE_SPANISH    => languages\Spanish::class,
 		self::LANGUAGE_POLISH     => languages\Polish::class,
-	);
+	];
 	
-	private static $currencies = array(
+	private static $currencies = [
 		self::CURRENCY_EURO,
 		self::CURRENCY_BRITISH_POUND,
 		self::CURRENCY_LATVIAN_LAT,
@@ -45,7 +46,7 @@ abstract class Speller
 		self::CURRENCY_RUSSIAN_ROUBLE,
 		self::CURRENCY_US_DOLLAR,
 		self::CURRENCY_PL_ZLOTY,
-	);
+	];
 	
 	protected $minus;
 	protected $decimalSeparator;
@@ -60,7 +61,7 @@ abstract class Speller
 	 */
 	private static function get($language)
 	{
-		static $spellers = array();
+		static $spellers = [];
 		
 		$language = strtolower(trim($language));
 		
@@ -97,7 +98,8 @@ abstract class Speller
 	 *
 	 * @param int $number : the number to spell in the specified language
 	 * @param string $language : a two-letter, ISO 639-1 code of the language to spell the number in
-	 * @return string : the whole part as written in words in the specified language plus ISO 639-1 code and decimal part in ##/100 format
+	 * @return string : the whole part as written in words in the specified language plus ISO 639-1 code
+	 * and decimal part in ##/100 format
 	 * @throws InvalidArgumentException if any parameter is invalid
 	 */
 	public static function spellNumber($number, $language)
