@@ -61,13 +61,6 @@ abstract class Speller
 	{
 		static $spellers = [];
 		
-		$language = strtolower(trim($language));
-		
-		if (strlen($language) != 2)
-		{
-			throw new InvalidArgumentException('Invalid language code specified, must follow ISO 639-1 format.');
-		}
-		
 		if (!isset(self::$languages[$language]))
 		{
 			throw new InvalidArgumentException('That language is not implemented yet.');
@@ -246,10 +239,8 @@ abstract class Speller
 		}
 	}
 	
-	private static function validateCurrency(string &$currency): void
+	private static function validateCurrency(string $currency): void
 	{
-		$currency = strtoupper(trim($currency));
-		
 		if (!in_array($currency, self::$currencies))
 		{
 			throw new InvalidArgumentException('That currency is not implemented yet.');
