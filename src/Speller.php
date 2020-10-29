@@ -143,8 +143,8 @@ abstract class Speller
 	 * @param string $language A two-letter, ISO 639-1 code of the language to spell the amount in.
 	 * @param string $currency A three-letter, ISO 4217 currency code.
 	 * @param bool $requireDecimal If true, output decimals even if the value is 0.
-	 * @param bool $spellDecimal If true, spell decimals out same as whole numbers;
-	 * otherwise, output decimals as numbers.
+	 * @param bool $spellDecimal If true, spell the decimal part out same as the whole part;
+	 * otherwise, spell only the whole part and output the decimal part as integer.
 	 * @return string The currency as written in words in the specified language.
 	 * @throws InvalidArgumentException If any parameter is invalid.
 	 */
