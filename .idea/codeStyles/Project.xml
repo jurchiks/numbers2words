@@ -18,7 +18,6 @@
       <option name="SPACE_BEFORE_SHORT_CLOSURE_LEFT_PARENTHESIS" value="true" />
       <option name="FORCE_SHORT_DECLARATION_ARRAY_STYLE" value="true" />
       <option name="NEW_LINE_AFTER_PHP_OPENING_TAG" value="true" />
-      <option name="SPACE_AROUND_ASSIGNMENT_IN_DECLARE" value="true" />
       <option name="NAMESPACE_BRACE_STYLE" value="2" />
     </PHPCodeStyleSettings>
     <codeStyleSettings language="PHP">
