@@ -76,8 +76,7 @@ final class Lithuanian extends Speller
 		{
 			$text .= $singles[$number];
 		}
-		else if (($number > 10)
-			&& ($number < 20))
+		else if (($number > 10) && ($number < 20))
 		{
 			$text .= $teens[$number];
 		}

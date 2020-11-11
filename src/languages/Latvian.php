@@ -22,17 +22,6 @@ final class Latvian extends Speller
 			8 => 'astoņi simti',
 			9 => 'deviņi simti',
 		];
-		static $teens = [
-			11 => 'vienpadsmit',
-			12 => 'divpadsmit',
-			13 => 'trīspadsmit',
-			14 => 'četrpadsmit',
-			15 => 'piecpadsmit',
-			16 => 'sešpadsmit',
-			17 => 'septiņpadsmit',
-			18 => 'astoņpadsmit',
-			19 => 'deviņpadsmit',
-		];
 		static $tens = [
 			1 => 'desmit',
 			2 => 'divdesmit',
@@ -43,6 +32,17 @@ final class Latvian extends Speller
 			7 => 'septiņdesmit',
 			8 => 'astoņdesmit',
 			9 => 'deviņdesmit',
+		];
+		static $teens = [
+			11 => 'vienpadsmit',
+			12 => 'divpadsmit',
+			13 => 'trīspadsmit',
+			14 => 'četrpadsmit',
+			15 => 'piecpadsmit',
+			16 => 'sešpadsmit',
+			17 => 'septiņpadsmit',
+			18 => 'astoņpadsmit',
+			19 => 'deviņpadsmit',
 		];
 		
 		$text = '';
@@ -72,7 +72,7 @@ final class Latvian extends Speller
 		{
 			$text .= $tens[intval(substr($number, 0, 1))];
 			
-			if ($number % 10 > 0) // whole tens
+			if ($number % 10 > 0)
 			{
 				$text .= ' ' . $this->spellSingle($number % 10, $isDecimalPart, $currency);
 			}
