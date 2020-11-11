@@ -146,7 +146,7 @@ final class Polish extends Speller
 			],
 			self::CURRENCY_LATVIAN_LAT    => [
 				'whole'   => ['łat', 'łaty', 'łatów'],
-				'decimal' => ['santim', 'santimy', 'satimów'],
+				'decimal' => ['santim', 'santimy', 'santimów'],
 			],
 			self::CURRENCY_LITHUANIAN_LIT => [
 				'whole'   => ['lit', 'lity', 'litów'],
