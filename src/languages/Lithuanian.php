@@ -167,12 +167,12 @@ final class Lithuanian extends Speller
 		{
 			$index = 0;
 		}
-		else if ((($singles > 1) && ($singles < 10)) // 2-9, 22-29, ... 92-99
+		else if (($singles > 1) // 2-9, 22-29, ... 92-99
 			&& (($tens - $singles) !== 10))
 		{
 			$index = 1;
 		}
-		else // 0, 10, 100, 1000
+		else // 0, 10, 11-19, 20, 30, ... 90
 		{
 			$index = 2;
 		}
