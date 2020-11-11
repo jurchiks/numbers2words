@@ -57,7 +57,7 @@ final class Spanish extends Speller
 			9 => 'nueve',
 		];
 		
-		if ($number % 100 === 0)
+		if ($number === 100)
 		{
 			// just plain one hundred (100) is written differently in Spanish
 			// than when used in conjunction with other numbers like 101
