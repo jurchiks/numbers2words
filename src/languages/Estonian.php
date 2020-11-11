@@ -4,7 +4,7 @@ namespace js\tools\numbers2words\languages;
 use js\tools\numbers2words\exceptions\InvalidArgumentException;
 use js\tools\numbers2words\Speller;
 
-class Estonian extends Speller
+final class Estonian extends Speller
 {
 	protected $minus = 'miinus';
 	protected $decimalSeparator = ' ja ';
