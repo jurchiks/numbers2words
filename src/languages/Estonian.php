@@ -4,24 +4,13 @@ namespace js\tools\numbers2words\languages;
 use js\tools\numbers2words\exceptions\InvalidArgumentException;
 use js\tools\numbers2words\Speller;
 
-class Estonian extends Speller
+final class Estonian extends Speller
 {
 	protected $minus = 'miinus';
 	protected $decimalSeparator = ' ja ';
 	
 	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
 	{
-		static $hundreds = [
-			1 => 'ükssada',
-			2 => 'kakssada',
-			3 => 'kolmsada',
-			4 => 'nelisada',
-			5 => 'viissada',
-			6 => 'kuussada',
-			7 => 'seitsesada',
-			8 => 'kaheksasada',
-			9 => 'üheksasada',
-		];
 		static $tens = [
 			1 => 'kümme',
 			2 => 'kakskümmend',
@@ -61,7 +50,7 @@ class Estonian extends Speller
 		
 		if ($number >= 100)
 		{
-			$text .= $hundreds[intval(substr("$number", 0, 1))];
+			$text .= $singles[intval(substr("$number", 0, 1))] . 'sada';
 			$number = $number % 100;
 			
 			if ($number === 0) // exact hundreds
@@ -76,14 +65,13 @@ class Estonian extends Speller
 		{
 			$text .= $singles[$number];
 		}
-		else if (($number > 10)
-			&& ($number < 20))
+		else if (($number > 10) && ($number < 20))
 		{
 			$text .= $teens[$number];
 		}
 		else
 		{
-			$text .= $tens[intval(substr($number, 0, 1))];
+			$text .= $tens[intval(substr("$number", 0, 1))];
 			
 			if ($number % 10 > 0)
 			{

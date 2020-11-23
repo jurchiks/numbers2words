@@ -44,18 +44,6 @@ final class Polish extends Speller
 			18 => 'osiemnaście',
 			19 => 'dziewiętnaście',
 		];
-		static $singles = [
-			0 => 'zero',
-			1 => 'jeden',
-			2 => 'dwa',
-			3 => 'trzy',
-			4 => 'cztery',
-			5 => 'pięć',
-			6 => 'sześć',
-			7 => 'siedem',
-			8 => 'osiem',
-			9 => 'dziewięć',
-		];
 		
 		$text = '';
 		
@@ -74,7 +62,7 @@ final class Polish extends Speller
 		
 		if ($number < 10)
 		{
-			$text .= $singles[intval($number)];
+			$text .= $this->spellSingle($number, $groupOfThrees, $isDecimalPart, $currency);
 		}
 		else if (($number > 10) && ($number < 20))
 		{
@@ -86,11 +74,46 @@ final class Polish extends Speller
 			
 			if ($number % 10 > 0)
 			{
-				$text .= ' ' . $singles[$number % 10];
+				$text .= ' ' . $this->spellSingle($number % 10, $groupOfThrees, $isDecimalPart, $currency);
 			}
 		}
 		
 		return $text;
+	}
+	
+	private function spellSingle($digit, $groupOfThrees, $isDecimalPart, $currency)
+	{
+		static $singlesMasculine = [
+			0 => 'zero',
+			1 => 'jeden',
+			2 => 'dwa',
+			3 => 'trzy',
+			4 => 'cztery',
+			5 => 'pięć',
+			6 => 'sześć',
+			7 => 'siedem',
+			8 => 'osiem',
+			9 => 'dziewięć',
+		];
+		static $singlesFeminine = [
+			0 => 'zero',
+			1 => 'jedna',
+			2 => 'dwie',
+			3 => 'trzy',
+			4 => 'cztery',
+			5 => 'pięć',
+			6 => 'sześć',
+			7 => 'siedem',
+			8 => 'osiem',
+			9 => 'dziewięć',
+		];
+		
+		if ($isDecimalPart && ($currency === self::CURRENCY_RUSSIAN_ROUBLE)) // russian kopeks
+		{
+			return $singlesFeminine[intval($digit)];
+		}
+		
+		return $singlesMasculine[intval($digit)];
 	}
 	
 	protected function spellExponent($type, $number, $currency)
@@ -146,7 +169,7 @@ final class Polish extends Speller
 			],
 			self::CURRENCY_LATVIAN_LAT    => [
 				'whole'   => ['łat', 'łaty', 'łatów'],
-				'decimal' => ['santim', 'santimy', 'satimów'],
+				'decimal' => ['santim', 'santimy', 'santimów'],
 			],
 			self::CURRENCY_LITHUANIAN_LIT => [
 				'whole'   => ['lit', 'lity', 'litów'],
