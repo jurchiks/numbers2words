@@ -128,57 +128,44 @@ final class Spanish extends Speller
 		return '';
 	}
 	
-	protected function getCurrencyName(string $type, int $number, string $currency): string
+	protected function getCurrencyNameMajor(int $amount, string $currency): string
 	{
 		// TODO some of these spellings are extremely hard to find and are probably incorrect
 		static $names = [
-			self::CURRENCY_EURO           => [
-				'whole'   => ['euro', 'euros'],
-				'decimal' => ['centime', 'centimes'],
-			],
-			self::CURRENCY_BRITISH_POUND  => [
-				'whole'   => ['libra esterlina', 'libras esterlinas'],
-				'decimal' => ['penique', 'peniques'],
-			],
-			self::CURRENCY_LATVIAN_LAT    => [
-				'whole'   => ['lat', 'lats'],
-				'decimal' => ['sentim', 'sentims'],
-			],
-			self::CURRENCY_LITHUANIAN_LIT => [
-				'whole'   => ['litas', 'litas'],
-				'decimal' => ['cent', 'cents'],
-			],
-			self::CURRENCY_RUSSIAN_ROUBLE => [
-				'whole'   => ['rublo ruso', 'rublos rusos'],
-				'decimal' => ['kopek', 'kopeks'],
-			],
-			self::CURRENCY_US_DOLLAR      => [
-				'whole'   => ['dólar estadounidense', 'dólares estadounidenses'],
-				'decimal' => ['centavo', 'centavos'],
-			],
-			self::CURRENCY_PL_ZLOTY       => [
-				'whole'   => ['zloty', 'zlotys'],
-				'decimal' => ['centavo', 'centavos'],
-			],
+			self::CURRENCY_EURO           => ['euro', 'euros'],
+			self::CURRENCY_BRITISH_POUND  => ['libra esterlina', 'libras esterlinas'],
+			self::CURRENCY_LATVIAN_LAT    => ['lat', 'lats'],
+			self::CURRENCY_LITHUANIAN_LIT => ['litas', 'litas'],
+			self::CURRENCY_RUSSIAN_ROUBLE => ['rublo ruso', 'rublos rusos'],
+			self::CURRENCY_US_DOLLAR      => ['dólar estadounidense', 'dólares estadounidenses'],
+			self::CURRENCY_PL_ZLOTY       => ['zloty', 'zlotys'],
 		];
 		
-		if (!isset($names[$currency]))
-		{
-			throw new InvalidArgumentException('Unsupported currency');
-		}
+		return self::getCurrencyName($names, $amount, $currency);
+	}
+	
+	protected function getCurrencyNameMinor(int $amount, string $currency): string
+	{
+		static $names = [
+			self::CURRENCY_EURO           => ['centime', 'centimes'],
+			self::CURRENCY_BRITISH_POUND  => ['penique', 'peniques'],
+			self::CURRENCY_LATVIAN_LAT    => ['sentim', 'sentims'],
+			self::CURRENCY_LITHUANIAN_LIT => ['cent', 'cents'],
+			self::CURRENCY_RUSSIAN_ROUBLE => ['kopek', 'kopeks'],
+			self::CURRENCY_US_DOLLAR      => ['centavo', 'centavos'],
+			self::CURRENCY_PL_ZLOTY       => ['grosz', 'grosze'],
+		];
 		
-		$tens = $number % 100;
-		$singles = $number % 10;
+		return self::getCurrencyName($names, $amount, $currency);
+	}
+	
+	private static function getCurrencyName(array $names, int $amount, string $currency): string
+	{
+		$tens = $amount % 100;
+		$singles = $amount % 10;
 		
-		if (($singles === 1) && ($tens !== 11)) // 1, 21, ... 91
-		{
-			$index = 0;
-		}
-		else
-		{
-			$index = 1;
-		}
+		$index = ((($singles === 1) && ($tens !== 11)) ? 0 : 1);
 		
-		return $names[$currency][$type][$index];
+		return $names[$currency][$index] ?? self::throw(new InvalidArgumentException('Unsupported currency'));
 	}
 }

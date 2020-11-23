@@ -1,6 +1,7 @@
 <?php
 namespace js\tools\numbers2words;
 
+use Exception;
 use js\tools\numbers2words\exceptions\InvalidArgumentException;
 
 /**
@@ -152,7 +153,7 @@ abstract class Speller
 		
 		$text = trim($speller->parseInt($wholeAmount, false, $currency))
 			. ' '
-			. $speller->getCurrencyName('whole', $wholeAmount, $currency);
+			. $speller->getCurrencyNameMajor($wholeAmount, $currency);
 		
 		if ($requireDecimal || ($decimalAmount > 0))
 		{
@@ -161,7 +162,7 @@ abstract class Speller
 					? trim($speller->parseInt($decimalAmount, true, $currency))
 					: $decimalAmount)
 				. ' '
-				. $speller->getCurrencyName('decimal', $decimalAmount, $currency);
+				. $speller->getCurrencyNameMinor($decimalAmount, $currency);
 		}
 		
 		return $text;
@@ -229,7 +230,17 @@ abstract class Speller
 	
 	protected abstract function spellExponent(string $type, int $number, string $currency): string;
 	
-	protected abstract function getCurrencyName(string $type, int $number, string $currency): string;
+	protected abstract function getCurrencyNameMajor(int $amount, string $currency): string;
+	
+	protected abstract function getCurrencyNameMinor(int $amount, string $currency): string;
+	
+	/**
+	 * @deprecated Unnecessary in PHP8: https://wiki.php.net/rfc/throw_expression
+	 */
+	protected static function throw(Exception $exception): void
+	{
+		throw $exception;
+	}
 	
 	private static function assertNumber($number): void
 	{
