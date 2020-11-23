@@ -9,7 +9,7 @@ final class English extends Speller
 	protected $minus = 'minus';
 	protected $decimalSeparator = ' and ';
 	
-	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
+	protected function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string
 	{
 		static $tens = [
 			1 => 'ten',
@@ -63,17 +63,17 @@ final class English extends Speller
 		
 		if ($number < 10)
 		{
-			$text .= $singles[intval($number)];
+			$text .= $singles[$number];
 		}
 		else if (($number > 10) && ($number < 20))
 		{
-			$text .= $teens[intval($number)];
+			$text .= $teens[$number];
 		}
 		else
 		{
 			$text .= $tens[intval(substr("$number", 0, 1))];
 			
-			if ($number % 10 > 0) // twenty five
+			if ($number % 10 > 0)
 			{
 				$text .= ' ' . $singles[$number % 10];
 			}
@@ -82,7 +82,7 @@ final class English extends Speller
 		return $text;
 	}
 	
-	protected function spellExponent($type, $number, $currency)
+	protected function spellExponent(string $type, int $number, string $currency): string
 	{
 		if ($type === 'million')
 		{
@@ -97,7 +97,7 @@ final class English extends Speller
 		return '';
 	}
 	
-	protected function getCurrencyName($type, $number, $currency)
+	protected function getCurrencyName(string $type, int $number, string $currency): string
 	{
 		static $names = [
 			self::CURRENCY_EURO           => [

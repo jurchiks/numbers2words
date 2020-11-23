@@ -9,7 +9,7 @@ final class Estonian extends Speller
 	protected $minus = 'miinus';
 	protected $decimalSeparator = ' ja ';
 	
-	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
+	protected function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string
 	{
 		static $tens = [
 			1 => 'kümme',
@@ -82,7 +82,7 @@ final class Estonian extends Speller
 		return $text;
 	}
 	
-	protected function spellExponent($type, $number, $currency)
+	protected function spellExponent(string $type, int $number, string $currency): string
 	{
 		if ($type === 'million')
 		{
@@ -102,7 +102,7 @@ final class Estonian extends Speller
 		return '';
 	}
 	
-	protected function getCurrencyName($type, $number, $currency)
+	protected function getCurrencyName(string $type, int $number, string $currency): string
 	{
 		static $names = [
 			self::CURRENCY_EURO           => [

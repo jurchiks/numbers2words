@@ -14,6 +14,9 @@
       "email": "jurchiks101@gmail.com"
     }
   ],
+  "require": {
+    "php": ">=7.1"
+  },
   "autoload": {
     "psr-4": {
       "js\\tools\\numbers2words\\": "src/"

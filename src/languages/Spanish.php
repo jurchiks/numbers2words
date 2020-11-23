@@ -9,7 +9,7 @@ final class Spanish extends Speller
 	protected $minus = 'menos';
 	protected $decimalSeparator = ' con ';
 	
-	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
+	protected function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string
 	{
 		static $hundreds = [
 			1 => 'ciento',
@@ -108,7 +108,7 @@ final class Spanish extends Speller
 		return $text;
 	}
 	
-	protected function spellExponent($type, $number, $currency)
+	protected function spellExponent(string $type, int $number, string $currency): string
 	{
 		if ($type === 'million')
 		{
@@ -128,7 +128,7 @@ final class Spanish extends Speller
 		return '';
 	}
 	
-	protected function getCurrencyName($type, $number, $currency)
+	protected function getCurrencyName(string $type, int $number, string $currency): string
 	{
 		// TODO some of these spellings are extremely hard to find and are probably incorrect
 		static $names = [

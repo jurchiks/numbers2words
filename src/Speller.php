@@ -57,7 +57,7 @@ abstract class Speller
 	 * @param string $language A two-letter, ISO 639-1 code of the language.
 	 * @return Speller
 	 */
-	private static function get($language)
+	private static function get(string $language): Speller
 	{
 		static $spellers = [];
 		
@@ -81,12 +81,12 @@ abstract class Speller
 		return $spellers[$language];
 	}
 	
-	public static function getAcceptedLanguages()
+	public static function getAcceptedLanguages(): array
 	{
 		return array_keys(self::$languages);
 	}
 	
-	public static function getAcceptedCurrencies()
+	public static function getAcceptedCurrencies(): array
 	{
 		return self::$currencies;
 	}
@@ -99,12 +99,10 @@ abstract class Speller
 	 * @return string The number as written in words in the specified language.
 	 * @throws InvalidArgumentException If any parameter is invalid.
 	 */
-	public static function spellNumber($number, $language)
+	public static function spellNumber(int $number, string $language): string
 	{
-		self::assertNumber($number);
-		
 		return self::get($language)
-			->parseInt(intval($number), false);
+			->parseInt($number, false);
 	}
 	
 	/**
@@ -117,7 +115,7 @@ abstract class Speller
 	 * @return string The currency as written in words in the specified language.
 	 * @throws InvalidArgumentException If any parameter is invalid.
 	 */
-	public static function spellCurrencyShort($amount, $language, $currency)
+	public static function spellCurrencyShort($amount, string $language, string $currency): string
 	{
 		self::assertNumber($amount);
 		self::validateCurrency($currency);
@@ -148,7 +146,7 @@ abstract class Speller
 	 * @return string The currency as written in words in the specified language.
 	 * @throws InvalidArgumentException If any parameter is invalid.
 	 */
-	public static function spellCurrency($amount, $language, $currency, $requireDecimal = true, $spellDecimal = false)
+	public static function spellCurrency($amount, string $language, string $currency, bool $requireDecimal = true, bool $spellDecimal = false): string
 	{
 		self::assertNumber($amount);
 		self::validateCurrency($currency);
@@ -176,7 +174,7 @@ abstract class Speller
 		return $text;
 	}
 	
-	private function parseInt($number, $isDecimalPart, $currency = '')
+	private function parseInt(int $number, bool $isDecimalPart, string $currency = ''): string
 	{
 		$text = '';
 		
@@ -234,13 +232,13 @@ abstract class Speller
 		return $text;
 	}
 	
-	protected abstract function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency);
+	protected abstract function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string;
 	
-	protected abstract function spellExponent($type, $number, $currency);
+	protected abstract function spellExponent(string $type, int $number, string $currency): string;
 	
-	protected abstract function getCurrencyName($type, $number, $currency);
+	protected abstract function getCurrencyName(string $type, int $number, string $currency): string;
 	
-	private static function assertNumber($number)
+	private static function assertNumber($number): void
 	{
 		if (!is_numeric($number))
 		{
@@ -248,13 +246,8 @@ abstract class Speller
 		}
 	}
 	
-	private static function validateCurrency(&$currency)
+	private static function validateCurrency(string &$currency): void
 	{
-		if (!is_string($currency))
-		{
-			throw new InvalidArgumentException('Invalid currency code specified.');
-		}
-		
 		$currency = strtoupper(trim($currency));
 		
 		if (!in_array($currency, self::$currencies))
