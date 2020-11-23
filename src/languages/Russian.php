@@ -9,7 +9,7 @@ final class Russian extends Speller
 	protected $minus = 'минус';
 	protected $decimalSeparator = ' и ';
 	
-	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
+	protected function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string
 	{
 		static $hundreds = [
 			1 => 'сто',
@@ -81,7 +81,7 @@ final class Russian extends Speller
 		return $text;
 	}
 	
-	private function spellSingle($digit, $groupOfThrees, $isDecimalPart, $currency)
+	private function spellSingle(int $digit, int $groupOfThrees, bool $isDecimalPart, string $currency): string
 	{
 		static $singlesMasculine = [
 			0 => 'ноль',
@@ -111,13 +111,13 @@ final class Russian extends Speller
 		if (($groupOfThrees === 2) // thousands
 			|| ($isDecimalPart && ($currency === self::CURRENCY_RUSSIAN_ROUBLE))) // russian kopeks
 		{
-			return $singlesFeminine[intval($digit)];
+			return $singlesFeminine[$digit];
 		}
 		
-		return $singlesMasculine[intval($digit)];
+		return $singlesMasculine[$digit];
 	}
 	
-	protected function spellExponent($type, $number, $currency)
+	protected function spellExponent(string $type, int $number, string $currency): string
 	{
 		$tens = $number % 100;
 		$singles = $number % 10;
@@ -157,7 +157,7 @@ final class Russian extends Speller
 		return '';
 	}
 	
-	protected function getCurrencyName($type, $number, $currency)
+	protected function getCurrencyName(string $type, int $number, string $currency): string
 	{
 		static $names = [
 			self::CURRENCY_EURO           => [

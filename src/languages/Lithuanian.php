@@ -9,7 +9,7 @@ final class Lithuanian extends Speller
 	protected $minus = 'minus';
 	protected $decimalSeparator = ' ir ';
 	
-	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
+	protected function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string
 	{
 		static $hundreds = [
 			1 => 'vienas šimtas',
@@ -93,7 +93,7 @@ final class Lithuanian extends Speller
 		return $text;
 	}
 	
-	protected function spellExponent($type, $number, $currency)
+	protected function spellExponent(string $type, int $number, string $currency): string
 	{
 		$tens = $number % 100;
 		$singles = $number % 10;
@@ -121,7 +121,7 @@ final class Lithuanian extends Speller
 		return '';
 	}
 	
-	protected function getCurrencyName($type, $number, $currency)
+	protected function getCurrencyName(string $type, int $number, string $currency): string
 	{
 		static $names = [
 			self::CURRENCY_EURO           => [

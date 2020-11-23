@@ -9,7 +9,7 @@ final class Polish extends Speller
 	protected $minus = 'minus';
 	protected $decimalSeparator = ' i ';
 	
-	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
+	protected function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string
 	{
 		static $hundreds = [
 			1 => 'sto',
@@ -62,7 +62,7 @@ final class Polish extends Speller
 		
 		if ($number < 10)
 		{
-			$text .= $this->spellSingle($number, $groupOfThrees, $isDecimalPart, $currency);
+			$text .= $this->spellSingle($number, $isDecimalPart, $currency);
 		}
 		else if (($number > 10) && ($number < 20))
 		{
@@ -74,14 +74,14 @@ final class Polish extends Speller
 			
 			if ($number % 10 > 0)
 			{
-				$text .= ' ' . $this->spellSingle($number % 10, $groupOfThrees, $isDecimalPart, $currency);
+				$text .= ' ' . $this->spellSingle($number % 10, $isDecimalPart, $currency);
 			}
 		}
 		
 		return $text;
 	}
 	
-	private function spellSingle($digit, $groupOfThrees, $isDecimalPart, $currency)
+	private function spellSingle(int $digit, bool $isDecimalPart, string $currency): string
 	{
 		static $singlesMasculine = [
 			0 => 'zero',
@@ -110,13 +110,13 @@ final class Polish extends Speller
 		
 		if ($isDecimalPart && ($currency === self::CURRENCY_RUSSIAN_ROUBLE)) // russian kopeks
 		{
-			return $singlesFeminine[intval($digit)];
+			return $singlesFeminine[$digit];
 		}
 		
-		return $singlesMasculine[intval($digit)];
+		return $singlesMasculine[$digit];
 	}
 	
-	protected function spellExponent($type, $number, $currency)
+	protected function spellExponent(string $type, int $number, string $currency): string
 	{
 		$tens = $number % 100;
 		$singles = $number % 10;
@@ -156,7 +156,7 @@ final class Polish extends Speller
 		return '';
 	}
 	
-	protected function getCurrencyName($type, $number, $currency)
+	protected function getCurrencyName(string $type, int $number, string $currency): string
 	{
 		static $names = [
 			self::CURRENCY_EURO           => [

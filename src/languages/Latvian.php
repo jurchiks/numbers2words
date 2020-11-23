@@ -9,7 +9,7 @@ final class Latvian extends Speller
 	protected $minus = 'mīnus';
 	protected $decimalSeparator = ' un ';
 	
-	protected function spellHundred($number, $groupOfThrees, $isDecimalPart, $currency)
+	protected function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string
 	{
 		static $hundreds = [
 			1 => 'viens simts',
@@ -81,7 +81,7 @@ final class Latvian extends Speller
 		return $text;
 	}
 	
-	private function spellSingle($digit, $isDecimalPart, $currency)
+	private function spellSingle(int $digit, bool $isDecimalPart, string $currency): string
 	{
 		static $singlesMasculine = [
 			0 => 'nulle',
@@ -111,13 +111,13 @@ final class Latvian extends Speller
 		if ($isDecimalPart && ($currency === self::CURRENCY_RUSSIAN_ROUBLE))
 		{
 			// russian kopek nouns are feminine gender in Latvian
-			return $singlesFeminine[intval($digit)];
+			return $singlesFeminine[$digit];
 		}
 		
-		return $singlesMasculine[intval($digit)];
+		return $singlesMasculine[$digit];
 	}
 	
-	protected function spellExponent($type, $number, $currency)
+	protected function spellExponent(string $type, int $number, string $currency): string
 	{
 		$tens = $number % 100;
 		$singles = $number % 10;
@@ -145,7 +145,7 @@ final class Latvian extends Speller
 		return '';
 	}
 	
-	protected function getCurrencyName($type, $number, $currency)
+	protected function getCurrencyName(string $type, int $number, string $currency): string
 	{
 		static $names = [
 			self::CURRENCY_EURO           => [
