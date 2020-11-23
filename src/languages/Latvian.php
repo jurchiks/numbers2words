@@ -145,46 +145,40 @@ final class Latvian extends Speller
 		return '';
 	}
 	
-	protected function getCurrencyName(string $type, int $number, string $currency): string
+	protected function getCurrencyNameMajor(int $amount, string $currency): string
 	{
 		static $names = [
-			self::CURRENCY_EURO           => [
-				'whole'   => ['eiro', 'eiro', 'eiro'],
-				'decimal' => ['cents', 'centi', 'centu'],
-			],
-			self::CURRENCY_BRITISH_POUND  => [
-				'whole'   => ['mārciņa', 'mārciņas', 'mārciņu'],
-				'decimal' => ['penijs', 'peniji', 'peniju'],
-			],
-			self::CURRENCY_LATVIAN_LAT    => [
-				'whole'   => ['lats', 'lati', 'latu'],
-				'decimal' => ['santīms', 'santīmi', 'santīmu'],
-			],
-			self::CURRENCY_LITHUANIAN_LIT => [
-				'whole'   => ['lits', 'liti', 'litu'],
-				'decimal' => ['cents', 'centi', 'centu'],
-			],
-			self::CURRENCY_RUSSIAN_ROUBLE => [
-				'whole'   => ['rublis', 'rubļi', 'rubļu'],
-				'decimal' => ['kapeika', 'kapeikas', 'kapeiku'],
-			],
-			self::CURRENCY_US_DOLLAR      => [
-				'whole'   => ['dolārs', 'dolāri', 'dolāru'],
-				'decimal' => ['cents', 'centi', 'centu'],
-			],
-			self::CURRENCY_PL_ZLOTY       => [
-				'whole'   => ['zlots', 'zloti', 'zlotu'],
-				'decimal' => ['grosis', 'groši', 'grošu'],
-			],
+			self::CURRENCY_EURO           => ['eiro', 'eiro', 'eiro'],
+			self::CURRENCY_BRITISH_POUND  => ['mārciņa', 'mārciņas', 'mārciņu'],
+			self::CURRENCY_LATVIAN_LAT    => ['lats', 'lati', 'latu'],
+			self::CURRENCY_LITHUANIAN_LIT => ['lits', 'liti', 'litu'],
+			self::CURRENCY_RUSSIAN_ROUBLE => ['rublis', 'rubļi', 'rubļu'],
+			self::CURRENCY_US_DOLLAR      => ['dolārs', 'dolāri', 'dolāru'],
+			self::CURRENCY_PL_ZLOTY       => ['zlots', 'zloti', 'zlotu'],
 		];
 		
-		if (!isset($names[$currency]))
-		{
-			throw new InvalidArgumentException('Unsupported currency');
-		}
+		return self::getCurrencyName($names, $amount, $currency);
+	}
+	
+	protected function getCurrencyNameMinor(int $amount, string $currency): string
+	{
+		static $names = [
+			self::CURRENCY_EURO           => ['cents', 'centi', 'centu'],
+			self::CURRENCY_BRITISH_POUND  => ['penijs', 'peniji', 'peniju'],
+			self::CURRENCY_LATVIAN_LAT    => ['santīms', 'santīmi', 'santīmu'],
+			self::CURRENCY_LITHUANIAN_LIT => ['cents', 'centi', 'centu'],
+			self::CURRENCY_RUSSIAN_ROUBLE => ['kapeika', 'kapeikas', 'kapeiku'],
+			self::CURRENCY_US_DOLLAR      => ['cents', 'centi', 'centu'],
+			self::CURRENCY_PL_ZLOTY       => ['grosis', 'groši', 'grošu'],
+		];
 		
-		$tens = $number % 100;
-		$singles = $number % 10;
+		return self::getCurrencyName($names, $amount, $currency);
+	}
+	
+	private static function getCurrencyName(array $names, int $amount, string $currency): string
+	{
+		$tens = $amount % 100;
+		$singles = $amount % 10;
 		
 		if (($singles === 1) && ($tens !== 11)) // 1, 21, 31, ... 91
 		{
@@ -200,6 +194,6 @@ final class Latvian extends Speller
 			$index = 2;
 		}
 		
-		return $names[$currency][$type][$index];
+		return $names[$currency][$index] ?? self::throw(new InvalidArgumentException('Unsupported currency'));
 	}
 }

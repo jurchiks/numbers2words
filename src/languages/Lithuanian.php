@@ -121,46 +121,40 @@ final class Lithuanian extends Speller
 		return '';
 	}
 	
-	protected function getCurrencyName(string $type, int $number, string $currency): string
+	protected function getCurrencyNameMajor(int $amount, string $currency): string
 	{
 		static $names = [
-			self::CURRENCY_EURO           => [
-				'whole'   => ['euras', 'eurai', 'eurų'],
-				'decimal' => ['centas', 'centai', 'centų'],
-			],
-			self::CURRENCY_BRITISH_POUND  => [
-				'whole'   => ['svaras', 'svarai', 'svarų'],
-				'decimal' => ['pensas', 'pensai', 'pensų'],
-			],
-			self::CURRENCY_LATVIAN_LAT    => [
-				'whole'   => ['latas', 'latai', 'latų'],
-				'decimal' => ['santimas', 'santimai', 'santimų'],
-			],
-			self::CURRENCY_LITHUANIAN_LIT => [
-				'whole'   => ['litas', 'litai', 'litų'],
-				'decimal' => ['centas', 'centai', 'centų'],
-			],
-			self::CURRENCY_RUSSIAN_ROUBLE => [
-				'whole'   => ['rublis', 'rubliai', 'rublių'],
-				'decimal' => ['kapeika', 'kapeikos', 'kapeikų'],
-			],
-			self::CURRENCY_US_DOLLAR      => [
-				'whole'   => ['doleris', 'doleriai', 'dolerių'],
-				'decimal' => ['centas', 'centai', 'centų'],
-			],
-			self::CURRENCY_PL_ZLOTY       => [
-				'whole'   => ['zlotas', 'zlotai', 'zlotų'],
-				'decimal' => ['grašis', 'grašiai', 'grašių'],
-			],
+			self::CURRENCY_EURO           => ['euras', 'eurai', 'eurų'],
+			self::CURRENCY_BRITISH_POUND  => ['svaras', 'svarai', 'svarų'],
+			self::CURRENCY_LATVIAN_LAT    => ['latas', 'latai', 'latų'],
+			self::CURRENCY_LITHUANIAN_LIT => ['litas', 'litai', 'litų'],
+			self::CURRENCY_RUSSIAN_ROUBLE => ['rublis', 'rubliai', 'rublių'],
+			self::CURRENCY_US_DOLLAR      => ['doleris', 'doleriai', 'dolerių'],
+			self::CURRENCY_PL_ZLOTY       => ['zlotas', 'zlotai', 'zlotų'],
 		];
 		
-		if (!isset($names[$currency]))
-		{
-			throw new InvalidArgumentException('Unsupported currency');
-		}
+		return self::getCurrencyName($names, $amount, $currency);
+	}
+	
+	protected function getCurrencyNameMinor(int $amount, string $currency): string
+	{
+		static $names = [
+			self::CURRENCY_EURO           => ['centas', 'centai', 'centų'],
+			self::CURRENCY_BRITISH_POUND  => ['pensas', 'pensai', 'pensų'],
+			self::CURRENCY_LATVIAN_LAT    => ['santimas', 'santimai', 'santimų'],
+			self::CURRENCY_LITHUANIAN_LIT => ['centas', 'centai', 'centų'],
+			self::CURRENCY_RUSSIAN_ROUBLE => ['kapeika', 'kapeikos', 'kapeikų'],
+			self::CURRENCY_US_DOLLAR      => ['centas', 'centai', 'centų'],
+			self::CURRENCY_PL_ZLOTY       => ['grašis', 'grašiai', 'grašių'],
+		];
 		
-		$tens = $number % 100;
-		$singles = $number % 10;
+		return self::getCurrencyName($names, $amount, $currency);
+	}
+	
+	private static function getCurrencyName(array $names, int $amount, string $currency): string
+	{
+		$tens = $amount % 100;
+		$singles = $amount % 10;
 		
 		if (($singles === 1) && ($tens !== 11)) // 1, 21, 31, ... 91
 		{
@@ -176,6 +170,6 @@ final class Lithuanian extends Speller
 			$index = 2;
 		}
 		
-		return $names[$currency][$type][$index];
+		return $names[$currency][$index] ?? self::throw(new InvalidArgumentException('Unsupported currency'));
 	}
 }
