@@ -115,10 +115,9 @@ abstract class Speller
 		self::validateCurrency($currency);
 		
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
-		$parts = explode('.', $amount);
+		[$wholeAmount, $decimalAmount] = array_map('intval', explode('.', $amount));
+		
 		$speller = self::get($language);
-		$wholeAmount = intval($parts[0]);
-		$decimalAmount = intval($parts[1]);
 		
 		return trim($speller->parseInt($wholeAmount, false, $currency))
 			. ' '
@@ -146,10 +145,9 @@ abstract class Speller
 		self::validateCurrency($currency);
 		
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
-		$parts = explode('.', $amount);
+		[$wholeAmount, $decimalAmount] = array_map('intval', explode('.', $amount));
+		
 		$speller = self::get($language);
-		$wholeAmount = intval($parts[0]);
-		$decimalAmount = intval($parts[1]);
 		
 		$text = trim($speller->parseInt($wholeAmount, false, $currency))
 			. ' '
