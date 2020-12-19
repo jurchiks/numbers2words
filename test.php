@@ -19,14 +19,15 @@ spl_autoload_register(
 		}
 		
 		require $path;
+		
 		return true;
 	},
 	true
 );
 
 // common code:
-use \js\tools\numbers2words\Speller;
-use \js\tools\numbers2words\exceptions\InvalidArgumentException;
+use js\tools\numbers2words\exceptions\SpellerException;
+use js\tools\numbers2words\Speller;
 
 try
 {
@@ -50,7 +51,7 @@ try
 		echo "\n";
 	}
 }
-catch (InvalidArgumentException $iae)
+catch (SpellerException $iae)
 {
 	echo $iae->getMessage();
 	die(1);
