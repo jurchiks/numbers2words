@@ -118,9 +118,13 @@ final class Latvian extends Language
 			9 => 'deviņas',
 		];
 		
-		if ($isDecimalPart && ($currency === Speller::CURRENCY_RUSSIAN_ROUBLE))
+		$feminineCurrencies = [
+			Speller::CURRENCY_RUSSIAN_ROUBLE => $isDecimalPart, // Russian kopeks (but not rubles)
+			Speller::CURRENCY_BRITISH_POUND  => !$isDecimalPart, // British pounds (but not pennies)
+		];
+		
+		if (!empty($feminineCurrencies[$currency]))
 		{
-			// russian kopek nouns are feminine gender in Latvian
 			return $singlesFeminine[$digit];
 		}
 		
