@@ -4,12 +4,22 @@ namespace js\tools\numbers2words\languages;
 use js\tools\numbers2words\exceptions\UnsupportedCurrencyException;
 use js\tools\numbers2words\Speller;
 
-final class Polish extends Speller
+/**
+ * @internal
+ */
+final class Polish extends Language
 {
-	protected $minus = 'minus';
-	protected $decimalSeparator = ' i ';
+	public function spellMinus(): string
+	{
+		return 'minus';
+	}
 	
-	protected function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string
+	public function spellMinorUnitSeparator(): string
+	{
+		return 'i';
+	}
+	
+	public function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string
 	{
 		static $hundreds = [
 			1 => 'sto',
@@ -108,7 +118,7 @@ final class Polish extends Speller
 			9 => 'dziewięć',
 		];
 		
-		if ($isDecimalPart && ($currency === self::CURRENCY_RUSSIAN_ROUBLE)) // russian kopeks
+		if ($isDecimalPart && ($currency === Speller::CURRENCY_RUSSIAN_ROUBLE)) // russian kopeks
 		{
 			return $singlesFeminine[$digit];
 		}
@@ -116,7 +126,7 @@ final class Polish extends Speller
 		return $singlesMasculine[$digit];
 	}
 	
-	protected function spellExponent(string $type, int $number, string $currency): string
+	public function spellExponent(string $type, int $number, string $currency): string
 	{
 		$tens = $number % 100;
 		$singles = $number % 10;
@@ -156,31 +166,31 @@ final class Polish extends Speller
 		return '';
 	}
 	
-	protected function getCurrencyNameMajor(int $amount, string $currency): string
+	public function getCurrencyNameMajor(int $amount, string $currency): string
 	{
 		static $names = [
-			self::CURRENCY_EURO           => ['euro', 'euro', 'euro'],
-			self::CURRENCY_BRITISH_POUND  => ['funt', 'funty', 'funtów'],
-			self::CURRENCY_LATVIAN_LAT    => ['łat', 'łaty', 'łatów'],
-			self::CURRENCY_LITHUANIAN_LIT => ['lit', 'lity', 'litów'],
-			self::CURRENCY_RUSSIAN_ROUBLE => ['rubel', 'ruble', 'rubli'],
-			self::CURRENCY_US_DOLLAR      => ['dolar', 'dolary', 'dolarów'],
-			self::CURRENCY_PL_ZLOTY       => ['złoty', 'złote', 'złotych'],
+			Speller::CURRENCY_EURO           => ['euro', 'euro', 'euro'],
+			Speller::CURRENCY_BRITISH_POUND  => ['funt', 'funty', 'funtów'],
+			Speller::CURRENCY_LATVIAN_LAT    => ['łat', 'łaty', 'łatów'],
+			Speller::CURRENCY_LITHUANIAN_LIT => ['lit', 'lity', 'litów'],
+			Speller::CURRENCY_RUSSIAN_ROUBLE => ['rubel', 'ruble', 'rubli'],
+			Speller::CURRENCY_US_DOLLAR      => ['dolar', 'dolary', 'dolarów'],
+			Speller::CURRENCY_PL_ZLOTY       => ['złoty', 'złote', 'złotych'],
 		];
 		
 		return self::getCurrencyName($names, $amount, $currency);
 	}
 	
-	protected function getCurrencyNameMinor(int $amount, string $currency): string
+	public function getCurrencyNameMinor(int $amount, string $currency): string
 	{
 		static $names = [
-			self::CURRENCY_EURO           => ['cent', 'centy', 'centów'],
-			self::CURRENCY_BRITISH_POUND  => ['pen', 'peny', 'penów'],
-			self::CURRENCY_LATVIAN_LAT    => ['santim', 'santimy', 'santimów'],
-			self::CURRENCY_LITHUANIAN_LIT => ['cent', 'centy', 'centów'],
-			self::CURRENCY_RUSSIAN_ROUBLE => ['kopiejka', 'kopiejki', 'kopiejek'],
-			self::CURRENCY_US_DOLLAR      => ['cent', 'centy', 'centów'],
-			self::CURRENCY_PL_ZLOTY       => ['grosz', 'grosze', 'groszy'],
+			Speller::CURRENCY_EURO           => ['cent', 'centy', 'centów'],
+			Speller::CURRENCY_BRITISH_POUND  => ['pen', 'peny', 'penów'],
+			Speller::CURRENCY_LATVIAN_LAT    => ['santim', 'santimy', 'santimów'],
+			Speller::CURRENCY_LITHUANIAN_LIT => ['cent', 'centy', 'centów'],
+			Speller::CURRENCY_RUSSIAN_ROUBLE => ['kopiejka', 'kopiejki', 'kopiejek'],
+			Speller::CURRENCY_US_DOLLAR      => ['cent', 'centy', 'centów'],
+			Speller::CURRENCY_PL_ZLOTY       => ['grosz', 'grosze', 'groszy'],
 		];
 		
 		return self::getCurrencyName($names, $amount, $currency);

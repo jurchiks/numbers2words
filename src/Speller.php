@@ -1,22 +1,22 @@
 <?php
 namespace js\tools\numbers2words;
 
-use Exception;
+use js\tools\numbers2words\languages\Language;
 
 /**
  * This class offers number spelling in various languages.
  *
  * @author Juris Sudmalis
  */
-abstract class Speller
+class Speller
 {
-	const LANGUAGE_ENGLISH = 'en';
-	const LANGUAGE_ESTONIAN = 'et';
-	const LANGUAGE_LATVIAN = 'lv';
-	const LANGUAGE_LITHUANIAN = 'lt';
-	const LANGUAGE_RUSSIAN = 'ru';
-	const LANGUAGE_SPANISH = 'es';
-	const LANGUAGE_POLISH = 'pl';
+	const LANGUAGE_ENGLISH = Language::ENGLISH;
+	const LANGUAGE_ESTONIAN = Language::ESTONIAN;
+	const LANGUAGE_LATVIAN = Language::LATVIAN;
+	const LANGUAGE_LITHUANIAN = Language::LITHUANIAN;
+	const LANGUAGE_RUSSIAN = Language::RUSSIAN;
+	const LANGUAGE_SPANISH = Language::SPANISH;
+	const LANGUAGE_POLISH = Language::POLISH;
 	
 	const CURRENCY_EURO = 'EUR';
 	const CURRENCY_BRITISH_POUND = 'GBP';
@@ -25,16 +25,6 @@ abstract class Speller
 	const CURRENCY_RUSSIAN_ROUBLE = 'RUR';
 	const CURRENCY_US_DOLLAR = 'USD';
 	const CURRENCY_PL_ZLOTY = 'PLN';
-	
-	private static $languages = [
-		self::LANGUAGE_ENGLISH    => languages\English::class,
-		self::LANGUAGE_ESTONIAN   => languages\Estonian::class,
-		self::LANGUAGE_LATVIAN    => languages\Latvian::class,
-		self::LANGUAGE_LITHUANIAN => languages\Lithuanian::class,
-		self::LANGUAGE_RUSSIAN    => languages\Russian::class,
-		self::LANGUAGE_SPANISH    => languages\Spanish::class,
-		self::LANGUAGE_POLISH     => languages\Polish::class,
-	];
 	
 	private static $currencies = [
 		self::CURRENCY_EURO,
@@ -46,37 +36,21 @@ abstract class Speller
 		self::CURRENCY_PL_ZLOTY,
 	];
 	
-	protected $minus;
-	protected $decimalSeparator;
-	
-	private final function __construct()
-	{
-	}
+	/** @var Language */
+	private $language;
 	
 	/**
 	 * @param string $language A two-letter, ISO 639-1 code of the language.
-	 * @return Speller
+	 * @throws exceptions\UnsupportedLanguageException If the specified language is not supported.
 	 */
-	private static function get(string $language): Speller
+	private final function __construct(string $language)
 	{
-		static $spellers = [];
-		
-		if (!isset(self::$languages[$language]))
-		{
-			throw new exceptions\UnsupportedLanguageException($language);
-		}
-		
-		if (!isset($spellers[$language]))
-		{
-			$spellers[$language] = new self::$languages[$language]();
-		}
-		
-		return $spellers[$language];
+		$this->language = Language::from($language);
 	}
 	
 	public static function getAcceptedLanguages(): array
 	{
-		return array_keys(self::$languages);
+		return Language::supportedLanguages();
 	}
 	
 	public static function getAcceptedCurrencies(): array
@@ -94,8 +68,7 @@ abstract class Speller
 	 */
 	public static function spellNumber(int $number, string $language): string
 	{
-		return self::get($language)
-			->parseInt($number, false);
+		return (new self($language))->language->spellNumber($number, false);
 	}
 	
 	/**
@@ -110,15 +83,15 @@ abstract class Speller
 	 */
 	public static function spellCurrencyShort($amount, string $language, string $currency): string
 	{
-		self::assertNumber($amount);
+		self::validateNumber($amount);
 		self::validateCurrency($currency);
 		
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
 		[$wholeAmount, $decimalAmount] = array_map('intval', explode('.', $amount));
 		
-		$speller = self::get($language);
+		$speller = new self($language);
 		
-		return trim($speller->parseInt($wholeAmount, false, $currency))
+		return trim($speller->language->spellNumber($wholeAmount, false, $currency))
 			. ' '
 			. $currency
 			. ' '
@@ -140,106 +113,38 @@ abstract class Speller
 	 */
 	public static function spellCurrency($amount, string $language, string $currency, bool $requireDecimal = true, bool $spellDecimal = false): string
 	{
-		self::assertNumber($amount);
+		self::validateNumber($amount);
 		self::validateCurrency($currency);
 		
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
 		[$wholeAmount, $decimalAmount] = array_map('intval', explode('.', $amount));
 		
-		$speller = self::get($language);
+		$speller = new self($language);
 		
-		$text = trim($speller->parseInt($wholeAmount, false, $currency))
+		$text = trim($speller->language->spellNumber($wholeAmount, false, $currency))
 			. ' '
-			. $speller->getCurrencyNameMajor($wholeAmount, $currency);
+			. $speller->language->getCurrencyNameMajor($wholeAmount, $currency);
 		
 		if ($requireDecimal || ($decimalAmount > 0))
 		{
-			$text .= $speller->decimalSeparator
+			$text .= ' '
+				. $speller->language->spellMinorUnitSeparator()
+				. ' '
 				. ($spellDecimal
-					? trim($speller->parseInt($decimalAmount, true, $currency))
+					? trim($speller->language->spellNumber($decimalAmount, true, $currency))
 					: $decimalAmount)
 				. ' '
-				. $speller->getCurrencyNameMinor($decimalAmount, $currency);
+				. $speller->language->getCurrencyNameMinor($decimalAmount, $currency);
 		}
 		
 		return $text;
 	}
-	
-	private function parseInt(int $number, bool $isDecimalPart, string $currency = ''): string
-	{
-		$text = '';
-		
-		if ($number < 0)
-		{
-			$text = $this->minus . ' ';
-			$number = abs($number);
-		}
-		
-		if (($number >= 1000000)
-			&& ($number < 1000000000)) // 1'000'000-999'999'999
-		{
-			$millions = intval(substr("$number", 0, -6));
-			$text .= $this->spellHundred($millions, 3, $isDecimalPart, $currency)
-				. ' ' . $this->spellExponent('million', $millions, $currency);
-			
-			$number = intval(substr("$number", -6));
-			
-			if ($number === 0)
-			{
-				// exact millions
-				return $text;
-			}
-			else
-			{
-				$text .= ' ';
-			}
-		}
-		
-		if (($number >= 1000)
-			&& ($number < 1000000)) // 1'000-999'999
-		{
-			$thousands = intval(substr("$number", 0, -3));
-			$text .= $this->spellHundred($thousands, 2, $isDecimalPart, $currency)
-				. ' ' . $this->spellExponent('thousand', $thousands, $currency);
-			
-			$number = intval(substr("$number", -3));
-			
-			if ($number === 0)
-			{
-				// exact thousands
-				return $text;
-			}
-			else
-			{
-				$text .= ' ';
-			}
-		}
-		
-		if ($number < 1000)
-		{
-			$text .= $this->spellHundred($number, 1, $isDecimalPart, $currency);
-		}
-		
-		return $text;
-	}
-	
-	protected abstract function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string;
-	
-	protected abstract function spellExponent(string $type, int $number, string $currency): string;
-	
-	protected abstract function getCurrencyNameMajor(int $amount, string $currency): string;
-	
-	protected abstract function getCurrencyNameMinor(int $amount, string $currency): string;
 	
 	/**
-	 * @deprecated Unnecessary in PHP8: https://wiki.php.net/rfc/throw_expression
+	 * @param mixed $number
+	 * @throws exceptions\InvalidArgumentException
 	 */
-	protected static function throw(Exception $exception): void
-	{
-		throw $exception;
-	}
-	
-	private static function assertNumber($number): void
+	private static function validateNumber($number): void
 	{
 		if (!is_numeric($number))
 		{
@@ -247,6 +152,10 @@ abstract class Speller
 		}
 	}
 	
+	/**
+	 * @param string $currency
+	 * @throws exceptions\UnsupportedCurrencyException
+	 */
 	private static function validateCurrency(string $currency): void
 	{
 		if (!in_array($currency, self::$currencies))

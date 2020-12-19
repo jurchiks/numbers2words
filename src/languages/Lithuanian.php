@@ -4,12 +4,22 @@ namespace js\tools\numbers2words\languages;
 use js\tools\numbers2words\exceptions\UnsupportedCurrencyException;
 use js\tools\numbers2words\Speller;
 
-final class Lithuanian extends Speller
+/**
+ * @internal
+ */
+final class Lithuanian extends Language
 {
-	protected $minus = 'minus';
-	protected $decimalSeparator = ' ir ';
+	public function spellMinus(): string
+	{
+		return 'minus';
+	}
 	
-	protected function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string
+	public function spellMinorUnitSeparator(): string
+	{
+		return 'ir';
+	}
+	
+	public function spellHundred(int $number, int $groupOfThrees, bool $isDecimalPart, string $currency): string
 	{
 		static $hundreds = [
 			1 => 'vienas šimtas',
@@ -93,7 +103,7 @@ final class Lithuanian extends Speller
 		return $text;
 	}
 	
-	protected function spellExponent(string $type, int $number, string $currency): string
+	public function spellExponent(string $type, int $number, string $currency): string
 	{
 		$tens = $number % 100;
 		$singles = $number % 10;
@@ -121,31 +131,31 @@ final class Lithuanian extends Speller
 		return '';
 	}
 	
-	protected function getCurrencyNameMajor(int $amount, string $currency): string
+	public function getCurrencyNameMajor(int $amount, string $currency): string
 	{
 		static $names = [
-			self::CURRENCY_EURO           => ['euras', 'eurai', 'eurų'],
-			self::CURRENCY_BRITISH_POUND  => ['svaras', 'svarai', 'svarų'],
-			self::CURRENCY_LATVIAN_LAT    => ['latas', 'latai', 'latų'],
-			self::CURRENCY_LITHUANIAN_LIT => ['litas', 'litai', 'litų'],
-			self::CURRENCY_RUSSIAN_ROUBLE => ['rublis', 'rubliai', 'rublių'],
-			self::CURRENCY_US_DOLLAR      => ['doleris', 'doleriai', 'dolerių'],
-			self::CURRENCY_PL_ZLOTY       => ['zlotas', 'zlotai', 'zlotų'],
+			Speller::CURRENCY_EURO           => ['euras', 'eurai', 'eurų'],
+			Speller::CURRENCY_BRITISH_POUND  => ['svaras', 'svarai', 'svarų'],
+			Speller::CURRENCY_LATVIAN_LAT    => ['latas', 'latai', 'latų'],
+			Speller::CURRENCY_LITHUANIAN_LIT => ['litas', 'litai', 'litų'],
+			Speller::CURRENCY_RUSSIAN_ROUBLE => ['rublis', 'rubliai', 'rublių'],
+			Speller::CURRENCY_US_DOLLAR      => ['doleris', 'doleriai', 'dolerių'],
+			Speller::CURRENCY_PL_ZLOTY       => ['zlotas', 'zlotai', 'zlotų'],
 		];
 		
 		return self::getCurrencyName($names, $amount, $currency);
 	}
 	
-	protected function getCurrencyNameMinor(int $amount, string $currency): string
+	public function getCurrencyNameMinor(int $amount, string $currency): string
 	{
 		static $names = [
-			self::CURRENCY_EURO           => ['centas', 'centai', 'centų'],
-			self::CURRENCY_BRITISH_POUND  => ['pensas', 'pensai', 'pensų'],
-			self::CURRENCY_LATVIAN_LAT    => ['santimas', 'santimai', 'santimų'],
-			self::CURRENCY_LITHUANIAN_LIT => ['centas', 'centai', 'centų'],
-			self::CURRENCY_RUSSIAN_ROUBLE => ['kapeika', 'kapeikos', 'kapeikų'],
-			self::CURRENCY_US_DOLLAR      => ['centas', 'centai', 'centų'],
-			self::CURRENCY_PL_ZLOTY       => ['grašis', 'grašiai', 'grašių'],
+			Speller::CURRENCY_EURO           => ['centas', 'centai', 'centų'],
+			Speller::CURRENCY_BRITISH_POUND  => ['pensas', 'pensai', 'pensų'],
+			Speller::CURRENCY_LATVIAN_LAT    => ['santimas', 'santimai', 'santimų'],
+			Speller::CURRENCY_LITHUANIAN_LIT => ['centas', 'centai', 'centų'],
+			Speller::CURRENCY_RUSSIAN_ROUBLE => ['kapeika', 'kapeikos', 'kapeikų'],
+			Speller::CURRENCY_US_DOLLAR      => ['centas', 'centai', 'centų'],
+			Speller::CURRENCY_PL_ZLOTY       => ['grašis', 'grašiai', 'grašių'],
 		];
 		
 		return self::getCurrencyName($names, $amount, $currency);
