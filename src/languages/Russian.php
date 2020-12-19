@@ -1,7 +1,7 @@
 <?php
 namespace js\tools\numbers2words\languages;
 
-use js\tools\numbers2words\exceptions\InvalidArgumentException;
+use js\tools\numbers2words\exceptions\UnsupportedCurrencyException;
 use js\tools\numbers2words\Speller;
 
 final class Russian extends Speller
@@ -206,6 +206,6 @@ final class Russian extends Speller
 			$index = 2;
 		}
 		
-		return $names[$currency][$index] ?? self::throw(new InvalidArgumentException('Unsupported currency'));
+		return $names[$currency][$index] ?? self::throw(new UnsupportedCurrencyException($currency));
 	}
 }
