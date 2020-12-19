@@ -2,7 +2,6 @@
 namespace js\tools\numbers2words;
 
 use Exception;
-use js\tools\numbers2words\exceptions\InvalidArgumentException;
 
 /**
  * This class offers number spelling in various languages.
@@ -64,7 +63,7 @@ abstract class Speller
 		
 		if (!isset(self::$languages[$language]))
 		{
-			throw new InvalidArgumentException('That language is not implemented yet.');
+			throw new exceptions\UnsupportedLanguageException($language);
 		}
 		
 		if (!isset($spellers[$language]))
@@ -91,7 +90,7 @@ abstract class Speller
 	 * @param int $number The number to spell in the specified language.
 	 * @param string $language A two-letter, ISO 639-1 code of the language to spell the number in.
 	 * @return string The number as written in words in the specified language.
-	 * @throws InvalidArgumentException If any parameter is invalid.
+	 * @throws exceptions\SpellerException If any parameter is invalid.
 	 */
 	public static function spellNumber(int $number, string $language): string
 	{
@@ -107,7 +106,7 @@ abstract class Speller
 	 * @param string $language A two-letter, ISO 639-1 code of the language to spell the amount in.
 	 * @param string $currency A three-letter, ISO 4217 currency code.
 	 * @return string The currency as written in words in the specified language.
-	 * @throws InvalidArgumentException If any parameter is invalid.
+	 * @throws exceptions\SpellerException If any parameter is invalid.
 	 */
 	public static function spellCurrencyShort($amount, string $language, string $currency): string
 	{
@@ -137,7 +136,7 @@ abstract class Speller
 	 * @param bool $spellDecimal If true, spell the decimal part out same as the whole part;
 	 * otherwise, spell only the whole part and output the decimal part as integer.
 	 * @return string The currency as written in words in the specified language.
-	 * @throws InvalidArgumentException If any parameter is invalid.
+	 * @throws exceptions\SpellerException If any parameter is invalid.
 	 */
 	public static function spellCurrency($amount, string $language, string $currency, bool $requireDecimal = true, bool $spellDecimal = false): string
 	{
@@ -244,7 +243,7 @@ abstract class Speller
 	{
 		if (!is_numeric($number))
 		{
-			throw new InvalidArgumentException('Invalid number specified.');
+			throw new exceptions\InvalidArgumentException('Invalid number specified.');
 		}
 	}
 	
@@ -252,7 +251,7 @@ abstract class Speller
 	{
 		if (!in_array($currency, self::$currencies))
 		{
-			throw new InvalidArgumentException('That currency is not implemented yet.');
+			throw new exceptions\UnsupportedCurrencyException($currency);
 		}
 	}
 }
