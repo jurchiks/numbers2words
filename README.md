@@ -12,6 +12,7 @@ Supported languages (ISO 639-1 language codes):
 * Lithuanian (`lt`)
 * Russian (`ru`)
 * Spanish (`es`)
+* Italian (`it`)
 * Polish (`pl`)
 
 Supported currencies (ISO 4217 currency codes):
