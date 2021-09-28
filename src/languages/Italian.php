@@ -61,14 +61,14 @@ final class Italian extends Language
 		
 		if ($number >= 100)
 		{
-			$singlesIndex = intval(substr("$number", 0, 1));
-			if ($singlesIndex === 1)
+			$firstDigit = intval(substr("$number", 0, 1));
+			if ($firstDigit === 1)
 			{
 				$text .= 'cento';
 			}
 			else
 			{
-				$text .= $singles[$singlesIndex] . ' cento';
+				$text .= $singles[$firstDigit] . ' cento';
 			}
 			
 			$number = $number % 100;
