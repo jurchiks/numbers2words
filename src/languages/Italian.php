@@ -1,4 +1,5 @@
 <?php
+
 namespace js\tools\numbers2words\languages;
 
 use js\tools\numbers2words\exceptions\UnsupportedCurrencyException;
@@ -57,17 +58,19 @@ final class Italian extends Language
 		];
 		
 		$text = '';
-
+		
 		if ($number >= 100)
 		{
-		    $index_singles = intval(substr("$number", 0, 1));
-		    if($index_singles == 1){
-                $text .= 'cento';
-            }
-		    else {
-                $text .= $singles[$index_singles] . ' cento';
-            }
-
+			$singlesIndex = intval(substr("$number", 0, 1));
+			if ($singlesIndex === 1)
+			{
+				$text .= 'cento';
+			}
+			else
+			{
+				$text .= $singles[$singlesIndex] . ' cento';
+			}
+			
 			$number = $number % 100;
 			
 			if ($number === 0) // exact hundreds
@@ -78,7 +81,15 @@ final class Italian extends Language
 			$text .= ' ';
 		}
 		
-		if ($number < 10)
+		if ($number === 1 && $groupOfThrees > 1)
+		{
+			//$groupOfThrees === 2 is empty ...
+			if ($groupOfThrees === 3)
+			{
+				$text .= 'un';
+			}
+		}
+		else if ($number < 10)
 		{
 			$text .= $singles[$number];
 		}
@@ -103,13 +114,21 @@ final class Italian extends Language
 	{
 		if ($type === 'million')
 		{
-            if($number == 1) return '*milione*'; //for replacement purposes
-            return 'milioni';
+			if ($number === 1)
+			{
+				return 'milione';
+			}
+			
+			return 'milioni';
 		}
 		
 		if ($type === 'thousand')
 		{
-		    if($number == 1) return '*mille*'; //for replacement purposes
+			if ($number === 1)
+			{
+				return 'mille';
+			}
+			
 			return 'mila';
 		}
 		
@@ -120,12 +139,12 @@ final class Italian extends Language
 	{
 		static $names = [
 			Speller::CURRENCY_EURO           => ['euro', 'euro'],
-			//Speller::CURRENCY_BRITISH_POUND  => ['pound', 'pounds'],
-			//Speller::CURRENCY_LATVIAN_LAT    => ['lat', 'lats'],
-			//Speller::CURRENCY_LITHUANIAN_LIT => ['litas', 'litai'],
-			//Speller::CURRENCY_RUSSIAN_ROUBLE => ['ruble', 'rubles'],
-			//Speller::CURRENCY_US_DOLLAR      => ['dollar', 'dollars'],
-			//Speller::CURRENCY_PL_ZLOTY       => ['zloty', 'zlote'],
+			Speller::CURRENCY_BRITISH_POUND  => ['sterlina', 'sterline'],
+			Speller::CURRENCY_LATVIAN_LAT    => ['lats', 'lats'],
+			Speller::CURRENCY_LITHUANIAN_LIT => ['litas', 'litas'],
+			Speller::CURRENCY_RUSSIAN_ROUBLE => ['rublo', 'rubli'],
+			Speller::CURRENCY_US_DOLLAR      => ['dollaro', 'dollari'],
+			Speller::CURRENCY_PL_ZLOTY       => ['zloty', 'zlote'],
 		];
 		
 		return self::getCurrencyName($names, $amount, $currency);
@@ -134,13 +153,13 @@ final class Italian extends Language
 	public function getCurrencyNameMinor(int $amount, string $currency): string
 	{
 		static $names = [
-			Speller::CURRENCY_EURO           => ['cent', 'cents'],
-			//Speller::CURRENCY_BRITISH_POUND  => ['penny', 'pennies'],
-			//Speller::CURRENCY_LATVIAN_LAT    => ['santim', 'santims'],
-			//Speller::CURRENCY_LITHUANIAN_LIT => ['centas', 'centai'],
-			//Speller::CURRENCY_RUSSIAN_ROUBLE => ['kopek', 'kopeks'],
-			//Speller::CURRENCY_US_DOLLAR      => ['cent', 'cents'],
-			//Speller::CURRENCY_PL_ZLOTY       => ['grosz', 'grosze'],
+			Speller::CURRENCY_EURO           => ['centesimo', 'centesimi'],
+			Speller::CURRENCY_BRITISH_POUND  => ['penny', 'pennies'],
+			Speller::CURRENCY_LATVIAN_LAT    => ['santim', 'santims'],
+			Speller::CURRENCY_LITHUANIAN_LIT => ['centas', 'centai'],
+			Speller::CURRENCY_RUSSIAN_ROUBLE => ['copeche', 'copechi'],
+			Speller::CURRENCY_US_DOLLAR      => ['centesimo', 'centesimi'],
+			Speller::CURRENCY_PL_ZLOTY       => ['grosz', 'groszy'],
 		];
 		
 		return self::getCurrencyName($names, $amount, $currency);

@@ -1,7 +1,6 @@
 <?php
 namespace js\tools\numbers2words;
 
-use js\tools\numbers2words\languages\Italian;
 use js\tools\numbers2words\languages\Language;
 
 /**
@@ -122,7 +121,7 @@ class Speller
 		[$wholeAmount, $decimalAmount] = array_map('intval', explode('.', $amount));
 		
 		$speller = new self($language);
-
+		
 		$text = trim($speller->language->spellNumber($wholeAmount, false, $currency))
 			. ' '
 			. $speller->language->getCurrencyNameMajor($wholeAmount, $currency);
@@ -138,12 +137,6 @@ class Speller
 				. ' '
 				. $speller->language->getCurrencyNameMinor($decimalAmount, $currency);
 		}
-
-
-		if($language === Italian::ITALIAN){
-		    //to manage irregularities in the ITALIAN language
-		    $text = str_replace(['uno *mille*', 'uno *milione*'], ['mille', 'un milione'], $text);
-        }
 		
 		return $text;
 	}
