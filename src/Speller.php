@@ -17,7 +17,8 @@ class Speller
 	const LANGUAGE_RUSSIAN = Language::RUSSIAN;
 	const LANGUAGE_SPANISH = Language::SPANISH;
 	const LANGUAGE_POLISH = Language::POLISH;
-	
+	const LANGUAGE_ITALIAN = Language::ITALIAN;
+
 	const CURRENCY_EURO = 'EUR';
 	const CURRENCY_BRITISH_POUND = 'GBP';
 	const CURRENCY_LATVIAN_LAT = 'LVL';
