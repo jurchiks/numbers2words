@@ -1,0 +1,4 @@
+/vendor/
+composer.lock
+src/.DS_Store
+.idea/codeStyles/Project.xml
