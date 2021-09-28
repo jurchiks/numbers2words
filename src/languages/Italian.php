@@ -109,7 +109,7 @@ final class Italian extends Language
 		
 		if ($type === 'thousand')
 		{
-		    if($number == 1) return '*mille*'; ////for replacement purposes
+		    if($number == 1) return '*mille*'; //for replacement purposes
 			return 'mila';
 		}
 		
