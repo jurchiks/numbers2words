@@ -26,6 +26,7 @@ class Speller
 	const CURRENCY_RUSSIAN_ROUBLE = 'RUR';
 	const CURRENCY_US_DOLLAR = 'USD';
 	const CURRENCY_PL_ZLOTY = 'PLN';
+	const CURRENCY_TANZANIAN_SHILLING = 'TZS';
 	
 	private static $currencies = [
 		self::CURRENCY_EURO,
@@ -35,6 +36,7 @@ class Speller
 		self::CURRENCY_RUSSIAN_ROUBLE,
 		self::CURRENCY_US_DOLLAR,
 		self::CURRENCY_PL_ZLOTY,
+		self::CURRENCY_TANZANIAN_SHILLING,
 	];
 	
 	/** @var Language */

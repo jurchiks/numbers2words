@@ -115,13 +115,14 @@ final class Estonian extends Language
 	public function getCurrencyNameMajor(int $amount, string $currency): string
 	{
 		static $names = [
-			Speller::CURRENCY_EURO           => ['euro', 'eurot'],
-			Speller::CURRENCY_BRITISH_POUND  => ['nael', 'naela'],
-			Speller::CURRENCY_LATVIAN_LAT    => ['latt', 'latti'],
-			Speller::CURRENCY_LITHUANIAN_LIT => ['litt', 'litti'],
-			Speller::CURRENCY_RUSSIAN_ROUBLE => ['rubla', 'rubla'],
-			Speller::CURRENCY_US_DOLLAR      => ['dollar', 'dollarit'],
-			Speller::CURRENCY_PL_ZLOTY       => ['zloty', 'zlote'],
+			Speller::CURRENCY_EURO               => ['euro', 'eurot'],
+			Speller::CURRENCY_BRITISH_POUND      => ['nael', 'naela'],
+			Speller::CURRENCY_LATVIAN_LAT        => ['latt', 'latti'],
+			Speller::CURRENCY_LITHUANIAN_LIT     => ['litt', 'litti'],
+			Speller::CURRENCY_RUSSIAN_ROUBLE     => ['rubla', 'rubla'],
+			Speller::CURRENCY_US_DOLLAR          => ['dollar', 'dollarit'],
+			Speller::CURRENCY_PL_ZLOTY           => ['zloty', 'zlote'],
+			Speller::CURRENCY_TANZANIAN_SHILLING => ['šilling', 'šillingit'],
 		];
 		
 		return self::getCurrencyName($names, $amount, $currency);
@@ -130,13 +131,14 @@ final class Estonian extends Language
 	public function getCurrencyNameMinor(int $amount, string $currency): string
 	{
 		static $names = [
-			Speller::CURRENCY_EURO           => ['sent', 'senti'],
-			Speller::CURRENCY_BRITISH_POUND  => ['penn', 'penni'],
-			Speller::CURRENCY_LATVIAN_LAT    => ['santiim', 'santiimi'],
-			Speller::CURRENCY_LITHUANIAN_LIT => ['sent', 'senti'],
-			Speller::CURRENCY_RUSSIAN_ROUBLE => ['kopikas', 'kopikat'],
-			Speller::CURRENCY_US_DOLLAR      => ['sent', 'senti'],
-			Speller::CURRENCY_PL_ZLOTY       => ['grosz', 'grosze'],
+			Speller::CURRENCY_EURO               => ['sent', 'senti'],
+			Speller::CURRENCY_BRITISH_POUND      => ['penn', 'penni'],
+			Speller::CURRENCY_LATVIAN_LAT        => ['santiim', 'santiimi'],
+			Speller::CURRENCY_LITHUANIAN_LIT     => ['sent', 'senti'],
+			Speller::CURRENCY_RUSSIAN_ROUBLE     => ['kopikas', 'kopikat'],
+			Speller::CURRENCY_US_DOLLAR          => ['sent', 'senti'],
+			Speller::CURRENCY_PL_ZLOTY           => ['grosz', 'grosze'],
+			Speller::CURRENCY_TANZANIAN_SHILLING => ['sent', 'senti'],
 		];
 		
 		return self::getCurrencyName($names, $amount, $currency);
