@@ -23,6 +23,7 @@ Supported currencies (ISO 4217 currency codes):
 * Russian Roubles (`RUR`)
 * U.S. Dollars (`USD`)
 * Polish Zloty (`PLN`)
+* Tanzanian Shillings (`TZS`)
 
 #### Installation:
 
