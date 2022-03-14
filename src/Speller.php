@@ -1,5 +1,4 @@
 <?php
-
 namespace js\tools\numbers2words;
 
 use js\tools\numbers2words\languages\Language;
@@ -27,8 +26,8 @@ class Speller
 	const CURRENCY_RUSSIAN_ROUBLE = 'RUR';
 	const CURRENCY_US_DOLLAR = 'USD';
 	const CURRENCY_PL_ZLOTY = 'PLN';
-	const CURRENCY_TANZANIAN_TZS = 'TZS';
-
+	const CURRENCY_TANZANIAN_SHILLING = 'TZS';
+	
 	private static $currencies = [
 		self::CURRENCY_EURO,
 		self::CURRENCY_BRITISH_POUND,
@@ -37,12 +36,12 @@ class Speller
 		self::CURRENCY_RUSSIAN_ROUBLE,
 		self::CURRENCY_US_DOLLAR,
 		self::CURRENCY_PL_ZLOTY,
-		self::CURRENCY_TANZANIAN_TZS,
+		self::CURRENCY_TANZANIAN_SHILLING,
 	];
-
+	
 	/** @var Language */
 	private $language;
-
+	
 	/**
 	 * @param string $language A two-letter, ISO 639-1 code of the language.
 	 * @throws exceptions\UnsupportedLanguageException If the specified language is not supported.
@@ -51,17 +50,17 @@ class Speller
 	{
 		$this->language = Language::from($language);
 	}
-
+	
 	public static function getAcceptedLanguages(): array
 	{
 		return Language::supportedLanguages();
 	}
-
+	
 	public static function getAcceptedCurrencies(): array
 	{
 		return self::$currencies;
 	}
-
+	
 	/**
 	 * Convert a number into its linguistic representation.
 	 *
@@ -74,7 +73,7 @@ class Speller
 	{
 		return (new self($language))->language->spellNumber($number, false);
 	}
-
+	
 	/**
 	 * Convert currency to its linguistic representation.
 	 * The format is {whole part spelled} CODE {decimal part}/100.
@@ -89,12 +88,12 @@ class Speller
 	{
 		self::validateNumber($amount);
 		self::validateCurrency($currency);
-
+		
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
 		[$wholeAmount, $decimalAmount] = array_map('intval', explode('.', $amount));
-
+		
 		$speller = new self($language);
-
+		
 		return trim($speller->language->spellNumber($wholeAmount, false, $currency))
 			. ' '
 			. $currency
@@ -102,7 +101,7 @@ class Speller
 			. $decimalAmount
 			. '/100';
 	}
-
+	
 	/**
 	 * Convert currency to its linguistic representation.
 	 *
@@ -119,16 +118,16 @@ class Speller
 	{
 		self::validateNumber($amount);
 		self::validateCurrency($currency);
-
+		
 		$amount = number_format($amount, 2, '.', ''); // ensure decimal is always 2 digits
 		[$wholeAmount, $decimalAmount] = array_map('intval', explode('.', $amount));
-
+		
 		$speller = new self($language);
-
+		
 		$text = trim($speller->language->spellNumber($wholeAmount, false, $currency))
 			. ' '
 			. $speller->language->getCurrencyNameMajor($wholeAmount, $currency);
-
+		
 		if ($requireDecimal || ($decimalAmount > 0))
 		{
 			$text .= ' '
@@ -140,10 +139,10 @@ class Speller
 				. ' '
 				. $speller->language->getCurrencyNameMinor($decimalAmount, $currency);
 		}
-
+		
 		return $text;
 	}
-
+	
 	/**
 	 * @param mixed $number
 	 * @throws exceptions\InvalidArgumentException
@@ -155,7 +154,7 @@ class Speller
 			throw new exceptions\InvalidArgumentException('Invalid number specified.');
 		}
 	}
-
+	
 	/**
 	 * @param string $currency
 	 * @throws exceptions\UnsupportedCurrencyException
