@@ -169,13 +169,13 @@ final class Polish extends Language
 	public function getCurrencyNameMajor(int $amount, string $currency): string
 	{
 		static $names = [
-			Speller::CURRENCY_EURO          	 => ['euro', 'euro', 'euro'],
-			Speller::CURRENCY_BRITISH_POUND 	 => ['funt', 'funty', 'funtów'],
-			Speller::CURRENCY_LATVIAN_LAT   	 => ['łat', 'łaty', 'łatów'],
-			Speller::CURRENCY_LITHUANIAN_LIT	 => ['lit', 'lity', 'litów'],
-			Speller::CURRENCY_RUSSIAN_ROUBLE	 => ['rubel', 'ruble', 'rubli'],
-			Speller::CURRENCY_US_DOLLAR     	 => ['dolar', 'dolary', 'dolarów'],
-			Speller::CURRENCY_PL_ZLOTY      	 => ['złoty', 'złote', 'złotych'],
+			Speller::CURRENCY_EURO               => ['euro', 'euro', 'euro'],
+			Speller::CURRENCY_BRITISH_POUND      => ['funt', 'funty', 'funtów'],
+			Speller::CURRENCY_LATVIAN_LAT        => ['łat', 'łaty', 'łatów'],
+			Speller::CURRENCY_LITHUANIAN_LIT     => ['lit', 'lity', 'litów'],
+			Speller::CURRENCY_RUSSIAN_ROUBLE     => ['rubel', 'ruble', 'rubli'],
+			Speller::CURRENCY_US_DOLLAR          => ['dolar', 'dolary', 'dolarów'],
+			Speller::CURRENCY_PL_ZLOTY           => ['złoty', 'złote', 'złotych'],
 			Speller::CURRENCY_TANZANIAN_SHILLING => ['zyling', 'szylingi', 'szylingów'],
 		];
 		
@@ -185,13 +185,13 @@ final class Polish extends Language
 	public function getCurrencyNameMinor(int $amount, string $currency): string
 	{
 		static $names = [
-			Speller::CURRENCY_EURO          	 => ['cent', 'centy', 'centów'],
-			Speller::CURRENCY_BRITISH_POUND 	 => ['pen', 'peny', 'penów'],
-			Speller::CURRENCY_LATVIAN_LAT   	 => ['santim', 'santimy', 'santimów'],
-			Speller::CURRENCY_LITHUANIAN_LIT	 => ['cent', 'centy', 'centów'],
-			Speller::CURRENCY_RUSSIAN_ROUBLE	 => ['kopiejka', 'kopiejki', 'kopiejek'],
-			Speller::CURRENCY_US_DOLLAR     	 => ['cent', 'centy', 'centów'],
-			Speller::CURRENCY_PL_ZLOTY      	 => ['grosz', 'grosze', 'groszy'],
+			Speller::CURRENCY_EURO               => ['cent', 'centy', 'centów'],
+			Speller::CURRENCY_BRITISH_POUND      => ['pen', 'peny', 'penów'],
+			Speller::CURRENCY_LATVIAN_LAT        => ['santim', 'santimy', 'santimów'],
+			Speller::CURRENCY_LITHUANIAN_LIT     => ['cent', 'centy', 'centów'],
+			Speller::CURRENCY_RUSSIAN_ROUBLE     => ['kopiejka', 'kopiejki', 'kopiejek'],
+			Speller::CURRENCY_US_DOLLAR          => ['cent', 'centy', 'centów'],
+			Speller::CURRENCY_PL_ZLOTY           => ['grosz', 'grosze', 'groszy'],
 			Speller::CURRENCY_TANZANIAN_SHILLING => ['cent', 'centy', 'centów'],
 		];
 		
