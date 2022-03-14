@@ -186,13 +186,13 @@ final class Russian extends Language
 	public function getCurrencyNameMinor(int $amount, string $currency): string
 	{
 		static $names = [
-			Speller::CURRENCY_EURO           	 => ['цент', 'цента', 'центов'],
-			Speller::CURRENCY_BRITISH_POUND  	 => ['пенни', 'пенса', 'пенсов'],
-			Speller::CURRENCY_LATVIAN_LAT    	 => ['сантим', 'сантима', 'сантимов'],
-			Speller::CURRENCY_LITHUANIAN_LIT 	 => ['цент', 'цента', 'центов'],
-			Speller::CURRENCY_RUSSIAN_ROUBLE 	 => ['копейка', 'копейки', 'копеек'],
-			Speller::CURRENCY_US_DOLLAR      	 => ['цент', 'цента', 'центов'],
-			Speller::CURRENCY_PL_ZLOTY       	 => ['грош', 'гроша', 'грошей'],
+			Speller::CURRENCY_EURO               => ['цент', 'цента', 'центов'],
+			Speller::CURRENCY_BRITISH_POUND      => ['пенни', 'пенса', 'пенсов'],
+			Speller::CURRENCY_LATVIAN_LAT        => ['сантим', 'сантима', 'сантимов'],
+			Speller::CURRENCY_LITHUANIAN_LIT     => ['цент', 'цента', 'центов'],
+			Speller::CURRENCY_RUSSIAN_ROUBLE     => ['копейка', 'копейки', 'копеек'],
+			Speller::CURRENCY_US_DOLLAR          => ['цент', 'цента', 'центов'],
+			Speller::CURRENCY_PL_ZLOTY           => ['грош', 'гроша', 'грошей'],
 			Speller::CURRENCY_TANZANIAN_SHILLING => ['цент', 'цента', 'центов'],
 		];
 		
